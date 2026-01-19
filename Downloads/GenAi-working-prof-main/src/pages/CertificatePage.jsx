@@ -244,45 +244,47 @@ export default function CertificatePage() {
                     {/* Overlays - Adjust top/left percentages based on the image provided */}
                     {imageLoaded && (
                         <>
-                            {/* Name Overlay - Fix overlap, move to clear line space */}
+                            {/* Name Overlay - Premium display font, perfectly centered */}
                             <div style={{
                                 position: 'absolute',
-                                top: '42%', // Aligned with the name line in the template
+                                top: '46%', // Visually centered between intro text and description
                                 left: '50%',
                                 transform: 'translate(-50%, -50%)',
-                                width: '90%',
+                                width: '85%',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
                                 zIndex: 20
                             }}>
                                 <div style={{
-                                    fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
-                                    fontSize: 'clamp(12px, 5.5cqi, 48px)',
-                                    fontWeight: '600',
+                                    fontFamily: "'Playfair Display', serif",
+                                    fontSize: 'clamp(24px, 7cqi, 64px)', // Increased prominence
+                                    fontWeight: '700',
                                     color: '#000000',
                                     textTransform: 'capitalize',
-                                    letterSpacing: '0.02em',
+                                    letterSpacing: '0.01em',
                                     whiteSpace: 'nowrap',
-                                    lineHeight: '1',
+                                    lineHeight: '1.2',
                                     textAlign: 'center',
+                                    fontStyle: 'italic',
                                     containerType: 'inline-size'
                                 }}>
                                     {studentName}
                                 </div>
                             </div>
 
-                            {/* Date Overlay - Bottom Right (Aligned with Date line) */}
+                            {/* Date Overlay - Centered exactly on the underline */}
                             <div style={{
                                 position: 'absolute',
-                                bottom: '12%', // Lowered to sit closer to the 'Date' indicator
-                                right: '12.5%',
-                                width: '22%',
+                                bottom: '9.8%', // Precisely sits on the template's line
+                                right: '6%', // Aligned with the Date marker area
+                                width: '28%',
                                 textAlign: 'center',
                                 fontFamily: "'Inter', sans-serif",
-                                fontSize: 'clamp(8px, 1.8cqi, 15px)',
+                                fontSize: 'clamp(9px, 1.8cqi, 16px)',
                                 fontWeight: '600',
-                                color: '#333',
+                                color: '#1a1a1a',
+                                letterSpacing: '0.05em',
                                 containerType: 'inline-size'
                             }}>
                                 {dateStr}
