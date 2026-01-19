@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #FFFBED;
+  /* Light Cream background */
+  --bg-secondary: #ffffff;
+  /* White for cards */
+  --bg-tertiary: #f7f3e8;
+  /* Slightly darker cream */
+  --text-primary: #1a1a1a;
+  /* Dark text */
+  --text-secondary: #5c5c5c;
+  /* Medium gray */
+  --border-color: #e8e4db;
+  /* Subtle border */
+  --accent-color: #FFAA02;
+  /* LetsUpgrade Gold */
+  --accent-secondary: #FFD700;
+  /* Light Gold */
+  --accent-rgb: 255, 170, 2;
+  --sidebar-width: 280px;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+
+[data-theme='dark'] {
+  --bg-primary: #1a1a1a;
+  /* Dark background */
+  --bg-secondary: #242424;
+  /* Slightly lighter dark */
+  --bg-tertiary: #2d2d2d;
+  /* Medium dark */
+  --text-primary: #ffffff;
+  /* White text */
+  --text-secondary: #b0b0b0;
+  /* Light gray */
+  --border-color: #3a3a3a;
+  /* Dark border */
+  --accent-color: #FFAA02;
+  /* Gold for dark mode */
+  --accent-secondary: #FFE066;
+  /* Lighter Gold */
+  --accent-rgb: 255, 170, 2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utility */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* --- PREMIUM INTERACTIVE DOC CONTENT --- */
+
+.doc-content {
+  line-height: 1.8;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+/* 
+  Interactive System:
+  Apply interactive states to all direct children of the doc-content.
+  This includes: paragraphs, headers, lists, and block-level components (divs, a).
+*/
+
+/* 1. TEXT ELEMENTS (Paragraphs, Headers, Lists) 
+   These act as "Ghost Cards" - transparent until hovered.
+*/
+.doc-content>p,
+.doc-content>h3,
+.doc-content>h4,
+.doc-content>ul,
+.doc-content>ol {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+  margin-bottom: 0.5rem;
+  /* Adjusted for padding */
+}
+
+/* Hover State for Text Elements */
+.doc-content>p:hover,
+.doc-content>h3:hover,
+.doc-content>h4:hover,
+.doc-content>ul:hover,
+.doc-content>ol:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transform: scale(1.015);
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.06);
+  border-color: var(--border-color);
+  z-index: 10;
+  position: relative;
+}
+
+/* Dark Mode Shadows */
+[data-theme='dark'] .doc-content>p:hover,
+[data-theme='dark'] .doc-content>h3:hover,
+[data-theme='dark'] .doc-content>h4:hover,
+[data-theme='dark'] .doc-content>ul:hover,
+[data-theme='dark'] .doc-content>ol:hover {
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+}
+
+/* 2. BLOCK COMPONENTS (CodeBlock, LinkBlock, Custom Grids)
+   Targeting 'div' and 'a'. 
+   These are usually "Cards" already (have backgrounds/borders).
+   We just want the 'Pop' motion and shadow boost, no background change.
+*/
+
+.doc-content>div,
+.doc-content>a,
+.doc-content>table {
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+  /* Ensure they have space to pop without clipping */
+  position: relative;
+  border-radius: 12px;
+  /* Ensure radius matches if not set */
+}
+
+.doc-content>div:hover,
+.doc-content>a:hover,
+.doc-content>table:hover {
+  transform: scale(1.015) !important;
+  /* Force override of any inline transforms */
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.15);
+  z-index: 20;
+}
+
+[data-theme='dark'] .doc-content>div:hover,
+[data-theme='dark'] .doc-content>a:hover {
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+}
+
+/* List Styling Adjustments */
+.doc-content ul,
+.doc-content ol {
+  padding-left: 2.5rem;
+  /* More padding for bullet points inside the card */
+}
+
+.doc-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Table Styling */
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: var(--bg-primary);
+  /* Ensure table is opaque when popping */
+}
+
+.doc-content th,
+.doc-content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Horizontal Scroll - Hide Scrollbar */
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Auto Scroll Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.auto-scroll-container:hover {
+  animation-play-state: paused;
+}
+
+/* Subtle Pulse Animation for Tagline */
+@keyframes subtlePulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: scale(1.01);
+  }
+}
+
+/* Shimmer Animation for Underline */
+@keyframes shimmer {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scaleX(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleX(1.2);
+  }
+}
+/* --- PREMIUM BUTTONS --- */
+
+.nav-btn {
+  padding: 0.6rem 1.4rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.nav-btn:hover {
+  background: var(--bg-primary);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.15);
+}
+
+.nav-btn-premium {
+  padding: 0.6rem 1.4rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 87, 34, 0.2);
+  background: rgba(255, 87, 34, 0.05);
+  color: #FF5722;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-btn-premium:hover {
+  background: #FF5722;
+  color: white;
+  border-color: #FF5722;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(255, 87, 34, 0.4);
+}
+
+.nav-btn-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nav-btn-icon:hover {
+  background: var(--bg-primary);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+/* Day Pills */
+.day-pill {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.day-pill-orange {
+  background: rgba(255, 87, 34, 0.1);
+  color: #FF5722;
+}
+
+.day-pill-gold {
+  background: rgba(244, 139, 54, 0.1);
+  color: #F48B36;
+}
