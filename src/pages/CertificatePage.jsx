@@ -280,10 +280,10 @@ export default function CertificatePage() {
                                             color: '#000',
                                         }}
                                     >
-                                        {/* Dynamic Student Name - Positioned to sit perfectly on its line */}
+                                        {/* Dynamic Student Name - Pixel-perfect alignment on the line */}
                                         <div style={{
                                             position: 'absolute',
-                                            top: '44.5%', // Precisely sitting on the name line in the template
+                                            top: '44.8%', // Micro-adjusted to sit perfectly on the line
                                             left: '50%',
                                             transform: 'translate(-50%, -50%)',
                                             textAlign: 'center',
@@ -291,13 +291,13 @@ export default function CertificatePage() {
                                             zIndex: 10
                                         }}>
                                             <h2 style={{
-                                                fontSize: 'clamp(2.5rem, 4.5vw, 4rem)', // Bolder and more prominent
+                                                fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', // Refined size to prevent touching description
                                                 fontWeight: 800,
                                                 fontStyle: 'italic',
                                                 color: '#1a1a1a',
                                                 fontFamily: '"Playfair Display", serif',
                                                 margin: 0,
-                                                letterSpacing: '0.015em',
+                                                letterSpacing: '0.01em',
                                                 textRendering: 'optimizeLegibility',
                                                 WebkitFontSmoothing: 'antialiased',
                                                 lineHeight: 1
@@ -306,22 +306,22 @@ export default function CertificatePage() {
                                             </h2>
                                         </div>
 
-                                        {/* Dynamic Date - Sober, circular font style */}
+                                        {/* Dynamic Date - Sitting exactly on its line */}
                                         <div style={{
                                             position: 'absolute',
-                                            bottom: '12.8%', // Precisely sitting on the date line
-                                            right: '12.5%',
+                                            bottom: '12.5%', // Micro-adjusted for line alignment
+                                            right: '12.6%',
                                             textAlign: 'center',
                                             width: '200px',
                                             zIndex: 10
                                         }}>
                                             <p style={{
-                                                fontSize: '1.25rem',
-                                                fontWeight: 500, // Sober, not bold
-                                                color: '#1e293b', // Darker slate for readability
-                                                fontFamily: '"Outfit", sans-serif', // Circular geometric font
+                                                fontSize: '1.2rem',
+                                                fontWeight: 500,
+                                                color: '#1e293b',
+                                                fontFamily: '"Outfit", sans-serif',
                                                 margin: 0,
-                                                letterSpacing: '0.04em',
+                                                letterSpacing: '0.03em',
                                                 fontVariantNumeric: 'tabular-nums'
                                             }}>
                                                 {new Date().toLocaleDateString('en-GB', {
