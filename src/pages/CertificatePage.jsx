@@ -306,13 +306,13 @@ export default function CertificatePage() {
                                             </h2>
                                         </div>
 
-                                        {/* Dynamic Date - Sitting exactly on its line */}
+                                        {/* Dynamic Date - Centered on its line */}
                                         <div style={{
                                             position: 'absolute',
-                                            bottom: '12.5%', // Micro-adjusted for line alignment
-                                            right: '12.6%',
+                                            bottom: '12.5%',
+                                            right: '9.5%', // Shifted to center perfectly over the date line
                                             textAlign: 'center',
-                                            width: '200px',
+                                            width: '240px', // Wider to allow better centering control
                                             zIndex: 10
                                         }}>
                                             <p style={{
