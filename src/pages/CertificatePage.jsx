@@ -280,24 +280,25 @@ export default function CertificatePage() {
                                             color: '#000',
                                         }}
                                     >
-                                        {/* 1. Dynamic Student Name - Centered Elegance */}
+                                        {/* Dynamic Student Name - Positioned to sit on the template line */}
                                         <div style={{
                                             position: 'absolute',
-                                            top: '67.8%', // Center of the signature line
+                                            top: '67.5%', // Lowered to sit perfectly on the dashed line
                                             left: '50%',
                                             transform: 'translate(-50%, -50%)',
                                             textAlign: 'center',
-                                            width: '80%',
+                                            width: '85%',
                                             zIndex: 10
                                         }}>
                                             <h2 style={{
-                                                fontSize: 'clamp(2.5rem, 4.5vw, 4rem)',
-                                                fontWeight: 400,
+                                                fontSize: 'clamp(2.5rem, 4.2vw, 3.5rem)', // Reduced to prevent overlap with description
+                                                fontWeight: 500,
                                                 fontStyle: 'italic',
-                                                color: '#111827',
+                                                color: '#1a1a1a',
                                                 fontFamily: '"Playfair Display", serif',
                                                 margin: 0,
-                                                letterSpacing: '0.015em',
+                                                paddingBottom: '2px', // Fine-tune vertical position on the line
+                                                letterSpacing: '0.01em',
                                                 textRendering: 'optimizeLegibility',
                                                 WebkitFontSmoothing: 'antialiased',
                                                 lineHeight: 1
@@ -306,85 +307,31 @@ export default function CertificatePage() {
                                             </h2>
                                         </div>
 
-                                        {/* 2. Professional Logos Row - Ensures Sharpness & Alignment */}
+                                        {/* Dynamic Date - Refined and positioned on the line */}
                                         <div style={{
                                             position: 'absolute',
-                                            bottom: '22%',
-                                            left: '0',
-                                            right: '0',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            gap: '4rem',
-                                            zIndex: 15
-                                        }}>
-                                            {/* LetsUpgrade */}
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#fff', padding: '5px 10px', borderRadius: '4px' }}>
-                                                <div style={{ position: 'relative', width: '32px', height: '32px' }}>
-                                                    <div style={{ position: 'absolute', bottom: 0, left: 0, width: '22px', height: '22px', background: '#000', borderRadius: '4px', transform: 'rotate(45deg)' }} />
-                                                    <div style={{ position: 'absolute', top: '1px', right: '1px', width: '18px', height: '18px', background: '#FF9F00', borderRadius: '50%' }} />
-                                                </div>
-                                                <div style={{ fontWeight: 900, fontSize: '1.2rem', color: '#000', fontFamily: '"Inter", sans-serif', lineHeight: 0.9 }}>
-                                                    Lets<br /><span style={{ color: '#000' }}>Upgrade</span>
-                                                </div>
-                                            </div>
-
-                                            {/* ITM Skills University */}
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#fff', padding: '5px 10px', borderRadius: '4px' }}>
-                                                <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid #8B1A1A', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '0.8rem', color: '#8B1A1A', flexShrink: 0 }}>itm</div>
-                                                <div style={{ fontWeight: 800, fontSize: '1.1rem', color: '#000', fontFamily: '"Inter", sans-serif', lineHeight: 1 }}>
-                                                    ITM <span style={{ fontSize: '0.75rem', fontWeight: 600, display: 'block', color: '#444' }}>Skills University</span>
-                                                </div>
-                                            </div>
-
-                                            {/* LISA AI */}
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#fff', padding: '5px 10px', borderRadius: '4px' }}>
-                                                <div style={{ position: 'relative', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                    {[0, 45, 90, 135].map(deg => (
-                                                        <div key={deg} style={{ position: 'absolute', width: '24px', height: '4px', background: '#A855F7', borderRadius: '2px', transform: `rotate(${deg}deg)` }} />
-                                                    ))}
-                                                </div>
-                                                <div style={{ fontWeight: 900, fontSize: '1.3rem', color: '#000', fontFamily: '"Inter", sans-serif', letterSpacing: '-0.02em' }}>
-                                                    LISA <span style={{ color: '#0EA5E9' }}>AI</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* 3. Signature & Date Area */}
-                                        <div style={{
-                                            position: 'absolute',
-                                            bottom: '9%',
-                                            left: '11%',
-                                            right: '11%',
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                            alignItems: 'center',
+                                            bottom: '12.6%', // Precise alignment with date line in template
+                                            right: '11.5%',
+                                            textAlign: 'center',
+                                            width: '200px',
                                             zIndex: 10
                                         }}>
-                                            {/* Signature Info */}
-                                            <div style={{ textAlign: 'left' }}>
-                                                <p style={{ margin: 0, fontSize: '0.85rem', fontWeight: 800, color: '#111827', fontFamily: '"Inter", sans-serif' }}>Saikiran Sondarkar</p>
-                                                <p style={{ margin: 0, fontSize: '0.7rem', color: '#6B7280', fontWeight: 600 }}>CEO & Founder, LetsUpgrade</p>
-                                            </div>
-
-                                            {/* Date Info */}
-                                            <div style={{ textAlign: 'center', minWidth: '150px' }}>
-                                                <p style={{
-                                                    fontSize: '1.2rem',
-                                                    fontWeight: 700,
-                                                    color: '#111827',
-                                                    fontFamily: '"Montserrat", sans-serif',
-                                                    margin: 0,
-                                                    letterSpacing: '0.05em'
-                                                }}>
-                                                    {new Date().toLocaleDateString('en-GB', {
-                                                        day: '2-digit',
-                                                        month: 'short',
-                                                        year: 'numeric'
-                                                    })}
-                                                </p>
-                                                <p style={{ margin: 0, fontSize: '0.8rem', color: '#6B7280', fontWeight: 700, marginTop: '2px', letterSpacing: '0.1em' }}>DATE</p>
-                                            </div>
+                                            <p style={{
+                                                fontSize: '1.2rem',
+                                                fontWeight: 700,
+                                                color: '#2d3748',
+                                                fontFamily: '"Montserrat", sans-serif',
+                                                margin: 0,
+                                                letterSpacing: '0.06em',
+                                                textTransform: 'uppercase',
+                                                fontVariantNumeric: 'tabular-nums'
+                                            }}>
+                                                {new Date().toLocaleDateString('en-GB', {
+                                                    day: '2-digit',
+                                                    month: 'short',
+                                                    year: 'numeric'
+                                                })}
+                                            </p>
                                         </div>
                                     </div>
 
