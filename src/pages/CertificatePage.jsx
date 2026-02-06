@@ -306,20 +306,20 @@ export default function CertificatePage() {
                                             </h2>
                                         </div>
 
-                                        {/* Dynamic Date - Sober, circular font style for premium feel */}
+                                        {/* Dynamic Date - Perfectly centered over its line */}
                                         <div style={{
                                             position: 'absolute',
-                                            bottom: '12.8%', // Sit perfectly on the date line
-                                            right: '12.5%',
-                                            textAlign: 'left',
-                                            width: '200px',
+                                            bottom: '12.8%', // Precisely sitting on the date line
+                                            right: '9.3%', // Adjusted to center over the line
+                                            textAlign: 'center',
+                                            width: '240px',
                                             zIndex: 10
                                         }}>
                                             <p style={{
-                                                fontSize: '1.2rem',
-                                                fontWeight: 600, // Medium-bold for premium feel
-                                                color: '#1e293b', // Deep charcoal
-                                                fontFamily: '"Outfit", sans-serif', // Circular geometric font
+                                                fontSize: '1.25rem',
+                                                fontWeight: 800, // Matching the premium bold look
+                                                color: '#1e293b',
+                                                fontFamily: '"Outfit", sans-serif',
                                                 margin: 0,
                                                 letterSpacing: '0.01em',
                                             }}>
