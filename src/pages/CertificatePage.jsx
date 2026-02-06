@@ -306,18 +306,18 @@ export default function CertificatePage() {
                                             </h2>
                                         </div>
 
-                                        {/* Dynamic Date - Perfectly centered over its line */}
+                                        {/* Dynamic Date - Final micro-adjustment for perfect centering */}
                                         <div style={{
                                             position: 'absolute',
                                             bottom: '12.8%', // Precisely sitting on the date line
-                                            right: '9.3%', // Adjusted to center over the line
+                                            right: '8.4%', // Shifted slightly more to the right
                                             textAlign: 'center',
                                             width: '240px',
                                             zIndex: 10
                                         }}>
                                             <p style={{
                                                 fontSize: '1.25rem',
-                                                fontWeight: 800, // Matching the premium bold look
+                                                fontWeight: 800,
                                                 color: '#1e293b',
                                                 fontFamily: '"Outfit", sans-serif',
                                                 margin: 0,
