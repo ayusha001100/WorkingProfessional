@@ -280,10 +280,10 @@ export default function CertificatePage() {
                                             color: '#000',
                                         }}
                                     >
-                                        {/* Dynamic Student Name - Pixel-perfect alignment on the line */}
+                                        {/* Dynamic Student Name - Perfectly sitting on the line with reduced size */}
                                         <div style={{
                                             position: 'absolute',
-                                            top: '44.8%', // Micro-adjusted to sit perfectly on the line
+                                            top: '45.2%', // Precisely adjusted to sit on the line
                                             left: '50%',
                                             transform: 'translate(-50%, -50%)',
                                             textAlign: 'center',
@@ -291,7 +291,7 @@ export default function CertificatePage() {
                                             zIndex: 10
                                         }}>
                                             <h2 style={{
-                                                fontSize: 'clamp(2.2rem, 4.2vw, 3.6rem)', // Refined size to prevent touching description
+                                                fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', // Decreased size as requested
                                                 fontWeight: 800,
                                                 fontStyle: 'italic',
                                                 color: '#1a1a1a',
