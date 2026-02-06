@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Download, Linkedin, Mail, BookOpen, Copy, Check, Award, Sparkles, Share2, ArrowLeft, Lock as LockIcon, ChevronRight, Zap } from 'lucide-react';
+import { Download, Linkedin, Mail, BookOpen, Copy, Check, Award, Sparkles, Share2, ArrowLeft, Lock as LockIcon, ChevronRight, Zap, Truck } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,12 +9,13 @@ import confetti from 'canvas-confetti';
 import { GEN_AI_COURSE } from '../data/genAiCourse';
 import { SUB_MODULES_CONTENT } from '../data/subModulesContent';
 import PremiumPaywall from '../components/PremiumPaywall';
+import HardcopyCheckout from '../components/HardcopyCheckout';
 
 export default function CertificatePage() {
     const { user, userData } = useAuth();
     const navigate = useNavigate();
     const certificateRef = useRef(null);
-    const [view, setView] = useState('overview'); // 'overview' or 'detail'
+    const [view, setView] = useState('overview'); // 'overview', 'detail', or 'checkout'
     const [selectedCert, setSelectedCert] = useState(null);
     const [showPaywall, setShowPaywall] = useState(false);
 
@@ -51,7 +52,6 @@ export default function CertificatePage() {
 
         const isLevelCompleted = userData?.progress?.moduleProgress?.[levelId]?.completed || false;
 
-        // Also check if NEXT level is unlocked, which means this one MUST be done
         const allModules = GEN_AI_COURSE.modules;
         const currentIndex = allModules.findIndex(m => m.id === levelId);
         const nextModule = allModules[currentIndex + 1];
@@ -91,10 +91,12 @@ export default function CertificatePage() {
         }
     };
 
+    const handleLinkedinShare = () => {
+        const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`;
+        window.open(shareUrl, '_blank');
+    };
+
     const studentName = userData?.name || user?.displayName || "AYUSH ARYAN";
-    const dateStr = new Date().toLocaleDateString('en-GB', {
-        day: 'numeric', month: 'long', year: 'numeric'
-    });
 
     return (
         <div style={{
@@ -105,7 +107,7 @@ export default function CertificatePage() {
             position: 'relative',
             overflowX: 'hidden'
         }}>
-            {/* Background Accents - Subtler for light mode */}
+            {/* Background Accents */}
             <div style={{ position: 'fixed', top: '-10%', right: '-5%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(255,87,34,0.03) 0%, transparent 70%)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} />
             <div style={{ position: 'fixed', bottom: '-10%', left: '-5%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(138,43,226,0.03) 0%, transparent 70%)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} />
 
@@ -114,7 +116,11 @@ export default function CertificatePage() {
                 {/* Header */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4rem' }}>
                     <button
-                        onClick={() => view === 'overview' ? navigate('/track') : setView('overview')}
+                        onClick={() => {
+                            if (view === 'checkout') setView('detail');
+                            else if (view === 'detail') setView('overview');
+                            else navigate('/track');
+                        }}
                         style={{
                             background: '#fff',
                             color: '#64748b',
@@ -133,7 +139,7 @@ export default function CertificatePage() {
                         onMouseEnter={(e) => { e.currentTarget.style.background = '#f9fafb'; e.currentTarget.style.transform = 'translateX(-5px)'; }}
                         onMouseLeave={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.transform = 'translateX(0)'; }}
                     >
-                        <ArrowLeft size={18} /> {view === 'overview' ? 'Back to Dashboard' : 'Back to Certification Hub'}
+                        <ArrowLeft size={18} /> {view === 'overview' ? 'Back to Dashboard' : view === 'checkout' ? 'Back to Certificate' : 'Back to Certification Hub'}
                     </button>
                 </div>
 
@@ -186,7 +192,6 @@ export default function CertificatePage() {
                                                 boxShadow: unlocked ? '0 30px 60px rgba(255,87,34,0.06)' : '0 10px 30px rgba(0,0,0,0.02)'
                                             }}
                                         >
-                                            {/* Card Glow */}
                                             {unlocked && <div style={{ position: 'absolute', top: '-10%', right: '-10%', width: '150px', height: '150px', background: cert.accent, opacity: 0.05, filter: 'blur(40px)', borderRadius: '50%' }} />}
 
                                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -244,7 +249,7 @@ export default function CertificatePage() {
                                 })}
                             </div>
                         </motion.div>
-                    ) : (
+                    ) : view === 'detail' ? (
                         <motion.div
                             key="detail"
                             initial={{ opacity: 0, scale: 0.95 }}
@@ -261,8 +266,6 @@ export default function CertificatePage() {
                             </header>
 
                             <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '3.5rem', width: '100%', alignItems: 'start' }}>
-
-                                {/* Certificate Container */}
                                 <div style={{ position: 'relative' }}>
                                     <div
                                         ref={certificateRef}
@@ -273,128 +276,61 @@ export default function CertificatePage() {
                                             background: '#ffffff',
                                             backgroundImage: 'url("/assets/certificate_template.png")',
                                             backgroundSize: '100% 100%',
-                                            backgroundRepeat: 'no-repeat',
-                                            borderRadius: '12px',
                                             boxShadow: '0 40px 80px rgba(0,0,0,0.15)',
-                                            overflow: 'hidden',
-                                            color: '#000',
+                                            borderRadius: '12px',
+                                            overflow: 'hidden'
                                         }}
                                     >
-                                        {/* Dynamic Student Name - Premium Classy Scaling */}
-                                        <div style={{
-                                            position: 'absolute',
-                                            top: '44.3%', // Precisely sits on the name line
-                                            left: '50%',
-                                            transform: 'translate(-50%, -50%)',
-                                            textAlign: 'center',
-                                            width: '85%',
-                                            zIndex: 10
-                                        }}>
-                                            <h2 style={{
-                                                fontSize: 'clamp(1.8rem, 3.4vw, 2.6rem)', // Refined size to prevent overlap
-                                                fontWeight: 800,
-                                                fontStyle: 'italic',
-                                                color: '#1a1a1a',
-                                                fontFamily: '"Playfair Display", serif',
-                                                margin: 0,
-                                                letterSpacing: '0.005em',
-                                                textRendering: 'optimizeLegibility',
-                                                WebkitFontSmoothing: 'antialiased',
-                                                lineHeight: 1
-                                            }}>
+                                        <div style={{ position: 'absolute', top: '44.3%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', width: '85%' }}>
+                                            <h2 style={{ fontSize: 'clamp(1.8rem, 3.4vw, 2.6rem)', fontWeight: 800, fontStyle: 'italic', color: '#1a1a1a', fontFamily: '"Playfair Display", serif', margin: 0 }}>
                                                 {studentName}
                                             </h2>
                                         </div>
-
-                                        {/* Dynamic Date - Final micro-adjustment for perfect centering */}
-                                        <div style={{
-                                            position: 'absolute',
-                                            bottom: '12.8%', // Precisely sitting on the date line
-                                            right: '8.4%', // Shifted slightly more to the right
-                                            textAlign: 'center',
-                                            width: '240px',
-                                            zIndex: 10
-                                        }}>
-                                            <p style={{
-                                                fontSize: '1.25rem',
-                                                fontWeight: 800,
-                                                color: '#1e293b',
-                                                fontFamily: '"Outfit", sans-serif',
-                                                margin: 0,
-                                                letterSpacing: '0.01em',
-                                            }}>
-                                                {new Date().toLocaleDateString('en-GB', {
-                                                    day: 'numeric',
-                                                    month: 'short',
-                                                    year: 'numeric'
-                                                })}
+                                        <div style={{ position: 'absolute', bottom: '12.8%', right: '8.4%', textAlign: 'center', width: '240px' }}>
+                                            <p style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1e293b', fontFamily: '"Outfit", sans-serif', margin: 0 }}>
+                                                {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
                                             </p>
                                         </div>
                                     </div>
-
-                                    {/* Particle Effect Overlay */}
-                                    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '120%', height: '120%', pointerEvents: 'none', zIndex: -1 }}>
-                                        <div style={{ position: 'absolute', top: '20%', left: '10%', width: '10px', height: '10px', background: '#ff5722', borderRadius: '50%', opacity: 0.1 }} />
-                                        <div style={{ position: 'absolute', bottom: '20%', right: '10%', width: '15px', height: '15px', background: '#8a2be2', borderRadius: '50%', opacity: 0.05 }} />
-                                        <div style={{ position: 'absolute', top: '60%', right: '15%', width: '8px', height: '8px', background: '#FFD700', borderRadius: '50%', opacity: 0.2 }} />
-                                    </div>
                                 </div>
 
-                                {/* Achievement Details Sidebar */}
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-
-                                    {/* Share Card */}
-                                    <div style={{ background: '#fff', padding: '2.5rem', borderRadius: '32px', border: '1px solid #e2e8f0', boxShadow: '0 10px 30px rgba(0,0,0,0.02)' }}>
+                                    <div style={{ background: '#fff', padding: '2.5rem', borderRadius: '32px', border: '1px solid #e2e8f0' }}>
                                         <h3 style={{ color: '#0f172a', fontSize: '1.5rem', fontWeight: 800, marginBottom: '2rem' }}>Ready to Share?</h3>
-
                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                                            <button
-                                                onClick={handleDownload}
-                                                style={{
-                                                    background: 'linear-gradient(135deg, #ff5722 0%, #ff8a50 100%)',
-                                                    color: '#fff', border: 'none', padding: '1.4rem', borderRadius: '18px',
-                                                    fontWeight: 800, fontSize: '1.1rem', cursor: 'pointer',
-                                                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px',
-                                                    boxShadow: '0 15px 30px rgba(255, 87, 34, 0.3)',
-                                                    transition: 'all 0.3s'
-                                                }}
-                                                onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-3px)'}
-                                                onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-                                            >
-                                                <Download size={22} /> Download high-res PDF
+                                            <button onClick={handleDownload} style={{ background: 'linear-gradient(135deg, #ff5722 0%, #ff8a50 100%)', color: '#fff', border: 'none', padding: '1.4rem', borderRadius: '18px', fontWeight: 800, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+                                                <Download size={22} /> Download PDF
                                             </button>
-
-                                            <div style={{ height: '1px', background: '#f1f5f9', margin: '0.5rem 0' }} />
-
                                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                                                <button style={{ background: '#0077b5', color: '#fff', border: 'none', padding: '1.2rem', borderRadius: '18px', fontWeight: 800, fontSize: '0.95rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+                                                <button onClick={handleLinkedinShare} style={{ background: '#0077b5', color: '#fff', border: 'none', padding: '1.2rem', borderRadius: '18px', fontWeight: 800, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
                                                     <Linkedin size={20} /> LinkedIn
                                                 </button>
-                                                <button style={{ background: '#f8fafc', color: '#0f172a', border: '1px solid #e2e8f0', padding: '1.2rem', borderRadius: '18px', fontWeight: 800, fontSize: '0.95rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                                                    <Share2 size={20} /> Socials
+                                                <button onClick={() => setView('checkout')} style={{ background: '#f8fafc', color: '#0f172a', border: '1px solid #e2e8f0', padding: '1.2rem', borderRadius: '18px', fontWeight: 800, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+                                                    <Truck size={20} /> Hardcopy
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-
-                                    {/* Verification Card */}
-                                    <div style={{ background: '#f8fafc', padding: '2.5rem', borderRadius: '32px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                                            <div style={{ background: '#ff5722', padding: '8px', borderRadius: '12px', boxShadow: '0 8px 16px rgba(255, 87, 34, 0.2)' }}>
-                                                <Award size={24} color="#fff" />
-                                            </div>
-                                            <h4 style={{ color: '#0f172a', fontSize: '1.1rem', fontWeight: 800, margin: 0 }}>Verified Credential</h4>
+                                    <div style={{ background: '#f8fafc', padding: '2.5rem', borderRadius: '32px', border: '1px solid #e2e8f0' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '1rem' }}>
+                                            <Award size={24} color="#ff5722" />
+                                            <h4 style={{ margin: 0, fontWeight: 800 }}>Verified Credential</h4>
                                         </div>
-                                        <p style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: 1.7, margin: 0, fontWeight: 500 }}>
-                                            This is a permanent, verifiable digital credential. You can always access this from your Learning Mirror profile.
-                                        </p>
+                                        <p style={{ color: '#64748b', margin: 0, fontSize: '0.95rem' }}>This is a permanent digital credential accessible from your profile.</p>
                                     </div>
                                 </div>
                             </div>
                         </motion.div>
+                    ) : (
+                        <HardcopyCheckout
+                            onBack={() => setView('detail')}
+                            studentName={studentName}
+                            userEmail={user?.email}
+                            certificateTitle={selectedCert?.title}
+                            certificateImage="/assets/certificate_template.png"
+                        />
                     )}
                 </AnimatePresence>
-
             </div>
         </div>
     );
