@@ -10,13 +10,6 @@ export default function HardcopyPage() {
     const navigate = useNavigate();
     const [step, setStep] = useState(1); // 1: Details, 2: Payment/Success
     const [loading, setLoading] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
-
-    React.useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 1024);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     const [formData, setFormData] = useState({
         fullName: userData?.name || user?.displayName || '',
@@ -128,17 +121,17 @@ export default function HardcopyPage() {
     }
 
     return (
-        <div style={{ minHeight: '100vh', background: '#121212', color: 'white', padding: isMobile ? '1.5rem 1rem' : '2rem' }}>
+        <div style={{ minHeight: '100vh', background: '#121212', color: 'white', padding: '2rem' }}>
             <button onClick={() => navigate(-1)} style={{ background: 'transparent', border: 'none', color: '#a1a1aa', display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', marginBottom: '2rem' }}>
                 <ArrowLeft size={20} /> Back
             </button>
 
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '4rem', maxWidth: '1200px', margin: '0 auto' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', maxWidth: '1200px', margin: '0 auto' }}>
 
                 {/* Left Column: Details */}
                 <div>
-                    <h1 style={{ fontSize: isMobile ? '1.8rem' : '2.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>Get Your Hardcopy</h1>
-                    <p style={{ color: '#a1a1aa', marginBottom: isMobile ? '2rem' : '3rem' }}>Official certificate delivered straight to your doorstep.</p>
+                    <h1 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '0.5rem' }}>Get Your Hardcopy</h1>
+                    <p style={{ color: '#a1a1aa', marginBottom: '3rem' }}>Official certificate delivered straight to your doorstep.</p>
 
                     <form onSubmit={handlePayment} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
 
@@ -186,7 +179,7 @@ export default function HardcopyPage() {
                                         style={{ width: '100%', padding: '0.8rem', background: '#27272a', border: '1px solid #3f3f46', borderRadius: '8px', color: 'white', resize: 'vertical' }}
                                     />
                                 </div>
-                                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1rem' }}>
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                                     <div>
                                         <label style={{ display: 'block', fontSize: '0.9rem', color: '#a1a1aa', marginBottom: '0.5rem' }}>City</label>
                                         <input
@@ -239,8 +232,8 @@ export default function HardcopyPage() {
                 </div>
 
                 {/* Right Column: Order Summary (Sticky) */}
-                <div style={{ position: 'relative', order: isMobile ? -1 : 0 }}>
-                    <div style={{ position: isMobile ? 'relative' : 'sticky', top: '2rem', background: '#1E1E1E', padding: isMobile ? '1.5rem' : '2rem', borderRadius: '24px', border: '1px solid #333' }}>
+                <div style={{ position: 'relative' }}>
+                    <div style={{ position: 'sticky', top: '2rem', background: '#1E1E1E', padding: '2rem', borderRadius: '24px', border: '1px solid #333' }}>
                         <h3 style={{ fontSize: '1.2rem', marginBottom: '1.5rem' }}>Order Summary</h3>
 
                         <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', paddingBottom: '2rem', borderBottom: '1px solid #333' }}>

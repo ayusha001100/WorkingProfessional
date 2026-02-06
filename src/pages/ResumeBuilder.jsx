@@ -38,13 +38,6 @@ export default function ResumeBuilder() {
     const [activeSection, setActiveSection] = useState('personal');
     const [atsStatus, setAtsStatus] = useState(null);
     const [isOptimizing, setIsOptimizing] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
-
-    React.useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 1024);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     // Initial load from userData with strict no-hardcoding policy
     React.useEffect(() => {
@@ -207,12 +200,12 @@ export default function ResumeBuilder() {
     return (
         <DashboardLayout>
             <div style={{
-                padding: isMobile ? '20px 16px' : '32px 48px',
+                padding: '32px 48px',
                 background: '#f8f9fb',
                 minHeight: 'calc(100vh - 80px)',
                 fontFamily: "'Outfit', sans-serif"
             }}>
-                <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '32px' : '40px', alignItems: 'start', maxWidth: '1400px', margin: '0 auto' }}>
+                <div style={{ display: 'flex', gap: '40px', alignItems: 'start', maxWidth: '1400px', margin: '0 auto' }}>
 
                     {/* Center Editor Panel */}
                     <div style={{ flex: 1, maxWidth: '780px' }}>
@@ -220,10 +213,10 @@ export default function ResumeBuilder() {
                         {/* Header Section */}
                         <header style={{ marginBottom: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                             <div>
-                                <h1 style={{ fontSize: isMobile ? '32px' : '44px', fontWeight: 900, color: '#1a1a1a', margin: 0, letterSpacing: '-1.5px', lineHeight: 1.1 }}>
+                                <h1 style={{ fontSize: '44px', fontWeight: 900, color: '#1a1a1a', margin: 0, letterSpacing: '-1.5px', lineHeight: 1.1 }}>
                                     AI Resume <span style={{ color: '#FF5722' }}>Builder</span>
                                 </h1>
-                                <p style={{ color: '#666', fontSize: isMobile ? '16px' : '18px', marginTop: '12px', fontWeight: 500 }}>
+                                <p style={{ color: '#666', fontSize: '18px', marginTop: '12px', fontWeight: 500 }}>
                                     Design, refine, and optimize your path to professional success.
                                 </p>
                             </div>
@@ -254,12 +247,9 @@ export default function ResumeBuilder() {
 
                         {/* Template Selector Card */}
                         <div id="template-selector" className="glass-card" style={{
-                            padding: isMobile ? '24px' : '32px', borderRadius: '24px', background: '#fff',
-                            border: '1px solid #e2e8f0', display: 'flex', flexDirection: isMobile ? 'column' : 'row',
-                            justifyContent: 'space-between',
-                            alignItems: isMobile ? 'flex-start' : 'center',
-                            gap: isMobile ? '24px' : '32px',
-                            marginBottom: '32px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)'
+                            padding: '32px', borderRadius: '24px', background: '#fff',
+                            border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between',
+                            alignItems: 'center', marginBottom: '32px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)'
                         }}>
                             <div>
                                 <label style={{ fontSize: '14px', fontWeight: 800, color: '#94a3b8', marginBottom: '12px', display: 'block', textTransform: 'uppercase', letterSpacing: '1px' }}>Selected Template</label>
@@ -281,7 +271,7 @@ export default function ResumeBuilder() {
                                     ))}
                                 </div>
                             </div>
-                            <div style={{ width: isMobile ? '100%' : '220px' }}>
+                            <div style={{ width: '220px' }}>
                                 <label style={{ fontSize: '14px', fontWeight: 800, color: '#94a3b8', marginBottom: '12px', display: 'block', textTransform: 'uppercase', letterSpacing: '1px' }}>Typography</label>
                                 <div style={{ position: 'relative' }}>
                                     <select
@@ -302,11 +292,9 @@ export default function ResumeBuilder() {
 
                         {/* Resume Sections Navigation */}
                         <div style={{
-                            display: 'flex', gap: '8px', marginBottom: '32px',
-                            padding: '6px', background: '#fff', borderRadius: '16px', width: isMobile ? '100%' : 'fit-content',
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.02)', border: '1px solid #e2e8f0',
-                            overflowX: isMobile ? 'auto' : 'visible',
-                            msOverflowStyle: 'none', scrollbarWidth: 'none'
+                            display: 'flex', gap: '10px', marginBottom: '32px',
+                            padding: '6px', background: '#fff', borderRadius: '16px', width: 'fit-content',
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.02)', border: '1px solid #e2e8f0'
                         }}>
                             {['personal', 'experience', 'education', 'skills'].map(section => (
                                 <button
@@ -332,7 +320,7 @@ export default function ResumeBuilder() {
                                 <motion.div
                                     key="personal" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
                                     style={{
-                                        padding: isMobile ? '24px' : '40px', borderRadius: '32px', background: '#fff',
+                                        padding: '40px', borderRadius: '32px', background: '#fff',
                                         border: '1px solid #e2e8f0', boxShadow: '0 20px 50px rgba(0,0,0,0.03)'
                                     }}
                                 >
@@ -356,7 +344,7 @@ export default function ResumeBuilder() {
                                             />
                                         </div>
 
-                                        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '16px' : '24px' }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
                                             <div className="input-field">
                                                 <label style={{ fontSize: '15px', fontWeight: 700, color: '#64748b', marginBottom: '10px', display: 'block' }}>Email Address</label>
                                                 <input
@@ -522,7 +510,7 @@ export default function ResumeBuilder() {
                         </AnimatePresence>
 
                         {/* Analysis Buttons */}
-                        <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '20px', marginTop: '32px' }}>
+                        <div style={{ display: 'flex', gap: '20px', marginTop: '32px' }}>
                             <motion.button
                                 onClick={runATSCheck}
                                 whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
@@ -533,7 +521,7 @@ export default function ResumeBuilder() {
                             <motion.button
                                 onClick={runAIImprovement}
                                 whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                                style={{ flex: isMobile ? 1 : 1.2, height: '64px', borderRadius: '20px', background: '#FF5722', color: '#fff', border: 'none', fontWeight: 800, fontSize: '18px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', boxShadow: '0 10px 25px -5px rgba(255, 87, 34, 0.4)' }}
+                                style={{ flex: 1.2, height: '64px', borderRadius: '20px', background: '#FF5722', color: '#fff', border: 'none', fontWeight: 800, fontSize: '18px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', boxShadow: '0 10px 25px -5px rgba(255, 87, 34, 0.4)' }}
                             >
                                 <Sparkles size={24} /> {isOptimizing ? 'Thinking...' : 'Improve with AI'}
                             </motion.button>
@@ -541,7 +529,7 @@ export default function ResumeBuilder() {
                     </div>
 
                     {/* Right Resume Preview Panel */}
-                    <div style={{ position: isMobile ? 'relative' : 'sticky', top: '100px', width: isMobile ? '100%' : '520px', flexShrink: 0 }}>
+                    <div style={{ position: 'sticky', top: '100px', width: '520px', flexShrink: 0 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px', color: '#94a3b8' }}>
                             <Eye size={18} />
                             <span style={{ fontSize: '14px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px' }}>Live Paper Preview</span>

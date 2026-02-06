@@ -24,14 +24,6 @@ export default function TrackLearning() {
     // Track previous domain to detect changes
     const prevDomainRef = useRef(userDomain);
 
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
-
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 1024);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
     // Detect domain changes and trigger smooth transition
     useEffect(() => {
         if (prevDomainRef.current !== userDomain && prevDomainRef.current) {
@@ -193,7 +185,7 @@ export default function TrackLearning() {
     };
 
     return (
-        <DashboardLayout headerExtras={!isMobile && (
+        <DashboardLayout headerExtras={
             <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
                 {/* Journey Mastery Progress */}
                 <motion.div
@@ -248,7 +240,7 @@ export default function TrackLearning() {
                     </span>
                 </motion.div>
             </div>
-        )}>
+        }>
             <div style={{
                 minHeight: '100vh',
                 background: theme === 'light' ? '#fafafa' : 'var(--bg-primary)',
@@ -268,9 +260,8 @@ export default function TrackLearning() {
                             exit={{ opacity: 0, y: -20 }}
                             style={{
                                 position: 'fixed',
-                                bottom: isMobile ? '1rem' : '2rem', // Adjusted for mobile
-                                left: isMobile ? '1rem' : 'auto',   // Full width-ish on mobile
-                                right: isMobile ? '1rem' : '2rem',
+                                bottom: '2rem', // Moved to bottom to avoid header overlap
+                                right: '2rem',
                                 background: theme === 'light' ? '#ffffff' : '#1a1a1a',
                                 padding: '0.75rem 1rem',
                                 borderRadius: '12px',
@@ -281,7 +272,7 @@ export default function TrackLearning() {
                                 gap: '0.75rem',
                                 zIndex: 200,
                                 // Toast should be above header (90) but below modals (1000+)
-                                maxWidth: isMobile ? 'calc(100vw - 2rem)' : '400px'
+                                maxWidth: '400px'
                             }}
                         >
                             <div style={{ background: '#ff5722', color: '#fff', padding: '2px 8px', borderRadius: '6px', fontSize: '0.65rem', fontWeight: 900 }}>SIGNAL</div>
@@ -336,10 +327,9 @@ export default function TrackLearning() {
                             }
                             .course-grid {
                                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                                gap: 1rem !important;
                             }
                         }
-                        @media (max-width: 768px) {
+                        @media (max-width: 639px) {
                             .course-grid {
                                 grid-template-columns: 1fr !important;
                             }

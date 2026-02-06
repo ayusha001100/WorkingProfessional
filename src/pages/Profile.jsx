@@ -18,13 +18,6 @@ export default function Profile() {
 
     const [isEditingName, setIsEditingName] = useState(false);
     const [nameInput, setNameInput] = useState('');
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
-
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 1024);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     useEffect(() => {
         if (userData) {
@@ -71,12 +64,10 @@ export default function Profile() {
                 <div style={{
                     background: '#fff',
                     borderRadius: '32px',
-                    padding: isMobile ? '2rem' : '3rem',
+                    padding: '3rem',
                     display: 'flex',
-                    flexDirection: isMobile ? 'column' : 'row',
-                    alignItems: isMobile ? 'center' : 'center',
-                    textAlign: isMobile ? 'center' : 'left',
-                    gap: isMobile ? '2rem' : '3rem',
+                    alignItems: 'center',
+                    gap: '3rem',
                     marginBottom: '3rem',
                     position: 'relative',
                     overflow: 'hidden',
@@ -84,19 +75,18 @@ export default function Profile() {
                     boxShadow: '0 10px 30px rgba(0,0,0,0.02)'
                 }}>
                     <div style={{
-                        width: isMobile ? '100px' : '140px',
-                        height: isMobile ? '100px' : '140px',
-                        borderRadius: isMobile ? '30px' : '40px',
+                        width: '140px',
+                        height: '140px',
+                        borderRadius: '40px',
                         background: 'linear-gradient(135deg, #FF5722 0%, #ff8a50 100%)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: isMobile ? '2.5rem' : '3.5rem',
+                        fontSize: '3.5rem',
                         fontWeight: 900,
                         color: '#fff',
                         boxShadow: '0 20px 40px rgba(255, 87, 34, 0.2)',
-                        zIndex: 1,
-                        flexShrink: 0
+                        zIndex: 1
                     }}>
                         {userData?.name ? userData.name[0].toUpperCase() : (userData?.displayName ? userData.displayName[0].toUpperCase() : 'W')}
                     </div>
@@ -110,14 +100,14 @@ export default function Profile() {
                                         value={nameInput}
                                         onChange={(e) => setNameInput(e.target.value)}
                                         style={{
-                                            fontSize: isMobile ? '1.5rem' : '2rem',
+                                            fontSize: '2rem',
                                             fontWeight: 900,
                                             color: '#1a1a1a',
                                             padding: '0.2rem 0.5rem',
                                             border: '2px solid #e2e8f0',
                                             borderRadius: '12px',
                                             outline: 'none',
-                                            width: isMobile ? '100%' : '300px'
+                                            width: '300px'
                                         }}
                                         autoFocus
                                     />
@@ -161,7 +151,7 @@ export default function Profile() {
                                 </div>
                             ) : (
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                    <h2 style={{ fontSize: isMobile ? '1.8rem' : '2.5rem', fontWeight: 900, color: '#1a1a1a', margin: 0 }}>
+                                    <h2 style={{ fontSize: '2.5rem', fontWeight: 900, color: '#1a1a1a', margin: 0 }}>
                                         {userData?.name || userData?.displayName || 'AI Explorer'}
                                     </h2>
                                     <button
@@ -186,10 +176,10 @@ export default function Profile() {
                                 </div>
                             )}
                         </div>
-                        <p style={{ color: '#64748b', fontSize: isMobile ? '1rem' : '1.2rem', marginBottom: '1.5rem', fontWeight: 500 }}>
+                        <p style={{ color: '#64748b', fontSize: '1.2rem', marginBottom: '1.5rem', fontWeight: 500 }}>
                             {userData?.profile?.targetRole || userData?.onboarding?.dreamRole || 'Set your target role'} • {userData?.location?.city ? `${userData.location.city}, ${userData.location.country || 'India'}` : (userData?.onboarding?.location || 'Set your location')}
                         </p>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: isMobile ? 'center' : 'flex-start', gap: isMobile ? '1rem' : '2rem' }}>
+                        <div style={{ display: 'flex', gap: '2rem' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748b', fontSize: '0.9rem', fontWeight: 600 }}>
                                 <Calendar size={18} color="#ff5722" strokeWidth={2.5} /> Joined {joinDate}
                             </div>
@@ -209,7 +199,7 @@ export default function Profile() {
                         <h3 style={{ fontSize: '1.8rem', fontWeight: 900, color: '#1a1a1a', margin: 0 }}>Learning Mirror</h3>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : (window.innerWidth < 1200 ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)'), gap: '1.5rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
                         <StatCard
                             icon={<Target color="#ff5722" size={24} />}
                             label="MCQ Accuracy"
@@ -222,7 +212,7 @@ export default function Profile() {
                     </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.5fr 1fr', gap: '2rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '2rem' }}>
                     {/* Left Column: Activity & Roadmap */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                         <div style={{ background: '#fff', borderRadius: '24px', padding: '2rem', border: '1px solid #e2e8f0' }}>
@@ -252,7 +242,7 @@ export default function Profile() {
                             <h3 style={{ fontSize: '1.3rem', fontWeight: 800, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                                 <CheckCircle2 size={22} color="#ff5722" /> Roadmap Milestones
                             </h3>
-                            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1rem' }}>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                                 <MilestoneBox title="Profile Analysis" status={userData?.onboardingCompleted ? "Completed" : "In Progress"} date={joinDate} />
                                 <MilestoneBox title="Gen AI Mastery" status={completedSections.length >= 4 ? "Completed" : (completedSections.length > 0 ? "In Progress" : "Locked")} />
                                 <MilestoneBox title="Domain Workflow" status={completedSections.length >= 8 ? "Completed" : (completedSections.length >= 4 ? "In Progress" : "Locked")} />

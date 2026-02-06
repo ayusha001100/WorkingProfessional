@@ -21,7 +21,7 @@ import CompactAIAssistant from '../components/CompactAIAssistant';
 import { CleanQuizBlock } from '../components/CleanQuizBlock';
 import { generateCityLeaderboard } from '../utils/dynamicDataGenerator';
 
-const Header = ({ isDarkMode, toggleTheme, userData, levelId, isMobile, toggleLeftSidebar }) => {
+const Header = ({ isDarkMode, toggleTheme, userData, levelId }) => {
     const totalSubModules = Object.values(SUB_MODULES_CONTENT).reduce((acc, levels) =>
         acc + Object.keys(levels).length, 0);
     const completedSubModulesCount = Object.values(userData?.progress?.subModuleProgress || {}).reduce((acc, levelProgress) =>
@@ -36,50 +36,29 @@ const Header = ({ isDarkMode, toggleTheme, userData, levelId, isMobile, toggleLe
             background: isDarkMode ? 'rgba(10, 10, 10, 0.8)' : 'rgba(255, 255, 255, 0.8)',
             backdropFilter: 'blur(12px)',
             borderBottom: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`,
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: isMobile ? '0 1rem' : '0 2rem',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 2rem',
             position: 'sticky', top: 0, zIndex: 100
         }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '0.75rem' : '2rem' }}>
-                {isMobile && (
-                    <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={toggleLeftSidebar}
-                        style={{
-                            background: 'transparent',
-                            border: 'none',
-                            color: isDarkMode ? '#fff' : '#0f172a',
-                            display: 'flex',
-                            alignItems: 'center',
-                            cursor: 'pointer'
-                        }}
-                    >
-                        <Menu size={24} />
-                    </motion.button>
-                )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
                 <motion.button
                     whileHover={{ x: -2 }}
                     style={{ background: 'none', border: 'none', cursor: 'pointer', color: isDarkMode ? '#94a3b8' : '#64748b', display: 'flex', alignItems: 'center' }}
                     onClick={() => window.history.back()}
                 >
-                    <ArrowLeft size={isMobile ? 18 : 20} />
+                    <ArrowLeft size={20} />
                 </motion.button>
-
-                {!isMobile && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                        <img src={isDarkMode ? '/logo-dark.png' : '/logo.png'} alt="Logo" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
-                        <span style={{
-                            fontWeight: 900,
-                            fontSize: '1.2rem',
-                            letterSpacing: '-0.03em',
-                            color: isDarkMode ? '#fff' : '#0f172a'
-                        }}>
-                            Lets<span style={{ color: '#ff5722' }}>Upgrade</span>
-                        </span>
-                    </div>
-                )}
-
-                {currentModule && !isMobile && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+                    <img src={isDarkMode ? '/logo-dark.png' : '/logo.png'} alt="Logo" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
+                    <span style={{
+                        fontWeight: 900,
+                        fontSize: '1.2rem',
+                        letterSpacing: '-0.03em',
+                        color: isDarkMode ? '#fff' : '#0f172a'
+                    }}>
+                        Lets<span style={{ color: '#ff5722' }}>Upgrade</span>
+                    </span>
+                </div>
+                {currentModule && (
                     <div style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -98,24 +77,16 @@ const Header = ({ isDarkMode, toggleTheme, userData, levelId, isMobile, toggleLe
                     </div>
                 )}
 
-                {/* Global Mastery Analysis - Desktop only */}
-                {!isMobile && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginLeft: '1.5rem', paddingLeft: '1.5rem', borderLeft: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}` }}>
-                        <div style={{ fontSize: '0.65rem', fontWeight: 800, color: isDarkMode ? '#4b5563' : '#94a3b8', letterSpacing: '0.05em' }}>JOURNEY MASTERY</div>
-                        <div style={{ width: '80px', height: '5px', background: isDarkMode ? 'rgba(255,255,255,0.05)' : '#f1f5f9', borderRadius: '10px', overflow: 'hidden' }}>
-                            <motion.div initial={{ width: 0 }} animate={{ width: `${masteryPercent}%` }} style={{ height: '100%', background: '#ff5722', borderRadius: '10px' }} />
-                        </div>
-                        <div style={{ fontSize: '0.75rem', fontWeight: 900, color: isDarkMode ? '#fff' : '#0f172a' }}>{masteryPercent}%</div>
+                {/* Global Mastery Analysis */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginLeft: '1.5rem', paddingLeft: '1.5rem', borderLeft: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}` }}>
+                    <div style={{ fontSize: '0.65rem', fontWeight: 800, color: isDarkMode ? '#4b5563' : '#94a3b8', letterSpacing: '0.05em' }}>JOURNEY MASTERY</div>
+                    <div style={{ width: '80px', height: '5px', background: isDarkMode ? 'rgba(255,255,255,0.05)' : '#f1f5f9', borderRadius: '10px', overflow: 'hidden' }}>
+                        <motion.div initial={{ width: 0 }} animate={{ width: `${masteryPercent}%` }} style={{ height: '100%', background: '#ff5722', borderRadius: '10px' }} />
                     </div>
-                )}
-
-                {isMobile && currentModule && (
-                    <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#ff5722' }}>
-                        {currentModule.title}
-                    </div>
-                )}
+                    <div style={{ fontSize: '0.75rem', fontWeight: 900, color: isDarkMode ? '#fff' : '#0f172a' }}>{masteryPercent}%</div>
+                </div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -125,7 +96,7 @@ const Header = ({ isDarkMode, toggleTheme, userData, levelId, isMobile, toggleLe
                         border: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`,
                         borderRadius: '10px', width: '38px', height: '38px',
                         display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
-                        color: '#ff5722',
+                        color: isDarkMode ? '#ff5722' : '#ff5722',
                         boxShadow: '0 2px 4px rgba(0,0,0,0.04)'
                     }}
                 >
@@ -193,22 +164,6 @@ export default function UnifiedLearningPage() {
     const [isEcosystemOpen, setIsEcosystemOpen] = useState(false);
     const [isVoiceModeOpen, setIsVoiceModeOpen] = useState(false);
     const [voiceState, setVoiceState] = useState('listening'); // listening, processing, speaking
-
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
-
-    useEffect(() => {
-        const handleResize = () => {
-            const mobile = window.innerWidth < 1024;
-            setIsMobile(mobile);
-            if (mobile) {
-                setIsLeftSidebarOpen(false);
-            } else {
-                setIsLeftSidebarOpen(true);
-            }
-        };
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     // Tour Logic
     const [runTour, setRunTour] = useState(false);
@@ -469,14 +424,7 @@ export default function UnifiedLearningPage() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
-            <Header
-                isDarkMode={isDarkMode}
-                toggleTheme={toggleTheme}
-                userData={userData}
-                levelId={levelId}
-                isMobile={isMobile}
-                toggleLeftSidebar={() => setIsLeftSidebarOpen(!isLeftSidebarOpen)}
-            />
+            <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} userData={userData} levelId={levelId} />
             <motion.div
                 initial={{ opacity: 0.96, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -486,230 +434,195 @@ export default function UnifiedLearningPage() {
                     background: isDarkMode ? '#0A0A0A' : '#FDFCFB',
                     color: isDarkMode ? '#e5e7eb' : '#1a1a1a',
                     fontFamily: '"Outfit", sans-serif', overflow: 'hidden',
-                    position: 'relative'
                 }}
             >
-                <aside className="sidebar-mobile-overlay">
+                {/* Left Sidebar */}
+                <motion.aside
+                    id="tour-sidebar-nav"
+                    initial={{ width: 280, opacity: 1 }}
+                    animate={{
+                        width: isLeftSidebarOpen ? 300 : 0,
+                        opacity: isLeftSidebarOpen ? 1 : 0,
+                        padding: isLeftSidebarOpen ? '2rem 1.25rem' : 0
+                    }}
+                    transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                    style={{
+                        height: '100%',
+                        borderRight: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`,
+                        display: 'flex', flexDirection: 'column', gap: '2rem',
+                        flexShrink: 0, overflowY: 'auto', background: isDarkMode ? '#0A0A0A' : '#FFF',
+                        overflowX: 'hidden'
+                    }}
+                >
+                    {/* Navigation Header */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 0.5rem' }}>
+                        <span style={{
+                            fontSize: '0.7rem',
+                            fontWeight: 800,
+                            color: isDarkMode ? '#4a5568' : '#94a3b8',
+                            letterSpacing: '0.15em',
+                            textTransform: 'uppercase'
+                        }}>
+                            Course Navigation
+                        </span>
+                        <motion.button
+                            whileHover={{ scale: 1.1, backgroundColor: isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)' }}
+                            whileTap={{ scale: 0.9 }}
+                            onClick={() => setIsLeftSidebarOpen(false)}
+                            style={{
+                                background: 'transparent',
+                                border: 'none',
+                                cursor: 'pointer',
+                                color: isDarkMode ? '#718096' : '#a0aec0',
+                                padding: '6px',
+                                borderRadius: '8px',
+                                display: 'flex'
+                            }}
+                        >
+                            <PanelLeftClose size={16} />
+                        </motion.button>
+                    </div>
+
+                    <div style={{ padding: '0' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                            {subModules.map((sm, idx) => {
+                                const unlocked = isUnlocked(idx);
+                                const active = activeSectionId === sm.id;
+                                const completed = subModuleProgress[sm.id]?.completed;
+                                return (
+                                    <motion.button
+                                        key={sm.id}
+                                        whileHover={unlocked ? { x: 4 } : {}}
+                                        onClick={() => unlocked && scrollToSection(sm.id)}
+                                        style={{
+                                            display: 'flex', alignItems: 'center', gap: '0.85rem', padding: '0.850rem 1rem',
+                                            borderRadius: '12px',
+                                            background: active
+                                                ? (isDarkMode ? 'rgba(255, 87, 34, 0.1)' : 'rgba(255, 87, 34, 0.05)')
+                                                : 'transparent',
+                                            border: active
+                                                ? `1px solid ${isDarkMode ? 'rgba(255, 87, 34, 0.2)' : 'rgba(255, 87, 34, 0.1)'}`
+                                                : '1px solid transparent',
+                                            textAlign: 'left',
+                                            cursor: unlocked ? 'pointer' : 'not-allowed', width: '100%',
+                                            opacity: unlocked ? 1 : 0.4,
+                                            transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                            position: 'relative'
+                                        }}
+                                    >
+                                        <div style={{
+                                            width: '24px', height: '24px',
+                                            borderRadius: '6px',
+                                            background: active ? '#ff5722' : (isDarkMode ? '#1a1a1a' : '#f1f5f9'),
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            fontSize: '0.75rem',
+                                            fontWeight: 800,
+                                            color: active ? '#fff' : (isDarkMode ? '#4a5568' : '#94a3b8'),
+                                            flexShrink: 0
+                                        }}>
+                                            {idx + 1}
+                                        </div>
+                                        <span style={{
+                                            fontSize: '0.9rem',
+                                            fontWeight: active ? 700 : 500,
+                                            color: active ? (isDarkMode ? '#fff' : '#1e293b') : (isDarkMode ? '#a0aec0' : '#64748b'),
+                                            flex: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                                        }}>
+                                            {sm.title}
+                                        </span>
+                                        {completed ? (
+                                            <div style={{ background: '#10b981', borderRadius: '50%', padding: '2px', display: 'flex' }}>
+                                                <Check size={10} color="#fff" strokeWidth={4} />
+                                            </div>
+                                        ) : !unlocked && <LockIcon size={12} color={isDarkMode ? '#4a5568' : '#cbd5e1'} />}
+
+                                        {active && (
+                                            <motion.div
+                                                layoutId="active-pill"
+                                                style={{
+                                                    position: 'absolute',
+                                                    left: 0, width: '3px', height: '18px',
+                                                    background: '#ff5722', borderRadius: '0 4px 4px 0'
+                                                }}
+                                            />
+                                        )}
+                                    </motion.button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </motion.aside>
+
+                {/* Main Content */}
+                <main ref={scrollContainerRef} style={{ flex: 1, height: '100%', overflowY: 'auto', scrollBehavior: 'smooth', padding: '4rem 6rem 12rem 6rem', position: 'relative', background: isDarkMode ? '#0A0A0A' : '#FDFCFB' }}>
+
+                    {/* Expand Sidebar Button */}
                     <AnimatePresence>
-                        {isMobile && isLeftSidebarOpen && (
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                onClick={() => setIsLeftSidebarOpen(false)}
+                        {!isLeftSidebarOpen && (
+                            <motion.button
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                onClick={() => setIsLeftSidebarOpen(true)}
                                 style={{
                                     position: 'fixed',
-                                    inset: 0,
-                                    background: 'rgba(0,0,0,0.5)',
-                                    backdropFilter: 'blur(4px)',
-                                    zIndex: 1000
+                                    top: '6rem',
+                                    left: '2rem',
+                                    width: '40px',
+                                    height: '40px',
+                                    borderRadius: '10px',
+                                    background: isDarkMode ? '#1e293b' : '#fff',
+                                    border: `1px solid ${isDarkMode ? '#334155' : '#e2e8f0'}`,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    cursor: 'pointer',
+                                    boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
+                                    zIndex: 10
                                 }}
-                            />
+                            >
+                                <PanelLeftOpen size={20} color="#ff5722" />
+                            </motion.button>
                         )}
                     </AnimatePresence>
 
-                    <motion.aside
-                        id="tour-sidebar-nav"
-                        initial={false}
-                        animate={{
-                            width: isLeftSidebarOpen ? 300 : 0,
-                            opacity: (isMobile && !isLeftSidebarOpen) ? 0 : 1,
-                            x: isMobile ? (isLeftSidebarOpen ? 0 : -300) : 0
-                        }}
-                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-                        style={{
-                            height: '100%',
-                            borderRight: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`,
-                            display: 'flex', flexDirection: 'column', gap: '2rem',
-                            flexShrink: 0, overflowY: 'auto', background: isDarkMode ? '#0A0A0A' : '#FFF',
-                            overflowX: 'hidden',
-                            position: isMobile ? 'fixed' : 'relative',
-                            left: 0,
-                            top: 0,
-                            zIndex: 1001,
-                            padding: isLeftSidebarOpen ? '2rem 1.25rem' : 0
-                        }}
-                    >
-                        {/* Navigation Header */}
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 0.5rem' }}>
-                            <span style={{
-                                fontSize: '0.7rem',
-                                fontWeight: 800,
-                                color: isDarkMode ? '#4a5568' : '#94a3b8',
-                                letterSpacing: '0.15em',
-                                textTransform: 'uppercase'
-                            }}>
-                                Course Navigation
-                            </span>
-                            <motion.button
-                                whileHover={{ scale: 1.1, backgroundColor: isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)' }}
-                                whileTap={{ scale: 0.9 }}
-                                onClick={() => setIsLeftSidebarOpen(false)}
-                                style={{
-                                    background: 'transparent',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    color: isDarkMode ? '#718096' : '#a0aec0',
-                                    padding: '6px',
-                                    borderRadius: '8px',
-                                    display: 'flex'
+                    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+                        {subModules.map((sm, idx) => (
+                            <SubModuleSection
+                                key={sm.id}
+                                id={sm.id}
+                                index={idx}
+                                subModule={sm}
+                                unlocked={isUnlocked(idx)}
+                                content={SUB_MODULES_CONTENT[levelId]?.[sm.id]}
+                                mcqs={SUB_MODULE_MCQS[levelId]?.[sm.id]}
+                                progress={subModuleProgress[sm.id]}
+                                onPass={(score) => handleAnswerQuiz(sm.id, score)}
+                                onNext={() => {
+                                    const nextSubModule = subModules[idx + 1];
+                                    if (nextSubModule) {
+                                        scrollToSection(nextSubModule.id);
+                                    } else if (levelId === 'lvl1') {
+                                        window.scrollTo(0, 0);
+                                        navigate('/level/lvl2/learn');
+                                    }
                                 }}
-                            >
-                                <PanelLeftClose size={16} />
-                            </motion.button>
-                        </div>
+                                isLastModule={idx === subModules.length - 1}
+                                levelId={levelId}
+                                sectionRef={el => sectionRefs.current[sm.id] = el}
+                                isDarkMode={isDarkMode}
+                                headerId={idx === 0 ? 'tour-first-topic' : undefined}
+                            />
+                        ))}
+                    </div>
+                </main>
 
-                        <div style={{ padding: '0' }}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                {subModules.map((sm, idx) => {
-                                    const unlocked = isUnlocked(idx);
-                                    const active = activeSectionId === sm.id;
-                                    const completed = subModuleProgress[sm.id]?.completed;
-                                    return (
-                                        <motion.button
-                                            key={sm.id}
-                                            whileHover={unlocked ? { x: 4 } : {}}
-                                            onClick={() => unlocked && scrollToSection(sm.id)}
-                                            style={{
-                                                display: 'flex', alignItems: 'center', gap: '0.85rem', padding: '0.850rem 1rem',
-                                                borderRadius: '12px',
-                                                background: active
-                                                    ? (isDarkMode ? 'rgba(255, 87, 34, 0.1)' : 'rgba(255, 87, 34, 0.05)')
-                                                    : 'transparent',
-                                                border: active
-                                                    ? `1px solid ${isDarkMode ? 'rgba(255, 87, 34, 0.2)' : 'rgba(255, 87, 34, 0.1)'}`
-                                                    : '1px solid transparent',
-                                                textAlign: 'left',
-                                                cursor: unlocked ? 'pointer' : 'not-allowed', width: '100%',
-                                                opacity: unlocked ? 1 : 0.4,
-                                                transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-                                                position: 'relative'
-                                            }}
-                                        >
-                                            <div style={{
-                                                width: '24px', height: '24px',
-                                                borderRadius: '6px',
-                                                background: active ? '#ff5722' : (isDarkMode ? '#1a1a1a' : '#f1f5f9'),
-                                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                                fontSize: '0.75rem',
-                                                fontWeight: 800,
-                                                color: active ? '#fff' : (isDarkMode ? '#4a5568' : '#94a3b8'),
-                                                flexShrink: 0
-                                            }}>
-                                                {idx + 1}
-                                            </div>
-                                            <span style={{
-                                                fontSize: '0.9rem',
-                                                fontWeight: active ? 700 : 500,
-                                                color: active ? (isDarkMode ? '#fff' : '#1e293b') : (isDarkMode ? '#a0aec0' : '#64748b'),
-                                                flex: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-                                            }}>
-                                                {sm.title}
-                                            </span>
-                                            {completed ? (
-                                                <div style={{ background: '#10b981', borderRadius: '50%', padding: '2px', display: 'flex' }}>
-                                                    <Check size={10} color="#fff" strokeWidth={4} />
-                                                </div>
-                                            ) : !unlocked && <LockIcon size={12} color={isDarkMode ? '#4a5568' : '#cbd5e1'} />}
-
-                                            {active && (
-                                                <motion.div
-                                                    layoutId="active-pill"
-                                                    style={{
-                                                        position: 'absolute',
-                                                        left: 0, width: '3px', height: '18px',
-                                                        background: '#ff5722', borderRadius: '0 4px 4px 0'
-                                                    }}
-                                                />
-                                            )}
-                                        </motion.button>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </motion.aside>
-
-                    {/* Main Content */}
-                    <main ref={scrollContainerRef} style={{ flex: 1, height: '100%', overflowY: 'auto', scrollBehavior: 'smooth', padding: '4rem 6rem 12rem 6rem', position: 'relative', background: isDarkMode ? '#0A0A0A' : '#FDFCFB' }}>
-
-                        {/* Expand Sidebar Button */}
-                        <AnimatePresence>
-                            {!isLeftSidebarOpen && !isMobile && (
-                                <motion.button
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -20 }}
-                                    onClick={() => setIsLeftSidebarOpen(true)}
-                                    style={{
-                                        position: 'fixed',
-                                        top: '6rem',
-                                        left: '2rem',
-                                        width: '40px',
-                                        height: '40px',
-                                        borderRadius: '10px',
-                                        background: isDarkMode ? '#1e293b' : '#fff',
-                                        border: `1px solid ${isDarkMode ? '#334155' : '#e2e8f0'}`,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        cursor: 'pointer',
-                                        boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
-                                        zIndex: 10
-                                    }}
-                                >
-                                    <PanelLeftOpen size={20} color="#ff5722" />
-                                </motion.button>
-                            )}
-                        </AnimatePresence>
-
-                        <div style={{ maxWidth: '800px', margin: '0 auto', padding: isMobile ? '0 1rem' : '0' }}>
-                            {subModules.map((sm, idx) => (
-                                <SubModuleSection
-                                    key={sm.id}
-                                    id={sm.id}
-                                    index={idx}
-                                    subModule={sm}
-                                    unlocked={isUnlocked(idx)}
-                                    content={SUB_MODULES_CONTENT[levelId]?.[sm.id]}
-                                    mcqs={SUB_MODULE_MCQS[levelId]?.[sm.id]}
-                                    progress={subModuleProgress[sm.id]}
-                                    onPass={(score) => handleAnswerQuiz(sm.id, score)}
-                                    onNext={() => {
-                                        const nextSubModule = subModules[idx + 1];
-                                        if (nextSubModule) {
-                                            scrollToSection(nextSubModule.id);
-                                        } else if (levelId === 'lvl1') {
-                                            window.scrollTo(0, 0);
-                                            navigate('/level/lvl2/learn');
-                                        }
-                                    }}
-                                    isLastModule={idx === subModules.length - 1}
-                                    levelId={levelId}
-                                    sectionRef={el => sectionRefs.current[sm.id] = el}
-                                    isDarkMode={isDarkMode}
-                                    headerId={idx === 0 ? 'tour-first-topic' : undefined}
-                                />
-                            ))}
-                        </div>
-
-                        {/* On mobile, stack these elements at the bottom */}
-                        {isMobile && (
-                            <div style={{ marginTop: '4rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                                <RightContent isDarkMode={isDarkMode} setIsVoiceModeOpen={setIsVoiceModeOpen} setIsSessionDetailsOpen={setIsSessionDetailsOpen} isSessionDetailsOpen={isSessionDetailsOpen} leaderboard={leaderboard} userData={userData} />
-                            </div>
-                        )}
-                    </main>
-
-                    {/* Right Sidebar - Desktop only */}
-                    {!isMobile && (
-                        <aside style={{
-                            width: '360px', height: '100%', borderLeft: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`,
-                            padding: '2rem 1.75rem', display: 'flex', flexDirection: 'column', gap: '2rem',
-                            flexShrink: 0, overflowY: 'auto', background: isDarkMode ? '#0A0A0A' : '#FFF',
-                        }}>
-                            <RightContent isDarkMode={isDarkMode} setIsVoiceModeOpen={setIsVoiceModeOpen} setIsSessionDetailsOpen={setIsSessionDetailsOpen} isSessionDetailsOpen={isSessionDetailsOpen} leaderboard={leaderboard} userData={userData} />
-                        </aside>
-                    )}
+                {/* Right Sidebar */}
+                <aside style={{
+                    width: '360px', height: '100%', borderLeft: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`,
+                    padding: '2rem 1.75rem', display: 'flex', flexDirection: 'column', gap: '2rem',
+                    flexShrink: 0, overflowY: 'auto', background: isDarkMode ? '#0A0A0A' : '#FFF',
+                }}>
                     {/* Live Session Details */}
                     <div id="tour-live-session" style={{ flexShrink: 0 }}>
                         <motion.div

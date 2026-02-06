@@ -11,13 +11,6 @@ export default function Login() {
     const { loginWithGoogle } = useAuth();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
-
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 640);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -79,7 +72,7 @@ export default function Login() {
                 className="login-card"
                 style={{
                     width: '100%', maxWidth: '440px', zIndex: 10,
-                    padding: isMobile ? '2.5rem 1.5rem' : '3.5rem 3rem', borderRadius: '48px',
+                    padding: '3.5rem 3rem', borderRadius: '48px',
                     background: 'rgba(255, 255, 255, 0.75)',
                     backdropFilter: 'blur(25px) saturate(180%)',
                     border: '1px solid rgba(255, 255, 255, 0.9)',
@@ -91,7 +84,7 @@ export default function Login() {
                     <motion.div variants={itemVariants} style={{ display: 'inline-flex', padding: '1rem', background: '#fff', borderRadius: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)', border: '1px solid rgba(0,0,0,0.02)', marginBottom: '1.2rem' }}>
                         <Zap color="var(--accent-primary)" fill="var(--accent-primary)" size={28} />
                     </motion.div>
-                    <motion.h2 variants={itemVariants} style={{ fontSize: isMobile ? '1.5rem' : '1.8rem', fontWeight: 950, letterSpacing: '-0.04em', color: '#000000ff', lineHeight: 1.2 }}>
+                    <motion.h2 variants={itemVariants} style={{ fontSize: '1.8rem', fontWeight: 950, letterSpacing: '-0.04em', color: '#000000ff', lineHeight: 1.2 }}>
                         Ready for your next <span style={{ background: 'var(--accent-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Quantum Leap?</span>
                     </motion.h2>
                     {error && (

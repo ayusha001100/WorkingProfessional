@@ -16,14 +16,8 @@ gsap.registerPlugin(ScrollTrigger);
 export default function LandingPage() {
     const navigate = useNavigate();
     const { user, logout } = useAuth();
+    const { theme } = useTheme();
     const sectionsRef = useRef([]);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
-
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 1024);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     useEffect(() => {
         sectionsRef.current.forEach((section, index) => {
@@ -66,7 +60,7 @@ export default function LandingPage() {
                     <h2 style={{ fontSize: '1.3rem', fontWeight: 800, letterSpacing: '-0.02em' }}>LetsUpgrade</h2>
                 </div>
 
-                <div style={{ display: isMobile ? 'none' : 'flex', alignItems: 'center', gap: '2.5rem' }}>
+                <div style={{ display: 'none', md: 'flex', alignItems: 'center', gap: '2.5rem' }}>
                     {navItems.map(item => (
                         <a key={item.label} href={item.path} style={{ textDecoration: 'none', color: 'var(--text-secondary)', fontWeight: 500, fontSize: '0.9rem', transition: 'color 0.2s' }}>
                             {item.label}
@@ -74,7 +68,7 @@ export default function LandingPage() {
                     ))}
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '0.8rem' : '1.2rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
                     <ThemeToggle />
                     {user ? (
                         <button onClick={() => navigate('/track')} className="btn-glass-primary">
@@ -143,7 +137,7 @@ export default function LandingPage() {
                         </motion.h2>
                     </div>
 
-                    <JourneyMap isMobile={isMobile} />
+                    <JourneyMap />
                 </div>
             </section>
 
@@ -159,7 +153,7 @@ export default function LandingPage() {
                 }} />
 
                 <div className="glass-card" style={{
-                    padding: isMobile ? '4rem 2rem' : '6rem 4rem',
+                    padding: '6rem 4rem',
                     textAlign: 'center',
                     position: 'relative',
                     zIndex: 1,
@@ -176,15 +170,15 @@ export default function LandingPage() {
                     <p style={{ color: 'var(--text-secondary)', fontSize: '1.25rem', marginBottom: '3.5rem', maxWidth: '700px', margin: '0 auto 3.5rem auto', lineHeight: '1.6' }}>
                         Join 12,000+ professionals who have transformed their careers using our student-journey based platform.
                     </p>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap', flexDirection: isMobile ? 'column' : 'row' }}>
-                        <button onClick={() => navigate('/login')} className="btn-glass-primary" style={{ padding: isMobile ? '1.2rem 2.5rem' : '1.4rem 4rem', fontSize: '1.1rem', borderRadius: '16px', width: isMobile ? '100%' : 'auto' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+                        <button onClick={() => navigate('/login')} className="btn-glass-primary" style={{ padding: '1.4rem 4rem', fontSize: '1.1rem', borderRadius: '16px' }}>
                             Start Learning Now <ArrowRight size={22} />
                         </button>
                         <button
                             onClick={() => window.location.href = 'https://pages.razorpay.com/pl_S7Hmm9y3KCV723/view'}
                             className="glass"
                             style={{
-                                padding: isMobile ? '1.2rem 2.5rem' : '1.4rem 3rem',
+                                padding: '1.4rem 3rem',
                                 fontSize: '1.1rem',
                                 borderRadius: '16px',
                                 background: 'rgba(255, 87, 34, 0.04)',
@@ -195,9 +189,7 @@ export default function LandingPage() {
                                 transition: 'all 0.3s ease',
                                 display: 'flex',
                                 alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: '8px',
-                                width: isMobile ? '100%' : 'auto'
+                                gap: '8px'
                             }}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.background = 'rgba(255, 87, 34, 0.08)';
@@ -235,7 +227,7 @@ export default function LandingPage() {
     );
 }
 
-function JourneyMap({ isMobile }) {
+function JourneyMap() {
     const steps = [
         { title: "Where You Are Now", subtitle: "Feeling stuck or starting out", icon: <Map size={24} />, color: "#94a3b8" },
         { title: "Learning Core Skills", subtitle: "Mastering the basics", icon: <Zap size={24} />, color: "#3b82f6" },
@@ -246,9 +238,9 @@ function JourneyMap({ isMobile }) {
     ];
 
     return (
-        <div style={{ position: 'relative', padding: isMobile ? '0' : '2rem 5%', maxWidth: '100%' }}>
+        <div style={{ position: 'relative', padding: '2rem 5%', maxWidth: '100%' }}>
             {/* SVG Connecting Path */}
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none', display: isMobile ? 'none' : 'block' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
                 <svg width="100%" height="100%" viewBox="0 0 1200 500" preserveAspectRatio="none" style={{ overflow: 'visible' }}>
                     <motion.path
                         d="M 50 400 C 350 400, 650 150, 1150 80"
@@ -279,14 +271,14 @@ function JourneyMap({ isMobile }) {
                 alignItems: 'start'
             }}>
                 {steps.map((step, index) => (
-                    <JourneyCard key={index} step={step} index={index} total={steps.length} isMobile={isMobile} />
+                    <JourneyCard key={index} step={step} index={index} total={steps.length} />
                 ))}
             </div>
         </div>
     );
 }
 
-function JourneyCard({ step, index, total, isMobile }) {
+function JourneyCard({ step, index, total }) {
     // Flow-based offset using marginTop to expand the container height naturally
     const desktopOffsets = [280, 220, 160, 100, 40, 0];
     const offset = desktopOffsets[index] || 0;
@@ -303,10 +295,9 @@ function JourneyCard({ step, index, total, isMobile }) {
                 stiffness: 80
             }}
             style={{
-                marginTop: isMobile ? '0' : `${offset}px`,
+                marginTop: `${offset}px`,
                 display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
-                position: 'relative',
-                marginBottom: isMobile ? '2rem' : '0'
+                position: 'relative'
             }}
         >
             {/* Step Marker */}
