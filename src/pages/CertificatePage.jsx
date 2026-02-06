@@ -283,7 +283,7 @@ export default function CertificatePage() {
                                         {/* Dynamic Student Name - Positioned to sit perfectly on its line */}
                                         <div style={{
                                             position: 'absolute',
-                                            top: '56%', // Adjusted to sit on the name line in the template
+                                            top: '44.5%', // Precisely sitting on the name line in the template
                                             left: '50%',
                                             transform: 'translate(-50%, -50%)',
                                             textAlign: 'center',
@@ -291,14 +291,13 @@ export default function CertificatePage() {
                                             zIndex: 10
                                         }}>
                                             <h2 style={{
-                                                fontSize: 'clamp(2.5rem, 4vw, 3.2rem)', // Slightly smaller for professional fit
-                                                fontWeight: 500,
+                                                fontSize: 'clamp(2.5rem, 4.5vw, 4rem)', // Bolder and more prominent
+                                                fontWeight: 800,
                                                 fontStyle: 'italic',
                                                 color: '#1a1a1a',
                                                 fontFamily: '"Playfair Display", serif',
                                                 margin: 0,
-                                                paddingBottom: '2px',
-                                                letterSpacing: '0.01em',
+                                                letterSpacing: '0.015em',
                                                 textRendering: 'optimizeLegibility',
                                                 WebkitFontSmoothing: 'antialiased',
                                                 lineHeight: 1
@@ -310,16 +309,16 @@ export default function CertificatePage() {
                                         {/* Dynamic Date - Sober, circular font style */}
                                         <div style={{
                                             position: 'absolute',
-                                            bottom: '12.5%',
-                                            right: '11.5%',
+                                            bottom: '12.8%', // Precisely sitting on the date line
+                                            right: '12.5%',
                                             textAlign: 'center',
                                             width: '200px',
                                             zIndex: 10
                                         }}>
                                             <p style={{
-                                                fontSize: '1.2rem',
+                                                fontSize: '1.25rem',
                                                 fontWeight: 500, // Sober, not bold
-                                                color: '#475569', // Muted slate color
+                                                color: '#1e293b', // Darker slate for readability
                                                 fontFamily: '"Outfit", sans-serif', // Circular geometric font
                                                 margin: 0,
                                                 letterSpacing: '0.04em',
