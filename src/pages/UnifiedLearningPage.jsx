@@ -604,7 +604,7 @@ export default function UnifiedLearningPage() {
                                         scrollToSection(nextSubModule.id);
                                     } else if (levelId === 'lvl1') {
                                         window.scrollTo(0, 0);
-                                        navigate('/learning/lvl2');
+                                        navigate('/level/lvl2/learn');
                                     }
                                 }}
                                 isLastModule={idx === subModules.length - 1}
