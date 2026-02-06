@@ -306,26 +306,25 @@ export default function CertificatePage() {
                                             </h2>
                                         </div>
 
-                                        {/* Dynamic Date - Centered on its line */}
+                                        {/* Dynamic Date - Left-aligned over the line as per reference */}
                                         <div style={{
                                             position: 'absolute',
-                                            bottom: '12.5%',
-                                            right: '9.5%', // Shifted to center perfectly over the date line
-                                            textAlign: 'center',
-                                            width: '240px', // Wider to allow better centering control
+                                            bottom: '12.8%', // Adjusted to sit better above line
+                                            right: '12.8%', // Adjusted for left alignment over the line
+                                            textAlign: 'left',
+                                            width: '180px',
                                             zIndex: 10
                                         }}>
                                             <p style={{
-                                                fontSize: '1.2rem',
-                                                fontWeight: 500,
-                                                color: '#1e293b',
+                                                fontSize: '1.25rem',
+                                                fontWeight: 800, // Bold as per reference
+                                                color: '#000', // Solid black
                                                 fontFamily: '"Outfit", sans-serif',
                                                 margin: 0,
-                                                letterSpacing: '0.03em',
-                                                fontVariantNumeric: 'tabular-nums'
+                                                letterSpacing: '-0.01em',
                                             }}>
                                                 {new Date().toLocaleDateString('en-GB', {
-                                                    day: '2-digit',
+                                                    day: 'numeric', // 6 instead of 06
                                                     month: 'short',
                                                     year: 'numeric'
                                                 })}
