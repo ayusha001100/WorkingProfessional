@@ -296,8 +296,8 @@ export default function CertificatePage() {
                                                 {studentName}
                                             </h2>
                                         </div>
-                                        <div style={{ position: 'absolute', bottom: '12.8%', right: '7.5%', textAlign: 'center', width: '240px' }}>
-                                            <p style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1e293b', fontFamily: '"Outfit", sans-serif', margin: 0 }}>
+                                        <div style={{ position: 'absolute', bottom: '12.5%', right: '5.2%', textAlign: 'center', width: '200px' }}>
+                                            <p style={{ fontSize: '1.2rem', fontWeight: 800, color: '#1e293b', fontFamily: '"Outfit", sans-serif', margin: 0 }}>
                                                 {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
                                             </p>
                                         </div>
