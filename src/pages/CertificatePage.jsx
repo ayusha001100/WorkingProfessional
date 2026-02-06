@@ -280,10 +280,10 @@ export default function CertificatePage() {
                                             color: '#000',
                                         }}
                                     >
-                                        {/* Dynamic Student Name - Perfectly sitting on the line with reduced size */}
+                                        {/* Dynamic Student Name - Higher position and smaller font */}
                                         <div style={{
                                             position: 'absolute',
-                                            top: '45.2%', // Precisely adjusted to sit on the line
+                                            top: '44.8%', // Moved slightly higher
                                             left: '50%',
                                             transform: 'translate(-50%, -50%)',
                                             textAlign: 'center',
@@ -291,7 +291,7 @@ export default function CertificatePage() {
                                             zIndex: 10
                                         }}>
                                             <h2 style={{
-                                                fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', // Decreased size as requested
+                                                fontSize: 'clamp(1.5rem, 3.2vw, 2.3rem)', // Decreased font size further
                                                 fontWeight: 800,
                                                 fontStyle: 'italic',
                                                 color: '#1a1a1a',
