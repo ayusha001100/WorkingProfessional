@@ -280,47 +280,50 @@ export default function CertificatePage() {
                                             color: '#000',
                                         }}
                                     >
-                                        {/* Dynamic Student Name */}
+                                        {/* Dynamic Student Name - Positioned to sit on the template line */}
                                         <div style={{
                                             position: 'absolute',
-                                            top: '52%',
+                                            top: '67.5%', // Lowered to sit perfectly on the dashed line
                                             left: '50%',
                                             transform: 'translate(-50%, -50%)',
                                             textAlign: 'center',
-                                            width: '80%',
+                                            width: '85%',
                                             zIndex: 10
                                         }}>
                                             <h2 style={{
-                                                fontSize: 'clamp(3rem, 6vw, 5.5rem)',
-                                                fontWeight: 400,
+                                                fontSize: 'clamp(2.5rem, 4.2vw, 3.5rem)', // Reduced to prevent overlap with description
+                                                fontWeight: 500,
+                                                fontStyle: 'italic',
                                                 color: '#1a1a1a',
                                                 fontFamily: '"Playfair Display", serif',
                                                 margin: 0,
-                                                letterSpacing: '-0.01em',
-                                                // Subtle text shadow for premium feel
+                                                paddingBottom: '2px', // Fine-tune vertical position on the line
+                                                letterSpacing: '0.01em',
                                                 textRendering: 'optimizeLegibility',
-                                                WebkitFontSmoothing: 'antialiased'
+                                                WebkitFontSmoothing: 'antialiased',
+                                                lineHeight: 1
                                             }}>
                                                 {studentName}
                                             </h2>
                                         </div>
 
-                                        {/* Dynamic Date */}
+                                        {/* Dynamic Date - Refined and positioned on the line */}
                                         <div style={{
                                             position: 'absolute',
-                                            bottom: '12%',
-                                            right: '12%',
+                                            bottom: '12.6%', // Precise alignment with date line in template
+                                            right: '11.5%',
                                             textAlign: 'center',
-                                            width: '180px',
+                                            width: '200px',
                                             zIndex: 10
                                         }}>
                                             <p style={{
                                                 fontSize: '1.2rem',
                                                 fontWeight: 700,
-                                                color: '#334155',
-                                                fontFamily: '"Outfit", sans-serif',
+                                                color: '#2d3748',
+                                                fontFamily: '"Montserrat", sans-serif',
                                                 margin: 0,
-                                                letterSpacing: '0.05em',
+                                                letterSpacing: '0.06em',
+                                                textTransform: 'uppercase',
                                                 fontVariantNumeric: 'tabular-nums'
                                             }}>
                                                 {new Date().toLocaleDateString('en-GB', {
