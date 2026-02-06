@@ -12,6 +12,21 @@
     rel="stylesheet">
   <title>Gen AI Workshop</title>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    // Handle chunk loading errors (occurs when a new version is deployed and client tries to fetch old hashes)
+    window.addEventListener('error', function (e) {
+      if (e.message && (e.message.includes('Failed to fetch dynamically imported module') || e.message.includes('error loading dynamically imported module'))) {
+        console.warn('Chunk load error detected, reloading...', e);
+        window.location.reload();
+      }
+    }, true);
+    window.addEventListener('unhandledrejection', function (e) {
+      if (e.reason && (e.reason.name === 'ChunkLoadError' || (e.reason.message && e.reason.message.includes('Failed to fetch dynamically imported module')))) {
+        console.warn('Unhandled chunk load error detected, reloading...', e);
+        window.location.reload();
+      }
+    });
+  </script>
 </head>
 
 <body>
