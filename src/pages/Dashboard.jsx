@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, BookOpen, LogOut, Terminal, Zap, User, Lock as LockIcon, CheckCircle2, X, Sparkles, Trophy, Target, Smartphone } from 'lucide-react';
+import { ArrowRight, BookOpen, LogOut, Terminal, Zap, User, Lock as LockIcon, CheckCircle2, X, Sparkles, Trophy, Target, Smartphone, Crown } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import ThemeToggle from '../components/ThemeToggle';
 import { useTheme } from '../context/ThemeContext';
@@ -9,7 +9,7 @@ import { day1Content } from '../data/content.jsx';
 
 export default function Dashboard() {
     const navigate = useNavigate();
-    const { logout, userData, user, setUserData } = useAuth();
+    const { logout, userData, user, setUserData, updateUserData } = useAuth();
     const { theme } = useTheme();
 
     const [showWelcomeModal, setShowWelcomeModal] = useState(!localStorage.getItem('hasSeenWelcomeModal'));
@@ -53,13 +53,17 @@ export default function Dashboard() {
     const handleProfileSubmit = async (e) => {
         e.preventDefault();
         // Save user data to Firestore
-        await updateUserData({
-            name: formData.name,
-            mobile: formData.mobile,
-            location: formData.location,
-            isProfileComplete: true
-        });
-        setShowProfileModal(false);
+        try {
+            await updateUserData({
+                name: formData.name,
+                mobile: formData.mobile,
+                location: formData.location,
+                isProfileComplete: true
+            });
+            setShowProfileModal(false);
+        } catch (error) {
+            console.error("Error updating profile:", error);
+        }
     };
 
     const completedSections = userData?.progress?.completedSections || [];
@@ -95,6 +99,21 @@ export default function Dashboard() {
                     <span style={{ fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.02em' }}>LetsUpgrade</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    {userData?.isPremium && (
+                        <div style={{
+                            background: 'linear-gradient(135deg, #FFD700, #FFA000)',
+                            color: '#1a1a1a',
+                            padding: '0.4rem 0.8rem',
+                            borderRadius: '12px',
+                            fontWeight: 800,
+                            fontSize: '0.8rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.4rem'
+                        }}>
+                            <Crown size={14} fill="currentColor" /> PREMIUM
+                        </div>
+                    )}
                     <ThemeToggle />
                     {userData?.role === 'admin' && (
                         <button onClick={() => navigate('/admin')} className="nav-btn">
@@ -124,7 +143,7 @@ export default function Dashboard() {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.5rem' }}>
                             <span style={{ fontSize: '3rem' }}>👋</span>
                             <h1 style={{ fontSize: '3rem', fontWeight: 900, background: 'linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.04em' }}>
-                                Welcome, {userData?.name?.split(' ')[0] || 'Learner'}!
+                                Welcome, {userData?.name?.split(' ')[0] || userData?.displayName?.split(' ')[0] || 'Learner'}!
                             </h1>
                         </div>
                         <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '600px', fontWeight: 500 }}>
@@ -194,7 +213,7 @@ export default function Dashboard() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="module-card"
-                        style={{ opacity: day1Finished ? 1 : 0.8 }}
+                        style={{ opacity: (day1Finished && userData?.isPremium) ? 1 : 0.8 }}
                     >
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
                             <div className="icon-box" style={{ background: 'rgba(244, 139, 54, 0.1)', color: '#F48B36' }}>
@@ -204,18 +223,20 @@ export default function Dashboard() {
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                             <h3 style={{ fontSize: '2rem', fontWeight: 800, lineHeight: 1.2 }}>Advanced<br />Applications</h3>
-                            {!day1Finished && <span className="locked-pill"><LockIcon size={14} /> Locked</span>}
+                            {(!day1Finished || !userData?.isPremium) && <span className="locked-pill"><LockIcon size={14} /> Locked</span>}
                         </div>
                         <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', lineHeight: 1.6 }}>
                             Build real-world systems with RAG, Vector Databases, and Orchestrate Autonomous Agents.
                         </p>
                         <button
                             onClick={() => handleStartModule('/day2')}
-                            disabled={!day1Finished}
-                            className={day1Finished ? "btn-secondary-active" : "btn-locked"}
+                            disabled={!day1Finished || !userData?.isPremium}
+                            className={(day1Finished && userData?.isPremium) ? "btn-secondary-active" : "btn-locked"}
                         >
-                            {day1Finished ? (
+                            {(day1Finished && userData?.isPremium) ? (
                                 <>Start Day 2 <ArrowRight size={18} /></>
+                            ) : !userData?.isPremium ? (
+                                <>Premium Access Required</>
                             ) : (
                                 <>Complete Day 1 to Unlock</>
                             )}

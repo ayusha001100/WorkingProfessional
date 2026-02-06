@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { GEN_AI_COURSE } from '../data/genAiCourse';
 import { SUB_MODULES_CONTENT } from '../data/subModulesContent';
+import PremiumPaywall from '../components/PremiumPaywall';
 
 export default function CertificatePage() {
     const { user, userData } = useAuth();
@@ -15,7 +16,7 @@ export default function CertificatePage() {
     const certificateRef = useRef(null);
     const [view, setView] = useState('overview'); // 'overview' or 'detail'
     const [selectedCert, setSelectedCert] = useState(null);
-    const [imageLoaded, setImageLoaded] = useState(false);
+    const [showPaywall, setShowPaywall] = useState(false);
 
     const CERTIFICATES = [
         {
@@ -92,7 +93,7 @@ export default function CertificatePage() {
 
     const studentName = userData?.name || user?.displayName || "AYUSH ARYAN";
     const dateStr = new Date().toLocaleDateString('en-GB', {
-        day: 'numeric', month: 'short', year: 'numeric'
+        day: 'numeric', month: 'long', year: 'numeric'
     });
 
     return (
@@ -152,7 +153,7 @@ export default function CertificatePage() {
                                 >
                                     <Award size={18} /> YOUR CERTIFICATION HUB
                                 </motion.div>
-                                <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 950, marginBottom: '1.5rem', letterSpacing: '-0.04em', color: '#0f172a' }}>
+                                <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, marginBottom: '1.5rem', letterSpacing: '-0.04em', color: '#0f172a' }}>
                                     Professional <span style={{ color: '#ff5722' }}>AI Credentials</span>
                                 </h1>
                                 <p style={{ color: '#64748b', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
@@ -269,115 +270,198 @@ export default function CertificatePage() {
                                             position: 'relative',
                                             width: '100%',
                                             aspectRatio: '1.414 / 1',
-                                            background: '#fff',
-                                            borderRadius: '4px',
-                                            boxShadow: '0 40px 100px rgba(0,0,0,0.1)',
+                                            background: '#ffffff',
+                                            backgroundImage: 'url("/assets/certificate_template.png")',
+                                            backgroundSize: '100% 100%',
+                                            backgroundRepeat: 'no-repeat',
+                                            borderRadius: '8px',
+                                            boxShadow: '0 20px 50px rgba(0,0,0,0.1)',
                                             overflow: 'hidden',
-                                            color: '#1a1a1a'
+                                            color: '#000',
+                                            fontFamily: '"Inter", sans-serif',
                                         }}
                                     >
-                                        {/* Main Border Design */}
+                                        {/* Content Container */}
                                         <div style={{
-                                            position: 'absolute',
-                                            top: '20px', left: '20px', right: '20px', bottom: '20px',
-                                            border: '2px solid #e5e7eb',
-                                            pointerEvents: 'none'
-                                        }} />
+                                            height: '100%',
+                                            padding: '3rem 4rem',
+                                            position: 'relative',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            zIndex: 3
+                                        }}>
 
-                                        {/* Certificate Design (Screenshot Replica) */}
-                                        <div style={{ height: '100%', padding: '4rem', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-
-                                            {/* Header */}
+                                            {/* Header Section */}
                                             <div style={{ marginBottom: '2.5rem' }}>
-                                                <h4 style={{
+                                                <h1 style={{
                                                     margin: 0,
-                                                    fontSize: '0.9rem',
-                                                    letterSpacing: '0.4em',
-                                                    color: '#64748b',
-                                                    fontWeight: 700,
-                                                    textTransform: 'uppercase'
+                                                    fontSize: 'clamp(2.5rem, 4vw, 3.8rem)',
+                                                    fontWeight: 900,
+                                                    color: '#000',
+                                                    letterSpacing: '-0.02em',
+                                                    lineHeight: 1,
+                                                    textTransform: 'uppercase',
+                                                    fontFamily: '"Montserrat", sans-serif',
                                                 }}>
-                                                    Certificate of Participation
-                                                </h4>
+                                                    CERTIFICATE<br />
+                                                    OF PARTICIPATION
+                                                </h1>
                                             </div>
 
-                                            {/* Salutation */}
-                                            <p style={{ margin: '0 0 1.5rem 0', fontSize: '1.2rem', color: '#64748b', fontStyle: 'italic', fontFamily: '"Playfair Display", serif' }}>
-                                                This is to certify that
-                                            </p>
-
-                                            {/* Name */}
-                                            <h1 style={{
-                                                margin: '0 0 1.5rem 0',
-                                                fontSize: '3.5rem',
-                                                fontWeight: 900,
-                                                color: '#1a1a1a',
-                                                fontFamily: '"Outfit", sans-serif',
-                                                letterSpacing: '-0.02em',
-                                                textTransform: 'uppercase'
-                                            }}>
-                                                {studentName}
-                                            </h1>
-
-                                            {/* Description */}
-                                            <div style={{ maxWidth: '80%', margin: '0 auto 3rem auto' }}>
+                                            {/* "This is to certify that" */}
+                                            <div style={{ textAlign: 'center', marginBottom: '0.8rem' }}>
                                                 <p style={{
-                                                    fontSize: '1.2rem',
-                                                    lineHeight: 1.6,
-                                                    color: '#334155',
-                                                    margin: 0
+                                                    fontSize: '1.1rem',
+                                                    color: '#444',
+                                                    margin: 0,
+                                                    fontWeight: 500,
+                                                    fontFamily: '"Inter", sans-serif'
                                                 }}>
-                                                    has participated in the <strong>{selectedCert.id === 'beginner' ? 'Generative AI Foundation Masterclass' : 'Advanced Generative AI Leadership Masterclass'}</strong>, conducted jointly by <strong>LetsUpgrade</strong> and <strong>ITM Skills University</strong>, powered by <strong>LISA AI</strong>.
+                                                    This is to certify that
                                                 </p>
                                             </div>
 
-                                            {/* Logos */}
+                                            {/* Student Name */}
+                                            <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                                                <h2 style={{
+                                                    fontSize: 'clamp(2.5rem, 4vw, 4rem)',
+                                                    fontWeight: 700,
+                                                    fontStyle: 'italic',
+                                                    color: '#000',
+                                                    fontFamily: '"Playfair Display", serif',
+                                                    display: 'inline-block',
+                                                    borderBottom: '1.5px solid #eee',
+                                                    padding: '0 3rem 0.1rem 3rem',
+                                                    margin: 0
+                                                }}>
+                                                    {studentName}
+                                                </h2>
+                                            </div>
+
+                                            {/* Description Text */}
+                                            <div style={{ textAlign: 'center', maxWidth: '85%', margin: '0.5rem auto 2rem auto' }}>
+                                                <p style={{
+                                                    fontSize: '0.95rem',
+                                                    lineHeight: 1.5,
+                                                    color: '#333',
+                                                    fontWeight: 500,
+                                                    fontFamily: '"Inter", sans-serif',
+                                                    margin: 0
+                                                }}>
+                                                    has participated in the <strong style={{ fontWeight: 800 }}>Generative AI Masterclass</strong>, conducted jointly by LetsUpgrade<br />
+                                                    and ITM Skills University, powered by LISA AI. The masterclass included core<br />
+                                                    Generative AI concepts, practical hands-on learning, and real-world applications.
+                                                </p>
+                                            </div>
+
+                                            {/* Bottom Logos Section */}
                                             <div style={{
                                                 display: 'flex',
                                                 alignItems: 'center',
                                                 justifyContent: 'center',
-                                                gap: '4rem',
-                                                marginTop: 'auto',
-                                                marginBottom: '3rem'
+                                                gap: '3.5rem',
+                                                marginBottom: '1.5rem',
+                                                marginTop: 'auto'
                                             }}>
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                                    <img src="/logo.png" alt="LetsUpgrade" style={{ height: '45px', objectFit: 'contain' }} />
-                                                    <div style={{ borderLeft: '1px solid #e2e8f0', height: '30px' }} />
-                                                    <span style={{ fontWeight: 900, fontSize: '1.1rem' }}>Lets<span style={{ color: '#ff5722' }}>Upgrade</span></span>
-                                                </div>
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                                    <div style={{ textAlign: 'left' }}>
-                                                        <div style={{ fontWeight: 800, fontSize: '0.8rem', lineHeight: 1 }}>ITM SKILLS</div>
-                                                        <div style={{ fontWeight: 500, fontSize: '0.7rem', color: '#64748b' }}>UNIVERSITY</div>
+                                                {/* LetsUpgrade Logo */}
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                                    <div style={{ position: 'relative', width: '38px', height: '38px' }}>
+                                                        <div style={{ position: 'absolute', bottom: 0, left: 0, width: '28px', height: '28px', background: '#000', borderRadius: '5px', transform: 'rotate(45deg)' }} />
+                                                        <div style={{ position: 'absolute', top: '3.5px', right: '3.5px', width: '20px', height: '20px', background: '#FF9F00', borderRadius: '50%' }} />
+                                                        <div style={{ position: 'absolute', bottom: '8px', left: '8px', width: '10px', height: '10px', borderLeft: '3px solid #fff', borderBottom: '3px solid #fff', transform: 'rotate(135deg)' }} />
+                                                    </div>
+                                                    <div style={{ fontWeight: 900, fontSize: '1.4rem', color: '#000', fontFamily: '"Inter", sans-serif', lineHeight: 0.85 }}>
+                                                        Lets<br />Upgrade
                                                     </div>
                                                 </div>
+
+                                                {/* ITM Skills University Logo */}
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                                    <div style={{
+                                                        width: '46px',
+                                                        height: '46px',
+                                                        borderRadius: '50%',
+                                                        border: '2px solid #8B1A1A',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        fontWeight: 900,
+                                                        fontSize: '0.9rem',
+                                                        color: '#8B1A1A'
+                                                    }}>
+                                                        itm
+                                                    </div>
+                                                    <div style={{ fontWeight: 900, fontSize: '1.2rem', color: '#000', fontFamily: '"Inter", sans-serif', lineHeight: 1 }}>
+                                                        ITM <span style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', color: '#444' }}>Skills<br />University</span>
+                                                    </div>
+                                                </div>
+
+                                                {/* LISA AI Logo */}
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                    <Zap size={24} color="#ff5722" fill="#ff5722" />
-                                                    <span style={{ fontWeight: 900, fontSize: '1.1rem', letterSpacing: '0.1em' }}>LISA AI</span>
+                                                    <div style={{ display: 'flex', position: 'relative', width: '38px', height: '38px' }}>
+                                                        {[0, 45, 90, 135, 180, 225, 270, 315].map(deg => (
+                                                            <div key={deg} style={{
+                                                                position: 'absolute',
+                                                                top: '50%',
+                                                                left: '50%',
+                                                                width: '18px',
+                                                                height: '6px',
+                                                                background: '#A855F7',
+                                                                borderRadius: '3px',
+                                                                transform: `translate(-50%, -50%) rotate(${deg}deg) translateX(12px)`
+                                                            }} />
+                                                        ))}
+                                                        <div style={{ position: 'absolute', top: '50%', left: '50%', width: '12px', height: '12px', background: '#A855F7', borderRadius: '50%', transform: 'translate(-50%, -50%)' }} />
+                                                    </div>
+                                                    <div style={{ fontWeight: 900, fontSize: '1.6rem', color: '#000', fontFamily: '"Inter", sans-serif' }}>
+                                                        LISA <span style={{ color: '#0EA5E9' }}>AI</span>
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            {/* Date and ID */}
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', padding: '0 2rem' }}>
-                                                <div style={{ textAlign: 'left' }}>
-                                                    <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginBottom: '4px' }}>Date</div>
-                                                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1a1a1a' }}>{dateStr}</div>
-                                                </div>
-                                                <div style={{ textAlign: 'right' }}>
-                                                    <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginBottom: '4px' }}>Certificate ID</div>
-                                                    <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#1a1a1a', fontFamily: 'monospace' }}>LU-2026-{(Math.random() * 10000).toFixed(0).padStart(4, '0')}</div>
-                                                </div>
-                                            </div>
-
-                                            {/* Footer decorative line */}
+                                            {/* Signature and Date Section */}
                                             <div style={{
-                                                position: 'absolute',
-                                                bottom: 0,
-                                                left: 0,
-                                                width: '100%',
-                                                height: '8px',
-                                                background: selectedCert.accent
-                                            }} />
+                                                display: 'flex',
+                                                justifyContent: 'space-between',
+                                                alignItems: 'flex-end',
+                                                padding: '0 1rem',
+                                                marginTop: '0.5rem'
+                                            }}>
+                                                {/* Signature */}
+                                                <div style={{ textAlign: 'left', width: '260px' }}>
+                                                    <div style={{
+                                                        fontFamily: '"Playfair Display", serif',
+                                                        fontStyle: 'italic',
+                                                        fontSize: '1.8rem',
+                                                        color: '#000',
+                                                        marginBottom: '0.1rem',
+                                                        marginLeft: '1rem',
+                                                        opacity: 0.9,
+                                                        lineHeight: 1
+                                                    }}>
+                                                        Saikiran Sondarkar
+                                                    </div>
+                                                    <div style={{ width: '100%', height: '1px', background: '#ccc', marginBottom: '0.4rem' }} />
+                                                    <div style={{ fontWeight: 800, fontSize: '0.9rem', color: '#000' }}>Saikiran Sondarkar</div>
+                                                    <div style={{ fontSize: '0.75rem', color: '#666', fontWeight: 600 }}>CEO & Founder, LetsUpgrade Edtech</div>
+                                                </div>
+
+                                                {/* Date */}
+                                                <div style={{ textAlign: 'center', width: '180px' }}>
+                                                    <div style={{
+                                                        fontSize: '1.2rem',
+                                                        fontWeight: 800,
+                                                        color: '#000',
+                                                        marginBottom: '0.1rem',
+                                                        fontFamily: '"Inter", sans-serif',
+                                                        fontVariantNumeric: 'tabular-nums'
+                                                    }}>
+                                                        {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                                                    </div>
+                                                    <div style={{ width: '100%', height: '1px', background: '#ccc', marginBottom: '0.4rem' }} />
+                                                    <div style={{ fontSize: '0.9rem', color: '#666', fontWeight: 700 }}>Date</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 

@@ -19,6 +19,7 @@ import { SUB_MODULES_CONTENT } from '../data/subModulesContent';
 import { SUB_MODULE_MCQS } from '../data/subModuleMCQs';
 import CompactAIAssistant from '../components/CompactAIAssistant';
 import { CleanQuizBlock } from '../components/CleanQuizBlock';
+import { generateCityLeaderboard } from '../utils/dynamicDataGenerator';
 
 const Header = ({ isDarkMode, toggleTheme, userData, levelId }) => {
     const totalSubModules = Object.values(SUB_MODULES_CONTENT).reduce((acc, levels) =>
@@ -158,20 +159,16 @@ export default function UnifiedLearningPage() {
 
     useEffect(() => {
         const fetchLeaderboard = async () => {
-            // Static mock leaderboard since Firebase is removed
-            const leaderboardData = [
-                { uid: '1', name: 'Ayaan', points: 2450 },
-                { uid: '2', name: 'Zoya', points: 2100 },
-                { uid: '3', name: 'Ishaan', points: 1950 },
-                { uid: '4', name: 'Meera', points: 1800 },
-                { uid: '5', name: 'Rohan', points: 1650 },
-            ];
-
+            // Generate dynamic leaderboard based on user's city
+            const { leaderboard: leaderboardData, userRank: rank } = generateCityLeaderboard(userData);
             setLeaderboard(leaderboardData);
-            setUserRank(12); // Default mock rank
+            setUserRank(rank);
         };
-        fetchLeaderboard();
-    }, [user?.uid]);
+
+        if (userData) {
+            fetchLeaderboard();
+        }
+    }, [userData]);
 
     useEffect(() => {
         const hasSeenTour = localStorage.getItem('hasSeenMainTour');

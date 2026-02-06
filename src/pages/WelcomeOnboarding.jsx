@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function WelcomeOnboarding() {
-    const { user, userData, setUserData } = useAuth();
+    const { user, userData, updateUserData } = useAuth();
     const navigate = useNavigate();
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
@@ -138,18 +138,6 @@ export default function WelcomeOnboarding() {
 
     const currentStepData = steps.find(s => s.id === step);
 
-    // Auto-advance for Intermission step REMOVED - User requested a button
-    /*
-    useEffect(() => {
-        if (currentStepData?.type === 'intermission') {
-            const timer = setTimeout(() => {
-                handleNext();
-            }, 3500);
-            return () => clearTimeout(timer);
-        }
-    }, [step]);
-    */
-
     const handleNext = () => {
         if (step < steps.length) {
             setStep(step + 1);
@@ -175,16 +163,17 @@ export default function WelcomeOnboarding() {
         };
 
         if (user) {
-            setUserData(prev => {
-                const newData = {
-                    ...prev,
+            try {
+                // Use updateUserData to persist to Firestore
+                await updateUserData({
                     onboarding: finalOnboarding,
                     name: formData.name,
+                    'onboarding.completed': true,
                     onboardingCompleted: true
-                };
-                localStorage.setItem('mock_user_data', JSON.stringify(newData));
-                return newData;
-            });
+                });
+            } catch (error) {
+                console.error("Error saving onboarding data:", error);
+            }
         }
 
         // Fake roadmap generation delay

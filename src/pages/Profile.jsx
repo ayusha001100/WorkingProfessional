@@ -177,7 +177,7 @@ export default function Profile() {
                             )}
                         </div>
                         <p style={{ color: '#64748b', fontSize: '1.2rem', marginBottom: '1.5rem', fontWeight: 500 }}>
-                            {userData?.onboarding?.dreamRole || 'Gen AI Specialist'} • {userData?.location || userData?.onboarding?.location || 'Mumbai, India'}
+                            {userData?.profile?.targetRole || userData?.onboarding?.dreamRole || 'Set your target role'} • {userData?.location?.city ? `${userData.location.city}, ${userData.location.country || 'India'}` : (userData?.onboarding?.location || 'Set your location')}
                         </p>
                         <div style={{ display: 'flex', gap: '2rem' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748b', fontSize: '0.9rem', fontWeight: 600 }}>
@@ -277,6 +277,7 @@ export default function Profile() {
                             </h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                                 <AssetLink icon={<FileText size={18} />} label="AI-Optimized Resume" sub="Last updated 2 days ago" path="/resume-builder" />
+                                <AssetLink icon={<Award size={18} />} label="Certifications" sub="View & Download Certificates" path="/certificate" />
                                 <AssetLink icon={<Clock size={18} />} label="Mock Interview History" sub={`${userData?.interviewHistory?.length || 0} Sessions completed`} path="/mock-interviews" />
                                 <AssetLink icon={<Share2 size={18} />} label="Knowledge Network" sub="Refer colleagues for 500 XP" />
                             </div>

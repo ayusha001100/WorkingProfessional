@@ -539,95 +539,56 @@ export default function TrackLearning() {
                                         }}>
                                             {/* Left: Status */}
                                             <div>
-                                                {isFinalMilestone ? (
-                                                    <div style={{
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        gap: '0.5rem'
+                                                {isCompleted ? (
+                                                    <span style={{
+                                                        fontSize: '0.75rem',
+                                                        fontWeight: 800,
+                                                        color: '#10b981',
+                                                        letterSpacing: '0.08em',
+                                                        textTransform: 'uppercase'
                                                     }}>
+                                                        COMPLETED
+                                                    </span>
+                                                ) : isFinalMilestone ? (
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                                         <Award size={14} color="#ff5722" />
-                                                        <span style={{
-                                                            fontSize: '0.7rem',
-                                                            fontWeight: 700,
-                                                            color: '#ff5722',
-                                                            letterSpacing: '0.02em',
-                                                            textTransform: 'uppercase'
-                                                        }}>
-                                                            Final Milestone
+                                                        <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#ff5722', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                                                            FINAL MILESTONE
                                                         </span>
                                                     </div>
                                                 ) : isCurrent ? (
-                                                    <div style={{
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        gap: '0.5rem'
-                                                    }}>
-                                                        <div style={{
-                                                            width: '6px',
-                                                            height: '6px',
-                                                            borderRadius: '50%',
-                                                            background: '#ff5722',
-                                                            boxShadow: '0 0 8px rgba(255, 87, 34, 0.5)'
-                                                        }} />
-                                                        <span style={{
-                                                            fontSize: '0.7rem',
-                                                            fontWeight: 600,
-                                                            color: '#ff5722',
-                                                            letterSpacing: '0.02em',
-                                                            textTransform: 'uppercase'
-                                                        }}>
-                                                            In Progress
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff5722', boxShadow: '0 0 8px rgba(255, 87, 34, 0.5)' }} />
+                                                        <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#ff5722', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                                                            IN PROGRESS
                                                         </span>
                                                     </div>
-                                                ) : isUpcoming ? (
-                                                    <div>
-                                                        <span style={{
-                                                            fontSize: '0.7rem',
-                                                            fontWeight: 500,
-                                                            color: theme === 'light' ? '#9ca3af' : '#6b7280',
-                                                            letterSpacing: '0.02em',
-                                                            textTransform: 'uppercase'
-                                                        }}>
-                                                            {index === 0 ? 'Available' : `Unlocks after Level ${index}`}
-                                                        </span>
-                                                    </div>
-                                                ) : isCompleted ? (
+                                                ) : (
                                                     <span style={{
-                                                        fontSize: '0.7rem',
-                                                        fontWeight: 500,
-                                                        color: '#10b981',
-                                                        letterSpacing: '0.02em',
+                                                        fontSize: '0.75rem',
+                                                        fontWeight: 800,
+                                                        color: theme === 'light' ? '#cbd5e1' : '#4b5563',
+                                                        letterSpacing: '0.08em',
                                                         textTransform: 'uppercase'
                                                     }}>
-                                                        Completed
+                                                        UPCOMING
                                                     </span>
-                                                ) : null}
+                                                )}
                                             </div>
 
                                             {/* Right: Level Number */}
-                                            <div style={{
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: '0.5rem'
-                                            }}>
-                                                <span style={{
-                                                    fontSize: '0.7rem',
-                                                    fontWeight: 700,
-                                                    color: theme === 'light' ? '#9ca3af' : '#6b7280',
-                                                    letterSpacing: '0.05em',
-                                                    textTransform: 'uppercase'
-                                                }}>
-                                                    Level
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: theme === 'light' ? '#cbd5e1' : '#4b5563', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                                                    LEVEL
                                                 </span>
                                                 <div style={{
-                                                    fontSize: '1rem',
+                                                    fontSize: '1.2rem',
                                                     fontWeight: 900,
-                                                    color: isCurrent || isFinalMilestone
-                                                        ? '#ff5722'
-                                                        : (theme === 'light' ? '#d1d5db' : '#4b5563'),
+                                                    color: theme === 'light' ? '#cbd5e1' : '#4b5563',
                                                     letterSpacing: '0.05em',
                                                     fontVariantNumeric: 'tabular-nums',
-                                                    lineHeight: 1
+                                                    lineHeight: 1,
+                                                    opacity: 0.8
                                                 }}>
                                                     {String(levelNumber).padStart(2, '0')}
                                                 </div>
@@ -684,22 +645,24 @@ export default function TrackLearning() {
 
 
 
-                                        {/* You Become Section */}
+                                        {/* You Become Quote Box */}
                                         {!isFinalMilestone && item.youBecome && (
                                             <div style={{
-                                                marginBottom: '1rem',
-                                                padding: '0.875rem',
-                                                background: theme === 'light' ? '#fff7f2' : 'rgba(255, 87, 34, 0.08)',
-                                                borderRadius: '10px',
-                                                border: theme === 'light' ? '1px solid #ffe5d6' : '1px solid rgba(255, 87, 34, 0.15)'
+                                                marginBottom: '1.5rem',
+                                                padding: '1.25rem 1.5rem',
+                                                background: theme === 'light' ? '#fff7f2' : 'rgba(255, 87, 34, 0.05)',
+                                                borderRadius: '16px',
+                                                border: theme === 'light' ? '1px solid #ffe5d6' : '1px solid rgba(255, 87, 34, 0.1)',
+                                                position: 'relative'
                                             }}>
                                                 <p style={{
                                                     margin: 0,
-                                                    fontSize: '0.8rem',
-                                                    color: theme === 'light' ? '#111827' : '#f9fafb',
-                                                    lineHeight: 1.5,
-                                                    fontWeight: 600,
-                                                    fontStyle: 'italic'
+                                                    fontSize: '0.95rem',
+                                                    color: theme === 'light' ? '#1e293b' : '#f1f5f9',
+                                                    lineHeight: 1.4,
+                                                    fontWeight: 700,
+                                                    fontStyle: 'italic',
+                                                    textAlign: 'center'
                                                 }}>
                                                     {item.youBecome}
                                                 </p>
@@ -708,27 +671,24 @@ export default function TrackLearning() {
 
                                         {/* What People Say Section */}
                                         {!isFinalMilestone && item.outcome && (
-                                            <div style={{
-                                                marginBottom: '1rem',
-                                                padding: '0 0.25rem'
-                                            }}>
+                                            <div style={{ marginBottom: '1.5rem', padding: '0 0.5rem' }}>
                                                 <span style={{
-                                                    fontSize: '0.65rem',
-                                                    fontWeight: 700,
-                                                    color: theme === 'light' ? '#64748b' : '#94a3b8',
+                                                    fontSize: '0.7rem',
+                                                    fontWeight: 800,
+                                                    color: theme === 'light' ? '#94a3b8' : '#64748b',
                                                     textTransform: 'uppercase',
-                                                    letterSpacing: '0.05em',
-                                                    marginBottom: '0.35rem',
+                                                    letterSpacing: '0.1em',
+                                                    marginBottom: '0.5rem',
                                                     display: 'block'
                                                 }}>
-                                                    What people say
+                                                    WHAT PEOPLE SAY
                                                 </span>
                                                 <p style={{
                                                     margin: 0,
-                                                    fontSize: '0.8rem',
-                                                    color: theme === 'light' ? '#111827' : '#f9fafb',
-                                                    lineHeight: 1.4,
-                                                    fontWeight: 500
+                                                    fontSize: '0.9rem',
+                                                    color: theme === 'light' ? '#334155' : '#cbd5e1',
+                                                    lineHeight: 1.5,
+                                                    fontWeight: 600
                                                 }}>
                                                     {item.outcome}
                                                 </p>
@@ -758,59 +718,45 @@ export default function TrackLearning() {
 
                                         <div style={{
                                             marginTop: 'auto',
-                                            paddingTop: '1.25rem',
+                                            paddingTop: '1.5rem',
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'space-between',
-                                            gap: '1rem',
-                                            borderTop: theme === 'light' ? '1px solid #f3f4f6' : '1px solid #2a2a2a',
-                                            minHeight: '60px'
+                                            borderTop: theme === 'light' ? '1px solid #f1f5f9' : '1px solid #2a2a2a'
                                         }}>
-                                            <div style={{ flex: 1 }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                                 <div style={{
+                                                    width: '28px',
+                                                    height: '28px',
+                                                    borderRadius: '8px',
+                                                    background: isCompleted ? '#10b981' : (isCurrent ? '#ff5722' : (theme === 'light' ? '#f8fafc' : '#1a1a1a')),
+                                                    border: isCompleted || isCurrent ? 'none' : `1px solid ${theme === 'light' ? '#e2e8f0' : '#333'}`,
                                                     display: 'flex',
                                                     alignItems: 'center',
-                                                    gap: '0.5rem',
+                                                    justifyContent: 'center',
+                                                    color: '#fff',
+                                                    boxShadow: (isCompleted || isCurrent) ? '0 4px 10px rgba(0,0,0,0.1)' : 'none'
                                                 }}>
-                                                    <div style={{
-                                                        width: '24px',
-                                                        height: '24px',
-                                                        borderRadius: '6px',
-                                                        background: isCompleted ? '#10b981' : (isCurrent ? '#ff5722' : (theme === 'light' ? '#f1f5f9' : '#2a2a2a')),
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        color: isCompleted || isCurrent ? '#fff' : (theme === 'light' ? '#94a3b8' : '#4b5563')
-                                                    }}>
-                                                        {isCompleted ? <Check size={14} /> : <Rocket size={14} />}
-                                                    </div>
-                                                    <span style={{
-                                                        fontSize: '0.75rem',
-                                                        fontWeight: 600,
-                                                        color: isCompleted ? '#10b981' : (isCurrent ? '#ff5722' : 'var(--text-secondary)'),
-                                                    }}>
-                                                        {isCompleted ? 'Level Completed' : (isCurrent ? 'Continue Learning' : 'Get Started')}
-                                                    </span>
+                                                    {isCompleted ? <Check size={16} strokeWidth={3} /> : (isCurrent ? <Rocket size={14} /> : <Rocket size={14} color={theme === 'light' ? '#94a3b8' : '#4b5563'} />)}
                                                 </div>
+                                                <span style={{
+                                                    fontSize: '0.85rem',
+                                                    fontWeight: 700,
+                                                    color: isCompleted ? '#10b981' : (isCurrent ? '#ff5722' : (theme === 'light' ? '#94a3b8' : '#64748b')),
+                                                }}>
+                                                    {isCompleted ? 'Revisit Anytime' : (isCurrent ? 'Continue Learning' : (index >= 2 && !userData?.isPremium ? 'Premium Lock' : 'Get Started'))}
+                                                </span>
                                             </div>
 
-                                            {/* Action CTA - Arrow for Active Card */}
-                                            {(isCurrent || isFinalMilestone) && (
+                                            {(isUnlocked || isFinalMilestone) && (
                                                 <motion.div
-                                                    animate={{
-                                                        x: [0, 3, 0],
-                                                        transition: {
-                                                            duration: 2,
-                                                            repeat: Infinity,
-                                                            ease: 'easeInOut'
-                                                        }
-                                                    }}
-                                                    style={{
-                                                        flexShrink: 0,
-                                                        marginBottom: '0.25rem'
-                                                    }}
+                                                    animate={isCurrent ? {
+                                                        x: [0, 4, 0],
+                                                        transition: { duration: 2, repeat: Infinity }
+                                                    } : {}}
+                                                    style={{ color: isCompleted ? '#10b981' : (isCurrent ? '#ff5722' : '#cbd5e1') }}
                                                 >
-                                                    <ArrowRight size={18} color="#ff5722" />
+                                                    <ArrowRight size={20} />
                                                 </motion.div>
                                             )}
                                         </div>

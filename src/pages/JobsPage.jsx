@@ -3,6 +3,7 @@ import DashboardLayout from '../components/DashboardLayout';
 import { Briefcase, MapPin, Building2, Star, CheckCircle, ChevronRight, Upload, Lock as LockIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { generatePersonalizedJobs } from '../utils/dynamicDataGenerator';
 
 export default function JobsPage() {
     const { userData } = useAuth();
@@ -11,32 +12,16 @@ export default function JobsPage() {
 
     React.useEffect(() => {
         const fetchJobs = async () => {
-            // Static mock jobs since Firebase is removed
-            const jobsData = [
-                {
-                    id: 1,
-                    title: "AI Engineer",
-                    company: "LetsUpgrade",
-                    location: "Mumbai, India",
-                    salary: "₹15L - ₹25L",
-                    matchScore: 85,
-                    missingSkills: ["PyTorch"]
-                },
-                {
-                    id: 2,
-                    title: "Frontend Developer (React)",
-                    company: "TechNexus",
-                    location: "Remote",
-                    salary: "₹12L - ₹20L",
-                    matchScore: 92,
-                    missingSkills: ["None"]
-                }
-            ];
+            // Generate personalized jobs based on user data
+            const jobsData = generatePersonalizedJobs(userData);
             setJobs(jobsData);
             setLoading(false);
         };
-        fetchJobs();
-    }, []);
+
+        if (userData) {
+            fetchJobs();
+        }
+    }, [userData]);
 
     if (loading) return <DashboardLayout><div>Loading jobs...</div></DashboardLayout>;
 
