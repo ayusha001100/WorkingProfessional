@@ -171,7 +171,7 @@ export default function Dashboard() {
                         </div>
                         <div>
                             <div style={{ fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.2rem' }}>Course Progress</div>
-                            <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Day 1 In Progress</div>
+                            <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Level 1 In Progress</div>
                         </div>
                     </div>
                 </motion.div>
@@ -192,9 +192,9 @@ export default function Dashboard() {
                                 <div className="icon-box" style={{ background: 'rgba(255, 87, 34, 0.1)', color: '#FF5722' }}>
                                     <BookOpen size={28} />
                                 </div>
-                                <div className="badge-day1">DAY 1</div>
+                                <div className="badge-day1">LEVEL 1</div>
                             </div>
-                            <h3 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '1rem', lineHeight: 1.2 }}>Generative AI<br />Fundamentals</h3>
+                            <h3 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '1rem', lineHeight: 1.2 }}>Generative AI Fundamentals</h3>
                             <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', lineHeight: 1.6 }}>
                                 Master LLMs, Prompt Engineering, and see how transformers 'think' with visual interactive demos.
                             </p>
@@ -219,10 +219,10 @@ export default function Dashboard() {
                             <div className="icon-box" style={{ background: 'rgba(244, 139, 54, 0.1)', color: '#F48B36' }}>
                                 <Zap size={28} />
                             </div>
-                            <div className="badge-day2">DAY 2</div>
+                            <div className="badge-day2">LEVEL 2</div>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-                            <h3 style={{ fontSize: '2rem', fontWeight: 800, lineHeight: 1.2 }}>Advanced<br />Applications</h3>
+                            <h3 style={{ fontSize: '2rem', fontWeight: 800, lineHeight: 1.2 }}>Advanced Applications</h3>
                             {(!day1Finished || !userData?.isPremium) && <span className="locked-pill"><LockIcon size={14} /> Locked</span>}
                         </div>
                         <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', lineHeight: 1.6 }}>
@@ -234,11 +234,11 @@ export default function Dashboard() {
                             className={(day1Finished && userData?.isPremium) ? "btn-secondary-active" : "btn-locked"}
                         >
                             {(day1Finished && userData?.isPremium) ? (
-                                <>Start Day 2 <ArrowRight size={18} /></>
+                                <>Start Level 2 <ArrowRight size={18} /></>
                             ) : !userData?.isPremium ? (
                                 <>Premium Access Required</>
                             ) : (
-                                <>Complete Day 1 to Unlock</>
+                                <>Complete Level 1 to Unlock</>
                             )}
                         </button>
                     </motion.div>

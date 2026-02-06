@@ -58,11 +58,11 @@ export default function ScorecardTest() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
                     <div style={{ padding: '1.5rem', background: '#fff8f5', borderRadius: '16px', border: '2px solid #FFE8DC' }}>
                         <div style={{ fontSize: '3rem', fontWeight: 900, color: '#FF5722' }}>40</div>
-                        <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem' }}>Day 1 Questions</div>
+                        <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem' }}>Level 1 Questions</div>
                     </div>
                     <div style={{ padding: '1.5rem', background: '#fff8f5', borderRadius: '16px', border: '2px solid #FFE8DC' }}>
                         <div style={{ fontSize: '3rem', fontWeight: 900, color: '#F48B36' }}>75</div>
-                        <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem' }}>Day 2 Questions</div>
+                        <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem' }}>Level 2 Questions</div>
                     </div>
                 </div>
 

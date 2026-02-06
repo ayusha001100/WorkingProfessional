@@ -40,7 +40,7 @@ export default function SubModulesPage() {
             ];
         } else if (levelId === 'lvl2') {
             return [
-                { id: 'lvl2_sub1', title: 'Day 2 Opening & Context', icon: PlayCircle, IconComponent: PlayCircle },
+                { id: 'lvl2_sub1', title: 'LEVEL 2', icon: PlayCircle, IconComponent: PlayCircle },
                 { id: 'lvl2_sub2', title: 'Why Visuals Matter at Work', icon: Eye, IconComponent: Eye },
                 { id: 'lvl2_sub3', title: 'Intro to Visual GenAI', icon: Sparkles, IconComponent: Sparkles },
                 { id: 'lvl2_sub4', title: 'Diffusion Models (Intuition)', icon: Layers, IconComponent: Layers },
@@ -100,6 +100,9 @@ export default function SubModulesPage() {
     // Check if sub-module is unlocked
     const isSubModuleUnlocked = (index) => {
         if (index === 0) return true;
+
+        // Level 2 module 1 and 2 will open together
+        if (levelId === 'lvl2' && index === 1) return true;
         const previousSubModule = subModules[index - 1];
         const prevProgress = subModuleProgress[previousSubModule.id];
         if (!prevProgress?.completed) return false;

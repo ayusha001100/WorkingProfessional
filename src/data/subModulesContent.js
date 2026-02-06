@@ -474,7 +474,7 @@ export const SUB_MODULES_CONTENT = {
     lvl2: {
         'lvl2_sub1': {
             id: 'lvl2_sub1',
-            title: 'Day 2 Opening & Context',
+            title: 'LEVEL 2',
             sections: [
                 {
                     title: 'Session Title',
@@ -499,7 +499,7 @@ export const SUB_MODULES_CONTENT = {
                     ]
                 },
                 {
-                    title: 'Day 2 Agenda',
+                    title: 'Level 2 Agenda',
                     content: [
                         {
                             list: [

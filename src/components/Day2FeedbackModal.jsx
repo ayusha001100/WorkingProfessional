@@ -108,7 +108,7 @@ export default function Day2FeedbackModal({ isOpen, onClose, onComplete }) {
                     }}>
                         <div>
                             <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: isDark ? 'white' : '#1a1a1a', letterSpacing: '-0.02em', background: isDark ? 'linear-gradient(to right, #fff, #bbb)' : 'linear-gradient(to right, #1a1a1a, #5c5c5c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                                Day 2 Feedback
+                                Level 2 Feedback
                             </h2>
                             <p style={{ color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)', fontSize: '0.9rem', marginTop: '4px' }}>Step {step} of 2</p>
                         </div>
@@ -161,7 +161,7 @@ export default function Day2FeedbackModal({ isOpen, onClose, onComplete }) {
                                 {step === 1 && (
                                     <div style={{ textAlign: 'center', padding: '1rem 0' }}>
                                         <h3 style={{ fontSize: '1.5rem', fontWeight: 600, color: isDark ? 'rgba(255,255,255,0.9)' : '#1a1a1a', marginBottom: '2rem' }}>
-                                            Rate Day 2 Content
+                                            Rate Level 2 Content
                                         </h3>
                                         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '1rem' }}>
                                             {[1, 2, 3, 4, 5].map((star) => (

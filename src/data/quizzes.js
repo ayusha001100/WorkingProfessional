@@ -1,6 +1,6 @@
 
 export const quizzes = {
-    // Day 1 Quizzes
+    // Level 1 Quizzes
     "intro-basics": [
         {
             question: "What is the primary reason this session exists?",
@@ -83,15 +83,15 @@ export const quizzes = {
         }
     ],
 
-    // Day 2 Quizzes
+    // Level 2 Quizzes
     "opening-context": [
         {
-            question: "What is the theme of Day 2?",
+            question: "What is the theme of Level 2?",
             options: ["Introduction to coding", "Applying GenAI at work", "Hardware maintenance", "Company history"],
             answer: 1
         },
         {
-            question: "Which role is mentioned as something you'll learn about on Day 2?",
+            question: "Which role is mentioned as something you'll learn about on Level 2?",
             options: ["Software developer", "AI Generalist", "Janitor", "Professional Athlete"],
             answer: 1
         },
@@ -101,12 +101,12 @@ export const quizzes = {
             answer: 1
         },
         {
-            question: "Day 2 agenda includes learning about:",
+            question: "Level 2 agenda includes learning about:",
             options: ["Cooking", "Custom GPTs (AI bots)", "Car repair", "Plant biology"],
             answer: 1
         },
         {
-            question: "What does Day 2 transition from?",
+            question: "What does Level 2 transition from?",
             options: ["Using AI to Designing AI-powered work", "Morning to Evening", "Theory to History", "Office to Home"],
             answer: 0
         }

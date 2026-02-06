@@ -76,7 +76,7 @@ export default function WorkplaceUsageCard({ day = 'day1', style = {} }) {
                     Live Session Details
                 </h3>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                    Join the {isDay1 ? 'Day 1 Fundamentals' : 'Day 2 Advanced'} class
+                    Join the {isDay1 ? 'Level 1 Fundamentals' : 'Level 2 Advanced'} class
                 </p>
             </div>
 
@@ -105,7 +105,7 @@ export default function WorkplaceUsageCard({ day = 'day1', style = {} }) {
                     color: 'var(--text-primary)',
                     marginBottom: '0.25rem'
                 }}>
-                    Day {isDay1 ? '1' : '2'} - {title}
+                    Level {isDay1 ? '1' : '2'} - {title}
                 </div>
                 <div style={{
                     fontSize: '0.9rem',

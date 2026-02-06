@@ -45,7 +45,7 @@ export default function LearningPlayerPage() {
         { id: 'lvl1_sub7', title: 'Applications & Tools' },
         { id: 'lvl1_sub8', title: 'Practice & Takeaways' }
     ] : [
-        { id: 'lvl2_sub1', title: 'Day 2 Opening & Context' },
+        { id: 'lvl2_sub1', title: 'LEVEL 2' },
         { id: 'lvl2_sub2', title: 'Why Visuals Matter at Work' },
         { id: 'lvl2_sub3', title: 'Intro to Visual GenAI' },
         { id: 'lvl2_sub4', title: 'Diffusion Models (Intuition)' },

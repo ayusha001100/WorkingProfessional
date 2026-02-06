@@ -209,7 +209,7 @@ export default function SessionAdminPage() {
                         <section style={{ background: 'var(--bg-secondary)', padding: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', color: '#FF5722' }}>
                                 <Calendar size={24} />
-                                <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Day 1: Fundamentals</h2>
+                                <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Level 1: Fundamentals</h2>
                             </div>
                             <div style={{ display: 'grid', gap: '1.5rem' }}>
                                 <InputGroup label="Session Title" value={sessionData.day1.title} onChange={v => updateField('day1', 'title', v)} placeholder="e.g. Fundamentals of AI" />
@@ -217,7 +217,7 @@ export default function SessionAdminPage() {
                                 <InputGroup label="Meeting Link" value={sessionData.day1.link} onChange={v => updateField('day1', 'link', v)} placeholder="https://..." />
 
                                 <div style={{ borderTop: '1px solid var(--border-color)', margin: '1rem 0' }}></div>
-                                <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><User size={18} /> Day 1 Mentor</h3>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><User size={18} /> Level 1 Mentor</h3>
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                                     <InputGroup label="Name" value={sessionData.day1.mentor?.name} onChange={v => updateField('day1', 'mentor.name', v)} placeholder="Mentor Name" />
                                     <InputGroup label="Designation" value={sessionData.day1.mentor?.title} onChange={v => updateField('day1', 'mentor.title', v)} placeholder="Mentor Title" />
@@ -229,7 +229,7 @@ export default function SessionAdminPage() {
                         <section style={{ background: 'var(--bg-secondary)', padding: '2rem', borderRadius: '24px', border: '1px solid var(--border-color)' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', color: '#FF5722' }}>
                                 <Calendar size={24} />
-                                <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Day 2: Advanced</h2>
+                                <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Level 2: Advanced</h2>
                             </div>
                             <div style={{ display: 'grid', gap: '1.5rem' }}>
                                 <InputGroup label="Session Title" value={sessionData.day2.title} onChange={v => updateField('day2', 'title', v)} placeholder="e.g. Advanced Applications" />
@@ -237,7 +237,7 @@ export default function SessionAdminPage() {
                                 <InputGroup label="Meeting Link" value={sessionData.day2.link} onChange={v => updateField('day2', 'link', v)} placeholder="https://..." />
 
                                 <div style={{ borderTop: '1px solid var(--border-color)', margin: '1rem 0' }}></div>
-                                <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><User size={18} /> Day 2 Mentor</h3>
+                                <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><User size={18} /> Level 2 Mentor</h3>
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                                     <InputGroup label="Name" value={sessionData.day2.mentor?.name} onChange={v => updateField('day2', 'mentor.name', v)} placeholder="Mentor Name" />
                                     <InputGroup label="Designation" value={sessionData.day2.mentor?.title} onChange={v => updateField('day2', 'mentor.title', v)} placeholder="Mentor Title" />

@@ -100,7 +100,7 @@ export default function ScoreCardModal({ isOpen, onClose, day, stats, onCertific
                         </motion.div>
 
                         <h2 style={{ fontSize: '2rem', fontWeight: 800, margin: '0 0 0.5rem', color: 'white' }}>
-                            {day === 'day1' ? 'Day 1 Complete!' : 'Day 2 Complete!'}
+                            {day === 'day1' ? 'Level 1 Complete!' : 'Level 2 Complete!'}
                         </h2>
                         <p style={{ color: color, fontSize: '1rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '2.5rem' }}>
                             {message}
@@ -173,7 +173,7 @@ export default function ScoreCardModal({ isOpen, onClose, day, stats, onCertific
                             onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
                             onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
                         >
-                            {day === 'day2' ? 'Get Your Certificate' : 'Proceed to Day 2'} <ArrowRight size={20} />
+                            {day === 'day2' ? 'Get Your Certificate' : 'Proceed to Level 2'} <ArrowRight size={20} />
                         </button>
 
                     </div>

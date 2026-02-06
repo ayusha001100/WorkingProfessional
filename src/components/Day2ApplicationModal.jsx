@@ -148,7 +148,7 @@ export default function Day2ApplicationModal({ isOpen, onClose, onComplete }) {
                     {/* Content */}
                     <div style={{ padding: '1.5rem 2.5rem 2.5rem' }}>
                         <h3 style={{ fontSize: '1.2rem', fontWeight: 500, color: 'rgba(255,255,255,0.8)', marginBottom: '1.5rem', lineHeight: 1.5 }}>
-                            What is <span style={{ color: '#FF5722', fontWeight: 700 }}>one thing</span> you’ll apply at work immediately from Day 2?
+                            What is <span style={{ color: '#FF5722', fontWeight: 700 }}>one thing</span> you’ll apply at work immediately from Level 2?
                         </h3>
 
                         <textarea
