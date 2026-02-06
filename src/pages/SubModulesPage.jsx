@@ -67,13 +67,21 @@ export default function SubModulesPage() {
     const [subModuleProgress, setSubModuleProgress] = useState(() => {
         const saved = userData?.progress?.subModuleProgress?.[levelId] || {};
         if (subModules.length > 0) {
-            const firstSubModuleId = subModules[0].id;
-            if (!saved[firstSubModuleId]) {
-                saved[firstSubModuleId] = { unlocked: true, completed: false, quizCompleted: false };
+            // Unlock first module
+            const firstId = subModules[0].id;
+            if (!saved[firstId]) {
+                saved[firstId] = { unlocked: true, completed: false, quizCompleted: false };
             } else {
-                saved[firstSubModuleId].unlocked = true;
-                if (saved[firstSubModuleId].quizCompleted === undefined) {
-                    saved[firstSubModuleId].quizCompleted = false;
+                saved[firstId].unlocked = true;
+            }
+
+            // LEVEL 2 SPECIAL: Unlock second module by default
+            if (levelId === 'lvl2' && subModules[1]) {
+                const secondId = subModules[1].id;
+                if (!saved[secondId]) {
+                    saved[secondId] = { unlocked: true, completed: false, quizCompleted: false };
+                } else {
+                    saved[secondId].unlocked = true;
                 }
             }
         }
@@ -103,9 +111,14 @@ export default function SubModulesPage() {
 
         // Level 2 module 1 and 2 will open together
         if (levelId === 'lvl2' && index === 1) return true;
+
         const previousSubModule = subModules[index - 1];
         const prevProgress = subModuleProgress[previousSubModule.id];
         if (!prevProgress?.completed) return false;
+
+        // LEVEL 2 SPECIAL: No self-assessment/quiz blocker
+        if (levelId === 'lvl2') return true;
+
         const hasQuiz = SUB_MODULE_MCQS[levelId]?.[previousSubModule.id];
         if (hasQuiz && hasQuiz.length > 0) {
             return prevProgress?.quizCompleted || false;
