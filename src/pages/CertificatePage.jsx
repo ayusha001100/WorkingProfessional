@@ -25,9 +25,9 @@ export default function CertificatePage() {
             title: 'Beginner AI Assistant',
             subtitle: 'Professional Recognition',
             type: 'Foundations',
-            levelId: 'lvl1',
+            levelIds: ['lvl1', 'lvl2'],
             desc: 'Mastered the basics of AI task assistance and individual productivity.',
-            unlockDesc: 'Complete Level 1 to unlock',
+            unlockDesc: 'Complete Level 1 & 2 to unlock',
             accent: '#ff5722',
             icon: <Award size={32} />
         },
@@ -36,7 +36,7 @@ export default function CertificatePage() {
             title: 'Advanced AI Leader',
             subtitle: 'Expert Recognition',
             type: 'Professional',
-            levelId: 'lvl12',
+            levelIds: ['lvl1', 'lvl2', 'lvl3', 'lvl4', 'lvl5', 'lvl6', 'lvl7', 'lvl8', 'lvl9', 'lvl10', 'lvl11', 'lvl12'],
             desc: 'Demonstrated AI leadership, systems building, and strategic implementation.',
             unlockDesc: 'Complete all 12 Levels to unlock',
             accent: '#8a2be2',
@@ -44,29 +44,39 @@ export default function CertificatePage() {
         }
     ];
 
-    const getModuleProgress = (levelId) => {
-        const subModules = SUB_MODULES_CONTENT[levelId] || {};
-        const totalSubModules = Object.keys(subModules).length;
-        const subModuleProgress = userData?.progress?.subModuleProgress?.[levelId] || {};
-        const completedCount = Object.values(subModuleProgress).filter(sm => sm.completed).length;
+    const getModuleProgress = (ids) => {
+        const idArray = Array.isArray(ids) ? ids : [ids];
+        let totalPercent = 0;
+        let allCompleted = true;
 
-        const isLevelCompleted = userData?.progress?.moduleProgress?.[levelId]?.completed || false;
+        idArray.forEach(id => {
+            const subModules = SUB_MODULES_CONTENT[id] || {};
+            const totalSubModules = Object.keys(subModules).length;
+            const subModuleProgress = userData?.progress?.subModuleProgress?.[id] || {};
+            const completedCount = Object.values(subModuleProgress).filter(sm => sm.completed).length;
 
-        const allModules = GEN_AI_COURSE.modules;
-        const currentIndex = allModules.findIndex(m => m.id === levelId);
-        const nextModule = allModules[currentIndex + 1];
-        const nextUnlocked = nextModule ? userData?.progress?.moduleProgress?.[nextModule.id]?.unlocked : false;
+            const isLevelCompleted = userData?.progress?.moduleProgress?.[id]?.completed || false;
 
-        const percent = totalSubModules > 0 ? Math.round((completedCount / totalSubModules) * 100) : 0;
+            const allModules = GEN_AI_COURSE.modules;
+            const currentIndex = allModules.findIndex(m => m.id === id);
+            const nextModule = allModules[currentIndex + 1];
+            const nextUnlocked = nextModule ? userData?.progress?.moduleProgress?.[nextModule.id]?.unlocked : false;
+
+            const percent = totalSubModules > 0 ? Math.round((completedCount / totalSubModules) * 100) : 0;
+            const isDone = isLevelCompleted || nextUnlocked || (percent >= 75 && totalSubModules > 0);
+
+            totalPercent += percent;
+            if (!isDone) allCompleted = false;
+        });
 
         return {
-            percent,
-            isCompleted: isLevelCompleted || nextUnlocked || (percent >= 75 && totalSubModules > 0)
+            percent: Math.round(totalPercent / idArray.length),
+            isCompleted: allCompleted
         };
     };
 
     const isUnlocked = (cert) => {
-        return getModuleProgress(cert.levelId).isCompleted;
+        return getModuleProgress(cert.levelIds).isCompleted;
     };
 
     const handleSelectCert = (cert) => {
@@ -169,7 +179,7 @@ export default function CertificatePage() {
 
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2.5rem', marginBottom: '6rem' }}>
                                 {CERTIFICATES.map((cert) => {
-                                    const { percent, isCompleted } = getModuleProgress(cert.levelId);
+                                    const { percent, isCompleted } = getModuleProgress(cert.levelIds);
                                     const unlocked = isCompleted;
 
                                     return (
