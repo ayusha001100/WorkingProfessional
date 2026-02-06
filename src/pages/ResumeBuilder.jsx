@@ -221,19 +221,7 @@ export default function ResumeBuilder() {
                                 </p>
                             </div>
                             <div style={{ display: 'flex', gap: '12px', marginTop: '10px' }}>
-                                <motion.button
-                                    onClick={scrollToTemplates}
-                                    whileHover={{ scale: 1.02, y: -2 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    style={{
-                                        height: '48px', padding: '0 24px', borderRadius: '12px',
-                                        background: '#fff', border: '1px solid #e2e8f0', color: '#1a1a1a',
-                                        fontWeight: 700, fontSize: '16px', display: 'flex', alignItems: 'center', gap: '8px',
-                                        boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
-                                    }}
-                                >
-                                    <Layout size={20} /> Templates
-                                </motion.button>
+
                                 <motion.button
                                     onClick={handleExportPDF}
                                     whileHover={{ scale: 1.02, y: -2 }}
