@@ -19,36 +19,8 @@ export default function HardcopyCheckout({ onBack, studentName, userEmail, certi
     };
 
     const handlePlaceOrder = () => {
-        // Razorpay Integration Logic
-        const options = {
-            key: "YOUR_RAZORPAY_KEY", // This would ideally come from env
-            amount: 39900, // Amount in paise
-            currency: "INR",
-            name: "LISA AI",
-            description: "Hardcopy Certificate Delivery",
-            image: "/assets/logo.png",
-            handler: function (response) {
-                alert("Payment Successful! Order ID: " + response.razorpay_payment_id);
-                onBack();
-            },
-            prefill: {
-                name: formData.fullName,
-                email: formData.email,
-                contact: formData.phone
-            },
-            theme: {
-                color: "#ff5722"
-            }
-        };
-
-        // If Razorpay is not loaded, we redirect to a mock link or show a message
-        if (window.Razorpay) {
-            const rzp = new window.Razorpay(options);
-            rzp.open();
-        } else {
-            // For demo/simulated flow if user hasn't added script yet
-            window.location.href = "https://rzp.io/l/hardcopy-certificate"; // Example redirect
-        }
+        // Redirect to Razorpay Payment Page
+        window.location.href = "https://pages.razorpay.com/pl_SCqgLKTEMjr5oX/view";
     };
 
     const inputStyle = {
