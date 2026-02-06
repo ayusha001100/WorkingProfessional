@@ -477,39 +477,41 @@ export const SUB_MODULES_CONTENT = {
             title: 'LEVEL 2',
             sections: [
                 {
-                    title: 'Session Title',
+                    title: 'The Shift from Basics to Mastery',
                     content: [
                         {
-                            text: 'Applying GenAI at Work: Visuals, Bots, Agents & Career Edge'
+                            text: 'Welcome to Level 2. While Level 1 focused on understanding the "what" and "why" of Generative AI, Level 2 is about the **"how"**. We move from simple chat interactions to building assets, automating workflows, and understanding the architecture of AI agents.'
+                        },
+                        {
+                            quote: '"The competitive advantage is no longer just using AI, but how deeply you integrate it into your specific domain."'
                         }
                     ]
                 },
                 {
-                    title: "What You'll Learn Today",
+                    title: "What You'll Master Today",
                     content: [
                         {
                             list: [
-                                'Create professional visuals using AI',
-                                'Understand AI bots (Custom GPTs)',
-                                'Learn what AI agents really are',
-                                'See real workflows used in companies',
-                                'Understand the AI Generalist role'
+                                'Professional Visual Creation: From static images to dynamic video content.',
+                                'AI Bots (Custom GPTs): Building specialized tools for your precise work needs.',
+                                'Agentic AI: Moving beyond prompts to multi-step autonomous systems.',
+                                'The AI Generalist Career Path: Positioning yourself as a leader in the AI era.',
+                                'Real-World Automation: Integrating AI into your existing software stack.'
                             ]
                         }
                     ]
                 },
                 {
-                    title: 'Level 2 Agenda',
+                    title: 'Level 2 Deep Dive Agenda',
                     content: [
                         {
                             list: [
-                                'Visual GenAI & storytelling',
-                                'AI tools for images & video',
-                                'Hands-on visual creation',
-                                'Custom GPTs (AI bots)',
-                                'Agentic AI & workflows',
-                                'AI Generalist role',
-                                'Q&A + next steps'
+                                'The Psychology of Visuals: Why text alone is failing in the attention economy.',
+                                'Tool Stack Mastery: DALL-E 3, Midjourney v6, Runway Gen-2, and Pika Labs.',
+                                'Persona Engineering: Crafting instructions that give Custom GPTs a "brain".',
+                                'Sense-Think-Act Framework: Understanding the DNA of an AI Agent.',
+                                'End-to-End Workflows: Case studies from HR, Marketing, and Operations.',
+                                'The AI Generalist Roadmap: Your 12-week transformation plan.'
                             ]
                         }
                     ]
@@ -521,35 +523,53 @@ export const SUB_MODULES_CONTENT = {
             title: 'Why Visuals Matter at Work',
             sections: [
                 {
-                    title: 'Why Visuals Are No Longer Optional',
+                    title: 'Competing in the Attention Economy',
                     content: [
                         {
-                            list: [
-                                'People skim before reading',
-                                'Visuals improve understanding & recall',
-                                'Leaders expect clarity, not long text'
-                            ]
+                            text: 'In today\'s workplace, information overload is the default. Your peers and leaders are bombarded with emails, Slack messages, and reports.'
                         },
                         {
-                            text: '**Used in:** Presentations, LinkedIn posts, Internal communication, Marketing campaigns.'
+                            list: [
+                                '**The 3-Second Rule:** People decide whether to engage with your content in under 3 seconds. Visuals grab that attention.',
+                                '**Cognitive Load:** The brain processes images 60,000 times faster than text.',
+                                '**Retention:** Users remember only 10% of what they hear, but 65% of what they see and hear.'
+                            ]
                         }
                     ]
                 },
                 {
-                    title: 'Before AI vs After AI',
+                    title: 'Practical Work Scenarios',
+                    content: [
+                        {
+                            text: 'Visuals aren\'t just for designers. They are for anyone who needs to influence or explain:'
+                        },
+                        {
+                            list: [
+                                '**Strategic Roadmaps:** Turning a 10-page doc into a single, clear timeline.',
+                                '**Internal Announcements:** Using a hero image to make an update feel "important".',
+                                '**Client Presentations:** Moving away from bullet points to evocative storytelling visuals.',
+                                '**Personal Branding:** Standing out on LinkedIn with consistent, high-quality imagery.'
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: 'The AI Revolution: Before vs After',
                     content: [
                         {
                             table: {
-                                headers: ['Before', 'After'],
+                                headers: ['Dimension', 'Traditional (Before AI)', 'Modern (With GenAI)'],
                                 rows: [
-                                    ['Dependency on designers', 'Anyone can create visuals'],
-                                    ['Slow iterations', 'Faster execution'],
-                                    ['High effort', 'Better communication']
+                                    ['Dependency', 'Heavily dependent on designers/agencies', 'Empowered individuals create the core assets'],
+                                    ['Speed', 'Days or weeks for a single iteration', 'Seconds to minutes for dozens of variations'],
+                                    ['Cost', 'High per-asset cost, requiring budget approval', 'Near-zero marginal cost (software subscription)'],
+                                    ['Expertise', 'Requires 5+ years of software mastery (PS/AI)', 'Requires clear intent and prompting skills'],
+                                    ['Accessibility', 'Limited to creative teams', 'Accessible to HR, Sales, Ops, and Leadership']
                                 ]
                             }
                         },
                         {
-                            note: 'Example: HR creates a hiring visual in 10 minutes.'
+                            note: 'Case Study: An HR Manager previously spent $500 on a recruiting graphic; now they generate 5 variations in 2 minutes for free.'
                         }
                     ]
                 }
@@ -560,36 +580,50 @@ export const SUB_MODULES_CONTENT = {
             title: 'Intro to Visual GenAI',
             sections: [
                 {
-                    title: 'Definition',
+                    title: 'Defining the Landscape',
                     content: [
                         {
-                            text: 'Definition: AI that creates images or videos from text or images.'
+                            text: 'Visual Generative AI is a subset of GenAI focused on creating or editing visual media (images, videos, 3D models) using natural language prompts.'
                         }
                     ]
                 },
                 {
-                    title: 'Modes',
+                    title: 'The Core Modalitites',
                     content: [
                         {
                             list: [
-                                'Text → Image',
-                                'Image → Image',
-                                'Text → Video'
+                                '**Text-to-Image:** Defining a scene in words and getting a high-fidelity image.',
+                                '**Image-to-Image:** Modifying an existing photo (e.g., "Make this photo look like a cinematic sketch").',
+                                '**In-painting/Out-painting:** Adding or removing elements from an existing visual.',
+                                '**Text-to-Video:** Generating short, cinematic clips from a single sentence description.'
                             ]
-                        },
-                        {
-                            text: '**Where Visual GenAI Is Used:** LinkedIn creatives, Slide hero images, Event posters, Campaign banners.'
                         }
                     ]
                 },
                 {
-                    title: 'Example',
+                    title: 'Enterprise Use Cases',
+                    content: [
+                        {
+                            table: {
+                                headers: ['Category', 'Specific Examples'],
+                                rows: [
+                                    ['Marketing', 'Ad banners, Blog headers, Social media carousels'],
+                                    ['Inside Sales', 'Custom visuals that mirror the client\'s industry'],
+                                    ['Product', 'Mockups, Storyboards for features, UI inspirations'],
+                                    ['HR & Culture', 'Event posters, Values-based visuals, Team stickers']
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    title: 'From Prompt to Masterpiece',
                     content: [
                         {
                             example: {
-                                title: 'IMAGE PROMPT',
-                                input: 'Example Prompt:',
-                                output: '"Create a modern LinkedIn visual for a leadership workshop"'
+                                title: 'ADVANCED VISUAL PROMPTING',
+                                input: 'Simple: "A man in a suit working"',
+                                output: 'Pro: "A 3D isometric flat-style illustration of a modern office professional, vibrant blue and orange palette, clean lines, high contrast, professional lighting, 8k resolution, cinematic look."'
                             }
                         }
                     ]
@@ -601,28 +635,42 @@ export const SUB_MODULES_CONTENT = {
             title: 'Diffusion Models (Intuition)',
             sections: [
                 {
-                    title: 'How AI Generates Images',
+                    title: 'Cracking the Code: How it Works',
                     content: [
                         {
-                            text: 'Starts from random noise → Gradually removes noise → Guided by prompt instructions.'
-                        },
-                        {
-                            note: 'Analogy: Clearing fog from a glass window.'
+                            text: 'Most modern image AI (Midjourney, DALL-E, Stable Diffusion) uses a technique called **Diffusion**. It is fundamentally different from how humans draw.'
                         }
                     ]
                 },
                 {
-                    title: 'Why Prompts Matter for Images',
+                    title: 'The 3-Step Process',
                     content: [
                         {
-                            text: 'Prompt controls: Style, Mood, Clarity.'
+                            list: [
+                                '**1. The Noise Layer:** The AI starts with a grid of random, colorful static (like a TV with no signal).',
+                                '**2. The Prompt Guide:** Your prompt acts as a "magnetic field" that tells the AI where certain patterns should emerge.',
+                                '**3. The Denoising Loop:** In iterative steps, the AI "clears the fog," identifying shapes and textures until a clear image is formed.'
+                            ]
                         },
                         {
-                            example: {
-                                title: 'PROMPT STYLING',
-                                input: 'Style example:',
-                                output: '"Flat illustration, corporate style, blue palette, minimal icons"'
-                            }
+                            note: 'Intuition: Think of a sculptor finding a statue inside a block of marble. The "noise" is the marble, and your "prompt" is the blueprint for the sculpture.'
+                        }
+                    ]
+                },
+                {
+                    title: 'Why Prompt Engineering for Images is Different',
+                    content: [
+                        {
+                            text: 'Unlike text, image AI doesn\'t understand "logic" as well as it understands "look". You must describe:'
+                        },
+                        {
+                            list: [
+                                '**Subject:** What is in the image?',
+                                '**Medium:** Is it a photo, a painting, a sketch, or a 3D renders?',
+                                '**Style:** Is it Cyberpunk, Minimalism, or Impressionism?',
+                                '**Lighting:** Is it Golden Hour, Studio Lighting, or Neon?',
+                                '**Camera:** Is it a Wide Shot, Close-up, or Fisheye?'
+                            ]
                         }
                     ]
                 }
@@ -633,28 +681,38 @@ export const SUB_MODULES_CONTENT = {
             title: 'Visual Storytelling',
             sections: [
                 {
-                    title: 'Why Story Matters',
+                    title: 'The Anti-Stock Photography Movement',
                     content: [
                         {
-                            text: '**Random visuals =** confusion.'
-                        },
-                        {
-                            text: '**Story-based visuals =** clarity.'
+                            text: 'Generic stock photos (e.g., people shaking hands) are invisible to our brains. We have learned to ignore them. AI allows us to create **Custom Visual Narratives**.'
                         }
                     ]
                 },
                 {
-                    title: 'Simple Visual Story Framework',
+                    title: 'The 4-Part Visual Framework',
                     content: [
                         {
-                            text: 'Hook → Problem → Solution → Outcome'
-                        },
+                            list: [
+                                '**1. The Hook:** A visual that represents the "Status Quo" or a "Shocking Truth".',
+                                '**2. The Conflict:** A visual showing the pain point or the complexity of the current problem.',
+                                '**3. The Transformation:** A visual bridge showing the "Solution" in action.',
+                                '**4. The Reward:** the "After" state. Clarity, success, and outcome.'
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Case Study: The "Broken Process" Slide',
+                    content: [
                         {
                             example: {
-                                title: 'LINKEDIN POST EXAMPLE',
-                                input: 'Hook: "Hiring is broken"\nProblem: Too many resumes',
-                                output: 'Solution: AI screening\nOutcome: Faster hiring'
+                                title: 'STORYTELLING WITH AI',
+                                input: 'Old Way: A bulleted list of 5 things wrong with the hiring process.',
+                                output: 'New Way: A custom AI image of a "bureaucratic maze" with a person feeling lost, followed by an image of a "clear gold path" leading to the right talent.'
                             }
+                        },
+                        {
+                            quote: '"Visual storytelling is about making the abstract feel concrete."'
                         }
                     ]
                 }
@@ -665,18 +723,35 @@ export const SUB_MODULES_CONTENT = {
             title: 'AI Tools Overview (Images)',
             sections: [
                 {
-                    title: 'Image Tool Landscape',
+                    title: 'Building Your Visual Toolbox',
                     content: [
                         {
-                            list: [
-                                '**DALL·E:** Best for business visuals.',
-                                '**Midjourney:** High aesthetics, artistic.',
-                                '**Stable Diffusion:** Customizability.',
-                                '**Canva AI:** Templates & team collaboration.'
-                            ]
-                        },
+                            text: 'Not all tools are created equal. Choosing the right tool for the job is a key skill of the AI Generalist.'
+                        }
+                    ]
+                },
+                {
+                    title: 'Tool Comparison',
+                    content: [
                         {
-                            quote: 'Rule: Choose tool based on outcome, not hype.'
+                            table: {
+                                headers: ['Tool', 'Best For', 'Learning Curve'],
+                                rows: [
+                                    ['**DALL-E 3**', 'Precision, following complex text precisely, easy access (ChatGPT)', 'Beginner'],
+                                    ['**Midjourney**', 'Absolute highest aesthetic quality, artistic control, cinematic feel', 'Intermediate'],
+                                    ['**Stable Diffusion**', 'Maximum control, running locally, specialized "fine-tuning"', 'Expert'],
+                                    ['**Canva Magic Media**', 'Quick layouts, non-creative types, templates integration', 'Beginner'],
+                                    ['**Adobe Firefly**', 'Editing existing assets, commercial safety (licensed data)', 'Intermediate']
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    title: 'The "Winner" Mentality',
+                    content: [
+                        {
+                            text: 'Don\'t get married to one tool. Midjourney might be great for your LinkedIn banner, but DALL-E is better if you need a diagram with specific text on a whiteboard.'
                         }
                     ]
                 }
@@ -687,17 +762,37 @@ export const SUB_MODULES_CONTENT = {
             title: 'AI Tools Overview (Video)',
             sections: [
                 {
-                    title: 'Video Generation Tools',
+                    title: 'The Next Frontier: Generative Video',
+                    content: [
+                        {
+                            text: 'Video is the most engaging medium, but traditionally the hardest to produce. AI is changing the cost/time equation by 100x.'
+                        }
+                    ]
+                },
+                {
+                    title: 'Key Technologies',
                     content: [
                         {
                             list: [
-                                'Runway',
-                                'Pika',
-                                'Canva Video AI'
+                                '**Runway (Gen-2):** The industry leader for cinematic realism and physics-aware video.',
+                                '**Pika Labs:** Amazing for animation, stylistic consistency, and ease of use.',
+                                '**Luma Dream Machine:** High-resolution realistic motion from text or images.'
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Modern Video Workflows',
+                    content: [
+                        {
+                            list: [
+                                '**Animate Your Headshots:** Turn a static team photo into a subtle moving background.',
+                                '**Explainer B-Roll:** Instead of buying stock footage, generate clips that match your script exactly.',
+                                '**Product Cinematography:** Creating 2-second "eye candy" clips of products for social media ads.'
                             ]
                         },
                         {
-                            text: '**Common Use-Cases:** Static poster → animated reel, Text → explainer video, Presentation → short video.'
+                            note: 'Current Limitation: AI video is best for short clips (2-5 seconds) and atmospheric shots, not yet for long narrative films.'
                         }
                     ]
                 }
@@ -708,20 +803,38 @@ export const SUB_MODULES_CONTENT = {
             title: 'Hands-On Visual Creation',
             sections: [
                 {
-                    title: 'Instructions',
+                    title: 'Workshop: Your First AI Brand Asset',
+                    content: [
+                        {
+                            text: 'Theory is nothing without application. Let\'s build something you can actually use tomorrow.'
+                        }
+                    ]
+                },
+                {
+                    title: 'Step-by-Step Execution',
                     content: [
                         {
                             list: [
-                                '1. Pick a real work use-case',
-                                '2. Write a structured prompt',
-                                '3. Generate and refine output'
+                                '**Phase 1 (The Why):** Define your goal. Are you announcing a new policy? Pitching a new client? Celebrate a team win?',
+                                '**Phase 2 (The Prompt):** Use the "Subject-Style-Lighting" framework we learned.',
+                                '**Phase 3 (The Generation):** Run at least 4 variations in DALL-E or Midjourney.',
+                                '**Phase 4 (The Polish):** Use an "Upscaler" or background remover to make it look studio-grade.'
                             ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Example Task',
+                    content: [
+                        {
+                            text: 'Task: Create a hero image for a deck titled "The Future of our Marketing Strategy 2026".'
                         },
                         {
-                            note: 'Time-Bound: 3–5 minutes.'
-                        },
-                        {
-                            text: '**Before vs After:** Weak prompt → average output; Clear prompt → professional output.'
+                            example: {
+                                title: 'PROMPT EXPERIMENT',
+                                input: 'Attempt 1: "Marketing future 2026"',
+                                output: 'Attempt 2: "A cinematic wide shot of a futuristic marketing control room, holograms showing growth trends, neon accents, soft lighting, hyper-realistic, 8k."'
+                            }
                         }
                     ]
                 }
@@ -732,20 +845,38 @@ export const SUB_MODULES_CONTENT = {
             title: 'Custom GPTs (AI Bots)',
             sections: [
                 {
-                    title: 'What is a Custom GPT?',
+                    title: 'Moving Beyond Generalists',
                     content: [
                         {
-                            text: 'AI with fixed role and instructions.'
-                        },
+                            text: 'ChatGPT is a generalist—good at everything, master of nothing. A **Custom GPT** is a bespoke version of AI trained on **your** instructions and **your** knowledge.'
+                        }
+                    ]
+                },
+                {
+                    title: 'Why Organizations are Building These',
+                    content: [
                         {
-                            example: {
-                                title: 'COMPARISON',
-                                input: 'General chat: Generic help',
-                                output: 'Custom GPT: Specialist help (e.g., "HR Policy Assistant")'
+                            list: [
+                                '**Consistency:** Ensuring every employee gets the same answer about company policy.',
+                                '**Privacy:** Using internal data that the public AI doesn\'t have access to.',
+                                '**Efficiency:** Automating tasks that require specific, repeated steps (e.g., "Formatting this weekly report").'
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Practical Work Examples',
+                    content: [
+                        {
+                            table: {
+                                headers: ['Role', 'Custom GPT Use-Case'],
+                                rows: [
+                                    ['HR Manager', 'L&D Curriculum Assistant (suggests courses based on role)'],
+                                    ['Financial Analyst', 'Quarterly Report Summarizer (trained on specific balance sheet styles)'],
+                                    ['Sales Leader', 'Objection Handler (trained on past winning sales calls)'],
+                                    ['Ops Manager', 'Slack Policy Bot (answers questions about internal communication rules)']
+                                ]
                             }
-                        },
-                        {
-                            text: '**Examples:** HR policy assistant, Marketing copy assistant, Sales follow-up assistant.'
                         }
                     ]
                 }
@@ -756,18 +887,31 @@ export const SUB_MODULES_CONTENT = {
             title: 'Components of a Custom GPT',
             sections: [
                 {
-                    title: 'Core Components',
+                    title: 'The Anatomy of a Specialized Bot',
+                    content: [
+                        {
+                            text: 'Building a great bot is $10\%$ configuration and $90\%$ thinking. Here is how it\'s broken down:'
+                        }
+                    ]
+                },
+                {
+                    title: 'The Four Pillars',
                     content: [
                         {
                             list: [
-                                '**Instructions:** Role & behavior.',
-                                '**Knowledge:** Documents, PDFs.',
-                                '**Tools/Actions:** Web browsing, logic.',
-                                '**Guardrails:** What it must NOT do (prevent incorrect advice).'
+                                '**1. System Instructions (The Brain):** The "Persona" and "Rules" of the bot. This is where you define tone, logic, and limitations.',
+                                '**2. Knowledge Files (The Memory):** You can upload PDFs, Excel files, or Text files. The bot will "search" these before answering.',
+                                '**3. Capabilities (The Senses):** Does it need to browse the web? Generate images? Run Python code for data analysis?',
+                                '**4. Actions (The Hands):** Can it talk to other apps like Gmail, Jira, or Salesforce? (Advanced feature).'
                             ]
-                        },
+                        }
+                    ]
+                },
+                {
+                    title: 'Design Philosophy: Guardrails',
+                    content: [
                         {
-                            quote: 'Example: Sales GPT refuses to promise discounts.'
+                            text: 'A dangerous bot is one that "guesses". A professional bot is one that says "I don\'t know because it isn\'t in the knowledge files."'
                         }
                     ]
                 }
@@ -778,16 +922,34 @@ export const SUB_MODULES_CONTENT = {
             title: 'Prompt Structure for Custom GPTs',
             sections: [
                 {
-                    title: 'GPT Instruction Framework',
+                    title: 'Mastering "System Prompting"',
                     content: [
                         {
-                            text: 'Role definition → Tone and style → Allowed tasks → Boundaries → Output format.'
-                        },
+                            text: 'The instructions for a Custom GPT are longer and more structured than a regular prompt. You are essentially "coding with English".'
+                        }
+                    ]
+                },
+                {
+                    title: 'The "CARE" Framework',
+                    content: [
+                        {
+                            list: [
+                                '**Context:** Who are you? (e.g., "You are an expert McKinsey consultant").',
+                                '**Action:** What is your primary task? (e.g., "Audit these marketing plans for ROI").',
+                                '**Rules:** What are the constraints? (e.g., "Always use metric system. Never mention competitors").',
+                                '**Example:** What does a "good" output look like? (Provide a sample format).'
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Example Instruction Set',
+                    content: [
                         {
                             example: {
-                                title: 'GPT INSTRUCTION',
-                                input: 'Example:',
-                                output: '"You are an HR assistant. Always ask for missing details. Never guess policy information."'
+                                title: 'THE "POLICY BOT" INSTRUCTION',
+                                input: 'Poor: "Help people with HR stuff."',
+                                output: '"Role: You are the HR policy bot for ABC Corp.\nKnowledge: Use ONLY the uploaded EmployeeManual.pdf.\nRules: If a question is about salary, redirect to the CFO. Use a friendly but professional tone. Answer in bullet points."'
                             }
                         }
                     ]
@@ -799,22 +961,36 @@ export const SUB_MODULES_CONTENT = {
             title: 'Agentic AI',
             sections: [
                 {
-                    title: 'What is an AI Agent?',
+                    title: 'The Future is Autonomous',
                     content: [
                         {
-                            text: 'AI that can **Sense → Think → Act**.'
+                            text: 'If a **Prompt** is a "one-off conversation", an **Agent** is a "coworker with a goal". Agents don\'t just talk; they **execute**.'
                         }
                     ]
                 },
                 {
-                    title: 'Prompt vs Agent',
+                    title: 'Sense → Think → Act',
                     content: [
                         {
-                            example: {
-                                title: 'PROMPT VS AGENT',
-                                input: 'Prompt: One response (Answering a question)',
-                                output: 'Agent: Multi-step workflow (Intern following a checklist)'
-                            }
+                            text: 'The fundamental loop of an AI Agent:'
+                        },
+                        {
+                            list: [
+                                '**Sense:** Detect a change (e.g., "A new customer email has arrived").',
+                                '**Think:** Evaluate against goals (e.g., "Is this a complaint or a lead?").',
+                                '**Act:** Execute tools (e.g., "Draft a response AND create a ticket in Zendesk").'
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Why it Matters for Your Career',
+                    content: [
+                        {
+                            text: 'The task of the future isn\'t "Writing Emails" (Prompting). It is "Designing the System that handles emails" (Agentic Architecture).'
+                        },
+                        {
+                            quote: '"The person who builds the agent is 10x more valuable than the person who just uses the chatbot."'
                         }
                     ]
                 }
@@ -825,17 +1001,34 @@ export const SUB_MODULES_CONTENT = {
             title: 'Agent Workflow Example',
             sections: [
                 {
-                    title: 'Simple Agent Flow',
+                    title: 'De-mystifying Automation',
                     content: [
                         {
-                            example: {
-                                title: 'AUTOMATION FLOW',
-                                input: '1. New row added in Google Sheet\n↓\n2. AI summarizes information',
-                                output: '↓\n3. Sends summary to Slack or Email'
-                            }
-                        },
+                            text: 'Agents aren\'t magic; they are logical sequences. Let\'s look at a "Sales Research Agent" workflow.'
+                        }
+                    ]
+                },
+                {
+                    title: 'The Sequential Workflow',
+                    content: [
                         {
-                            text: '**Tool mention:** make.com (logic-focused, not technical).'
+                            table: {
+                                headers: ['Step', 'Action', 'Tool Used'],
+                                rows: [
+                                    ['1. Trigger', 'New lead signs up on website', 'Zapier / Webhook'],
+                                    ['2. Research', 'Agent browses their LinkedIn and company website', 'Perplexity API'],
+                                    ['3. Synthesis', 'Agent creates a "Personality Profile" of the lead', 'GPT-4o'],
+                                    ['4. Action', 'Agent drafts a hyper-personalized email in Gmail DRAFTS', 'Custom GPT']
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    title: 'The "Logic-First" Approach',
+                    content: [
+                        {
+                            text: 'The best agents use **Low-Code** tools like Make.com or Zapier to connect the "Brain" (AI) to the "Body" (other apps).'
                         }
                     ]
                 }
@@ -846,21 +1039,34 @@ export const SUB_MODULES_CONTENT = {
             title: 'AI Generalist Role',
             sections: [
                 {
-                    title: 'The "AI Person" Inside a Team',
+                    title: 'Becoming Invaluable',
                     content: [
                         {
-                            text: '**Key Skills:** Prompting, Visual AI, Custom GPTs, Agents & Workflows.'
+                            text: 'Every company is currently desperate for someone who knows how to apply AI to business problems. This person is the **AI Generalist**.'
                         }
                     ]
                 },
                 {
-                    title: 'Executive AI Generalist',
+                    title: 'The 4 Skill Pillars',
                     content: [
                         {
-                            text: 'Focus on: Business impact, ROI, Risk management.'
+                            list: [
+                                '**Prompt Engineering (Language):** Managing the LLMs.',
+                                '**Visual AI (Media):** Creating high-fidelity assets.',
+                                '**Bot Architecture (Specialization):** Building custom tools.',
+                                '**Workflow Design (Automation):** connecting tools into agents.'
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Visibility & Career Growth',
+                    content: [
+                        {
+                            text: 'An AI Generalist follows the **"High Impact, Low Effort"** rule. They find the tasks that take for hours and turn them into 2-minute workflows, making themselves indispensable.'
                         },
                         {
-                            note: 'Outcome: Higher visibility, More influence, Career acceleration.'
+                            note: 'Self-Check: Are you the one asking "Can AI do this?" or the one showing "Here is how AI is already doing this for us"?'
                         }
                     ]
                 }
@@ -871,44 +1077,40 @@ export const SUB_MODULES_CONTENT = {
             title: '15 & 16. Q&A and Next Steps',
             sections: [
                 {
-                    title: 'Q&A Discussion',
+                    title: 'Synthesizing Your Learning',
                     content: [
                         {
-                            text: 'Tool selection, Privacy, Career impact, Company adoption.'
-                        }
-                    ]
-                },
-                {
-                    title: 'Today vs Next 12 Weeks',
-                    content: [
+                            text: 'You have moved from "Chatting with AI" to "Leading with AI". This is a lifetime shift in how you work.'
+                        },
                         {
                             list: [
-                                '**Today:** Awareness & Confidence',
-                                '**12 Weeks:** Real Capability & Leadership'
+                                '**Reflection:** Which area (Visuals, Bots, or Agents) will you apply on Monday?',
+                                '**Risk Management:** Always remember HR/Legal compliance before deploying agents.'
                             ]
-                        },
+                        }
+                    ]
+                },
+                {
+                    title: 'The 12-Week Transformation',
+                    content: [
                         {
-                            visualization: {
-                                title: 'Ask Me Anything: AI @ Work',
-                                url: 'https://ml-neural-networks.vercel.app/llm-ama-qa/'
-                            }
-                        },
-                        {
-                            visualization: {
-                                title: 'Today vs The Next 12 Weeks',
-                                url: 'https://ml-neural-networks.vercel.app/llm-skill-journey/'
+                            table: {
+                                headers: ['Phase', 'Focus', 'Milestone'],
+                                rows: [
+                                    ['Weeks 1-2', 'Asset Creation', 'Complete visual branding for a project'],
+                                    ['Weeks 3-6', 'Tool Specialization', 'Build 3 Custom GPTs for your team'],
+                                    ['Weeks 7-10', 'Workflow Automation', 'Automate one repetitive multi-app task'],
+                                    ['Weeks 11-12', 'Leadership', 'Present your "AI Roadmap" to your manager']
+                                ]
                             }
                         }
                     ]
                 },
                 {
-                    title: 'Program Structure',
+                    title: 'Final Parting Thought',
                     content: [
                         {
-                            text: 'Foundations → Tools → Hands-on projects → Agents & automation.'
-                        },
-                        {
-                            quote: '"Understanding AI is good.\nApplying AI is powerful.\nLeading with AI changes careers."'
+                            quote: '"The future doesn\'t belong to the ones who built the AI. It belongs to the ones who were brave enough to apply it first."'
                         }
                     ]
                 }
