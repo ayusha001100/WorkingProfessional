@@ -128,7 +128,20 @@ export default function UnifiedLearningPage() {
     const { theme, toggleTheme } = useTheme();
 
     const [subModuleProgress, setSubModuleProgress] = useState(() => {
-        return userData?.progress?.subModuleProgress?.[levelId] || {};
+        const saved = userData?.progress?.subModuleProgress?.[levelId] || {};
+
+        // LEVEL 2 SPECIAL: Unlock first two modules together by default
+        if (levelId === 'lvl2') {
+            const firstId = 'lvl2_sub1';
+            const secondId = 'lvl2_sub2';
+            if (!saved[firstId]) saved[firstId] = { unlocked: true, completed: false, quizCompleted: false };
+            else saved[firstId].unlocked = true;
+
+            if (!saved[secondId]) saved[secondId] = { unlocked: true, completed: false, quizCompleted: false };
+            else saved[secondId].unlocked = true;
+        }
+
+        return saved;
     });
     const [showCertModal, setShowCertModal] = useState(false);
 
@@ -387,6 +400,10 @@ export default function UnifiedLearningPage() {
 
     const isUnlocked = (index) => {
         if (index === 0) return true;
+
+        // LEVEL 2 SPECIAL: Unlock first two modules together
+        if (levelId === 'lvl2' && index === 1) return true;
+
         const subModules = getSubModules();
         const prevModule = subModules[index - 1];
         return subModuleProgress[prevModule?.id]?.completed === true;
@@ -1243,6 +1260,33 @@ function SubModuleSection({ index, subModule, unlocked, content, mcqs, progress,
                 ))}
             </article>
 
+            {(!mcqs || mcqs.length === 0) && !progress?.completed && (
+                <div style={{ marginTop: '5rem', display: 'flex', justifyContent: 'center' }}>
+                    <motion.button
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => onPass(100)}
+                        style={{
+                            padding: '1.25rem 2.5rem',
+                            background: 'linear-gradient(135deg, #ff5722 0%, #ff8a50 100%)',
+                            color: '#fff',
+                            border: 'none',
+                            borderRadius: '20px',
+                            fontWeight: 900,
+                            fontSize: '1.2rem',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '12px',
+                            boxShadow: '0 15px 30px rgba(255, 87, 34, 0.25)',
+                            letterSpacing: '-0.02em'
+                        }}
+                    >
+                        Mark Lesson as Complete <CheckCircle2 size={22} />
+                    </motion.button>
+                </div>
+            )}
+
             {mcqs && mcqs.length > 0 && (
                 !progress?.quizCompleted ? (
                     <div style={{ marginTop: '3rem', padding: '2rem', background: isDarkMode ? '#1a1a1a' : '#fff', borderRadius: '20px', border: `1px solid ${isDarkMode ? '#222' : '#eee'}`, position: 'relative', overflow: 'hidden' }}>
@@ -1269,6 +1313,18 @@ function SubModuleSection({ index, subModule, unlocked, content, mcqs, progress,
                         </motion.button>
                     </motion.div>
                 )
+            )}
+
+            {(!mcqs || mcqs.length === 0) && progress?.completed && (
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.18 }} style={{ marginTop: '6rem', padding: '2rem 2.5rem', background: isDarkMode ? 'rgba(16,185,129,0.05)' : '#F0FDF4', borderRadius: '20px', border: `1px solid ${isDarkMode ? 'rgba(16,185,129,0.1)' : '#DCFCE7'}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                        <CheckCircle2 size={24} color="#10b981" />
+                        <div>
+                            <h4 style={{ margin: 0, color: isDarkMode ? '#fff' : '#166534', fontSize: '1.1rem', fontWeight: 800 }}>Lesson Mastery!</h4>
+                            <p style={{ margin: '0.2rem 0 0 0', color: isDarkMode ? '#888' : '#15803d', fontSize: '0.9rem' }}>You have successfully reviewed this section.</p>
+                        </div>
+                    </div>
+                </motion.div>
             )}
         </motion.section>
     );
