@@ -280,24 +280,24 @@ export default function CertificatePage() {
                                             color: '#000',
                                         }}
                                     >
-                                        {/* Dynamic Student Name - Bold and Sitting on the Line (Restored to Reference Style) */}
+                                        {/* Dynamic Student Name - Premium Classy Scaling */}
                                         <div style={{
                                             position: 'absolute',
-                                            top: '45.6%', // Positioned to rest perfectly on the line
-                                            left: '50.2%',
+                                            top: '44.3%', // Precisely sits on the name line
+                                            left: '50%',
                                             transform: 'translate(-50%, -50%)',
                                             textAlign: 'center',
                                             width: '85%',
                                             zIndex: 10
                                         }}>
                                             <h2 style={{
-                                                fontSize: 'clamp(2.8rem, 4.8vw, 4.2rem)', // Large and Bold as per reference
+                                                fontSize: 'clamp(1.8rem, 3.4vw, 2.6rem)', // Refined size to prevent overlap
                                                 fontWeight: 800,
                                                 fontStyle: 'italic',
                                                 color: '#1a1a1a',
                                                 fontFamily: '"Playfair Display", serif',
                                                 margin: 0,
-                                                letterSpacing: '0.01em',
+                                                letterSpacing: '0.005em',
                                                 textRendering: 'optimizeLegibility',
                                                 WebkitFontSmoothing: 'antialiased',
                                                 lineHeight: 1
@@ -306,22 +306,22 @@ export default function CertificatePage() {
                                             </h2>
                                         </div>
 
-                                        {/* Dynamic Date - Bold and Solid Black (Restored to Reference Style) */}
+                                        {/* Dynamic Date - Sober, circular font style for premium feel */}
                                         <div style={{
                                             position: 'absolute',
-                                            bottom: '12.8%',
+                                            bottom: '12.8%', // Sit perfectly on the date line
                                             right: '12.5%',
                                             textAlign: 'left',
                                             width: '200px',
                                             zIndex: 10
                                         }}>
                                             <p style={{
-                                                fontSize: '1.3rem',
-                                                fontWeight: 800,
-                                                color: '#000', // Solid Black as per reference
-                                                fontFamily: '"Outfit", sans-serif',
+                                                fontSize: '1.2rem',
+                                                fontWeight: 600, // Medium-bold for premium feel
+                                                color: '#1e293b', // Deep charcoal
+                                                fontFamily: '"Outfit", sans-serif', // Circular geometric font
                                                 margin: 0,
-                                                letterSpacing: '-0.02em',
+                                                letterSpacing: '0.01em',
                                             }}>
                                                 {new Date().toLocaleDateString('en-GB', {
                                                     day: 'numeric',
