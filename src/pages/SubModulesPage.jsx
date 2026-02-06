@@ -116,9 +116,6 @@ export default function SubModulesPage() {
         const prevProgress = subModuleProgress[previousSubModule.id];
         if (!prevProgress?.completed) return false;
 
-        // LEVEL 2 SPECIAL: No self-assessment/quiz blocker
-        if (levelId === 'lvl2') return true;
-
         const hasQuiz = SUB_MODULE_MCQS[levelId]?.[previousSubModule.id];
         if (hasQuiz && hasQuiz.length > 0) {
             return prevProgress?.quizCompleted || false;

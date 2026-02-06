@@ -406,7 +406,15 @@ export default function UnifiedLearningPage() {
 
         const subModules = getSubModules();
         const prevModule = subModules[index - 1];
-        return subModuleProgress[prevModule?.id]?.completed === true;
+        const progress = subModuleProgress[prevModule?.id];
+
+        if (!progress?.completed) return false;
+
+        const hasQuiz = SUB_MODULE_MCQS[levelId]?.[prevModule.id];
+        if (hasQuiz && hasQuiz.length > 0) {
+            return progress?.quizCompleted || false;
+        }
+        return true;
     };
 
     const isDarkMode = theme === 'dark';
