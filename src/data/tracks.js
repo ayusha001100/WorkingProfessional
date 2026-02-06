@@ -48,7 +48,7 @@ export const TRACKS = {
                         title: "AI-Ready Professional",
                         why: "Before: \"AI is confusing. I don’t know what to trust.\"\nAfter: \"I understand AI basics and I can use it safely.\"\nYou become: someone who can speak AI + get clean outputs.\nProof: 20 prompts + 10 ways AI fits your job.",
                         content: "Mastering Gen AI begins with understanding the 'Engine' versus the 'UI'. In 2026, the utility isn't about knowing a specific tool, but understanding LLM architecture, context windows, and tokenization. You must learn to differentiate between deterministic and probabilistic outputs to use AI safely in business critical tasks.",
-                        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+
                         insights: "• AI is a tool of augmentation, not replacement.\n• Strategic utility beats brute-force prompting.\n• Context is the most valuable currency in 2026.",
                         interviewQuestions: [
                             "How do you ensure AI outputs are grounded in reality?",
@@ -90,7 +90,7 @@ export const TRACKS = {
                         title: "Productivity Power User",
                         why: "Before: \"Sometimes AI helps, sometimes it’s garbage.\"\nAfter: \"I have a repeatable system to produce quality.\"\nYou become: faster, more consistent, less dependent on mood.\nProof: role-based prompt pack + personal AI workflow SOP.",
                         content: "Elite productivity in the AI era comes from 'Process Extraction'. You will learn to map your current manual workflows and identify friction points where AI can provide 10x leverage. This module focuses on building a 'Library of Action'—a set of reusable, high-fidelity prompts and agents tailored to your vertical.",
-                        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+
                         insights: "• Mood-independent productivity via SOPs.\n• Prompt engineering is actually 'Requirement Engineering'.\n• Repeatability is the hallmark of a pro.",
                         interviewQuestions: [
                             "Describe a workflow you've automated and the specific ROI achieved.",

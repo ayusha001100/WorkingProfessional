@@ -635,15 +635,15 @@ export default function UnifiedLearningPage() {
                                                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Saikiran" alt="Mentor" style={{ width: '100%', height: '100%' }} />
                                                 </div>
                                                 <div>
-                                                    <div style={{ fontSize: '0.85rem', fontWeight: 800, color: isDarkMode ? '#fff' : '#1e293b' }}>Saikiran Sondatkar</div>
-                                                    <div style={{ fontSize: '0.7rem', color: '#64748b', fontWeight: 600 }}>CEO @ LetsUpgrade</div>
+                                                    <div style={{ fontSize: '0.85rem', fontWeight: 800, color: isDarkMode ? '#fff' : '#1e293b' }}>Sanjay Sahu</div>
+                                                    <div style={{ fontSize: '0.7rem', color: '#64748b', fontWeight: 600 }}>Backend Developer at Dream11</div>
                                                 </div>
                                             </div>
 
                                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.8rem', color: isDarkMode ? '#cbd5e1' : '#475569' }}>
                                                     <PlayCircle size={14} color="#ff5722" />
-                                                    <span>Starts at 11:00 AM onwards</span>
+                                                    <span>Starts at 7 PM to 10 PM onwards</span>
                                                 </div>
                                                 <div style={{
                                                     display: 'flex', alignItems: 'center', gap: '0.75rem',
@@ -652,7 +652,7 @@ export default function UnifiedLearningPage() {
                                                     borderRadius: '10px', marginTop: '0.5rem', cursor: 'pointer'
                                                 }}>
                                                     <Code size={14} />
-                                                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>luc.to/genai-day1zoom</span>
+                                                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>luc.to/genai-sat-zoom-wp-even</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -660,6 +660,7 @@ export default function UnifiedLearningPage() {
                                         <motion.button
                                             whileHover={{ scale: 1.02, boxShadow: '0 12px 30px rgba(255, 87, 34, 0.4)' }}
                                             whileTap={{ scale: 0.98 }}
+                                            onClick={() => window.open("https://zoom.us/meeting/register/cLg02PEfSB6v99TQFJ3Uog#/registration", "_blank")}
                                             style={{
                                                 width: '100%', padding: '1rem', background: 'linear-gradient(135deg, #ff5722 0%, #ff8a50 100%)',
                                                 color: '#fff', border: 'none', borderRadius: '14px', fontWeight: 800, fontSize: '0.95rem',
@@ -1220,26 +1221,7 @@ function SubModuleSection({ index, subModule, unlocked, content, mcqs, progress,
 
             </div>
 
-            {/* Video Section */}
-            <div style={{
-                marginBottom: '3rem',
-                borderRadius: '24px',
-                overflow: 'hidden',
-                boxShadow: isDarkMode ? '0 20px 40px rgba(0,0,0,0.5)' : '0 20px 40px rgba(0,0,0,0.1)',
-                border: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
-                aspectRatio: '16/9'
-            }}>
-                <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/gOwl8AbHo3w"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    style={{ display: 'block' }}
-                ></iframe>
-            </div>
+
 
             <article>
                 {content?.sections.map((section, sIdx) => (
