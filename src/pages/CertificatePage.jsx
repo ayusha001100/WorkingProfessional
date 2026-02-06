@@ -280,18 +280,18 @@ export default function CertificatePage() {
                                             color: '#000',
                                         }}
                                     >
-                                        {/* Dynamic Student Name - Higher position and smaller font */}
+                                        {/* Dynamic Student Name - Bold and Sitting on the Line (Restored to Reference Style) */}
                                         <div style={{
                                             position: 'absolute',
-                                            top: '44.8%', // Moved slightly higher
-                                            left: '50%',
+                                            top: '45.6%', // Positioned to rest perfectly on the line
+                                            left: '50.2%',
                                             transform: 'translate(-50%, -50%)',
                                             textAlign: 'center',
                                             width: '85%',
                                             zIndex: 10
                                         }}>
                                             <h2 style={{
-                                                fontSize: 'clamp(1.5rem, 3.2vw, 2.3rem)', // Decreased font size further
+                                                fontSize: 'clamp(2.8rem, 4.8vw, 4.2rem)', // Large and Bold as per reference
                                                 fontWeight: 800,
                                                 fontStyle: 'italic',
                                                 color: '#1a1a1a',
@@ -306,25 +306,25 @@ export default function CertificatePage() {
                                             </h2>
                                         </div>
 
-                                        {/* Dynamic Date - Left-aligned over the line as per reference */}
+                                        {/* Dynamic Date - Bold and Solid Black (Restored to Reference Style) */}
                                         <div style={{
                                             position: 'absolute',
-                                            bottom: '12.8%', // Adjusted to sit better above line
-                                            right: '12.8%', // Adjusted for left alignment over the line
+                                            bottom: '12.8%',
+                                            right: '12.5%',
                                             textAlign: 'left',
-                                            width: '180px',
+                                            width: '200px',
                                             zIndex: 10
                                         }}>
                                             <p style={{
-                                                fontSize: '1.25rem',
-                                                fontWeight: 800, // Bold as per reference
-                                                color: '#000', // Solid black
+                                                fontSize: '1.3rem',
+                                                fontWeight: 800,
+                                                color: '#000', // Solid Black as per reference
                                                 fontFamily: '"Outfit", sans-serif',
                                                 margin: 0,
-                                                letterSpacing: '-0.01em',
+                                                letterSpacing: '-0.02em',
                                             }}>
                                                 {new Date().toLocaleDateString('en-GB', {
-                                                    day: 'numeric', // 6 instead of 06
+                                                    day: 'numeric',
                                                     month: 'short',
                                                     year: 'numeric'
                                                 })}
