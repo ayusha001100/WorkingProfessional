@@ -368,14 +368,17 @@ export default function UnifiedLearningPage() {
 
                 await updateUserData(updates);
 
-                setTimeout(() => {
-                    setShowCertModal(true);
-                    confetti({
-                        particleCount: 200,
-                        spread: 100,
-                        origin: { y: 0.6 }
-                    });
-                }, 1000);
+                // ONLY show cert modal if it's NOT lvl1
+                if (levelId !== 'lvl1') {
+                    setTimeout(() => {
+                        setShowCertModal(true);
+                        confetti({
+                            particleCount: 200,
+                            spread: 100,
+                            origin: { y: 0.6 }
+                        });
+                    }, 1000);
+                }
             } catch (err) {
                 console.error("Error saving level completion:", err);
             }
@@ -585,7 +588,31 @@ export default function UnifiedLearningPage() {
 
                     <div style={{ maxWidth: '800px', margin: '0 auto' }}>
                         {subModules.map((sm, idx) => (
-                            <SubModuleSection key={sm.id} id={sm.id} index={idx} subModule={sm} unlocked={isUnlocked(idx)} content={SUB_MODULES_CONTENT[levelId]?.[sm.id]} mcqs={SUB_MODULE_MCQS[levelId]?.[sm.id]} progress={subModuleProgress[sm.id]} onPass={(score) => handleAnswerQuiz(sm.id, score)} sectionRef={el => sectionRefs.current[sm.id] = el} isDarkMode={isDarkMode} headerId={idx === 0 ? 'tour-first-topic' : undefined} />
+                            <SubModuleSection
+                                key={sm.id}
+                                id={sm.id}
+                                index={idx}
+                                subModule={sm}
+                                unlocked={isUnlocked(idx)}
+                                content={SUB_MODULES_CONTENT[levelId]?.[sm.id]}
+                                mcqs={SUB_MODULE_MCQS[levelId]?.[sm.id]}
+                                progress={subModuleProgress[sm.id]}
+                                onPass={(score) => handleAnswerQuiz(sm.id, score)}
+                                onNext={() => {
+                                    const nextSubModule = subModules[idx + 1];
+                                    if (nextSubModule) {
+                                        scrollToSection(nextSubModule.id);
+                                    } else if (levelId === 'lvl1') {
+                                        window.scrollTo(0, 0);
+                                        navigate('/learning/lvl2');
+                                    }
+                                }}
+                                isLastModule={idx === subModules.length - 1}
+                                levelId={levelId}
+                                sectionRef={el => sectionRefs.current[sm.id] = el}
+                                isDarkMode={isDarkMode}
+                                headerId={idx === 0 ? 'tour-first-topic' : undefined}
+                            />
                         ))}
                     </div>
                 </main>
@@ -1093,7 +1120,7 @@ export default function UnifiedLearningPage() {
     );
 }
 
-function SubModuleSection({ index, subModule, unlocked, content, mcqs, progress, onPass, sectionRef, isDarkMode, headerId }) {
+function SubModuleSection({ index, subModule, unlocked, content, mcqs, progress, onPass, onNext, isLastModule, levelId, sectionRef, isDarkMode, headerId }) {
     const [preQuizAttempted, setPreQuizAttempted] = useState(false);
     const [preQuizDecision, setPreQuizDecision] = useState(null); // null, 'read', 'exam'
 
@@ -1314,10 +1341,10 @@ function SubModuleSection({ index, subModule, unlocked, content, mcqs, progress,
                             whileHover={{ background: isDarkMode ? '#333' : '#333' }}
                             whileTap={{ scale: 0.98 }}
                             transition={{ duration: 0.08 }}
-                            onClick={() => { }}
+                            onClick={onNext}
                             style={{ padding: '0.75rem 1.5rem', background: isDarkMode ? '#222' : '#1a1a1a', color: '#fff', border: 'none', borderRadius: '10px', fontWeight: 800, fontSize: '0.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.75rem' }}
                         >
-                            Go to Next Module <ArrowRight size={16} />
+                            {isLastModule && levelId === 'lvl1' ? 'Go to Level 2' : 'Go to Next Module'} <ArrowRight size={16} />
                         </motion.button>
                     </motion.div>
                 )
