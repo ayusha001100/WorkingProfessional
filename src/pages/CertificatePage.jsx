@@ -18,6 +18,13 @@ export default function CertificatePage() {
     const [view, setView] = useState('overview'); // 'overview', 'detail', or 'checkout'
     const [selectedCert, setSelectedCert] = useState(null);
     const [showPaywall, setShowPaywall] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 1024);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const CERTIFICATES = [
         {
@@ -161,7 +168,7 @@ export default function CertificatePage() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                         >
-                            <header style={{ textAlign: 'center', marginBottom: '5rem' }}>
+                            <header style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '5rem' }}>
                                 <motion.div
                                     initial={{ scale: 0.9, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
@@ -172,12 +179,12 @@ export default function CertificatePage() {
                                 <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, marginBottom: '1.5rem', letterSpacing: '-0.04em', color: '#0f172a' }}>
                                     Professional <span style={{ color: '#ff5722' }}>AI Credentials</span>
                                 </h1>
-                                <p style={{ color: '#64748b', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
+                                <p style={{ color: '#64748b', fontSize: isMobile ? '1.1rem' : '1.25rem', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
                                     Your journey to AI mastery is documented here. Complete levels to unlock verifiable achievements.
                                 </p>
                             </header>
 
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2.5rem', marginBottom: '6rem' }}>
+                            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(400px, 1fr))', gap: isMobile ? '1.5rem' : '2.5rem', marginBottom: '6rem' }}>
                                 {CERTIFICATES.map((cert) => {
                                     const { percent, isCompleted } = getModuleProgress(cert.levelIds);
                                     const unlocked = isCompleted;
@@ -190,7 +197,7 @@ export default function CertificatePage() {
                                             style={{
                                                 background: '#ffffff',
                                                 borderRadius: '40px',
-                                                padding: '3rem',
+                                                padding: isMobile ? '2rem' : '3rem',
                                                 border: unlocked ? `1px solid rgba(255,87,34,0.2)` : '1px solid #e2e8f0',
                                                 position: 'relative',
                                                 cursor: unlocked ? 'pointer' : 'default',
@@ -271,11 +278,11 @@ export default function CertificatePage() {
                                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: 'rgba(255, 87, 34, 0.08)', color: '#ff5722', borderRadius: '100px', fontWeight: 800, fontSize: '0.8rem', marginBottom: '1.5rem' }}>
                                     <Sparkles size={16} /> {selectedCert?.subtitle}
                                 </div>
-                                <h1 style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '1rem', letterSpacing: '-0.02em', color: '#0f172a' }}>Your Verified Achievement</h1>
-                                <p style={{ color: '#64748b', fontSize: '1.2rem', fontWeight: 500 }}>Download, share, and showcase your AI expertise to the world.</p>
+                                <h1 style={{ fontSize: isMobile ? '2.5rem' : '3.5rem', fontWeight: 900, marginBottom: '1rem', letterSpacing: '-0.02em', color: '#0f172a' }}>Your Verified Achievement</h1>
+                                <p style={{ color: '#64748b', fontSize: isMobile ? '1rem' : '1.2rem', fontWeight: 500 }}>Download, share, and showcase your AI expertise to the world.</p>
                             </header>
 
-                            <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '3.5rem', width: '100%', alignItems: 'start' }}>
+                            <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '2rem' : '3.5rem', width: '100%', alignItems: 'start' }}>
                                 <div style={{ position: 'relative' }}>
                                     <div
                                         ref={certificateRef}

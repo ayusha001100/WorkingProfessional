@@ -9,6 +9,13 @@ import { SUB_MODULES_CONTENT } from '../data/subModulesContent';
 export default function CourseDetailDrawer({ isOpen, onClose, module, index, isUnlocked, isCompleted, isCurrent, isPremium, userData, userDomain }) {
     const { theme } = useTheme();
     const navigate = useNavigate();
+    const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+
+    React.useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Lock body scroll when drawer is open
     useEffect(() => {
@@ -74,7 +81,7 @@ export default function CourseDetailDrawer({ isOpen, onClose, module, index, isU
                         justifyContent: 'center',
                         zIndex: 1001,
                         pointerEvents: 'none',
-                        padding: '1.5rem'
+                        padding: isMobile ? '1rem' : '1.5rem'
                     }}>
                         <motion.div
                             layoutId={module.id}
@@ -88,7 +95,7 @@ export default function CourseDetailDrawer({ isOpen, onClose, module, index, isU
                                 mass: 0.8
                             }}
                             style={{
-                                width: '560px',
+                                width: isMobile ? '100%' : '560px',
                                 maxWidth: '100%',
                                 maxHeight: '90vh',
                                 background: theme === 'light' ? '#ffffff' : '#121212',

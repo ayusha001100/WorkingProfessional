@@ -28,6 +28,14 @@
   --navbar-glass: linear-gradient(135deg, rgba(15, 15, 15, 0.7) 0%, rgba(5, 5, 5, 0.8) 100%);
 
   --sidebar-width: 280px;
+  --header-height: 72px;
+
+  /* Responsive Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
 }
 
 [data-theme='light'] {
@@ -136,9 +144,54 @@ button {
   }
 }
 
-@media (max-width: 639px) {
+@media (max-width: 768px) {
   .course-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .header-desktop {
+    display: none !important;
+  }
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+/* Base Layout Responsiveness */
+.responsive-container {
+  width: 100%;
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .responsive-container {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-container {
+    padding-left: var(--spacing-xl);
+    padding-right: var(--spacing-xl);
   }
 }
 
@@ -336,13 +389,20 @@ button {
    DOC PAGE STYLES - Module Learning Layout
    ============================================ */
 
-/* Main Container */
 .doc-page-container {
   display: flex;
   gap: 2rem;
   max-width: 1400px;
   margin: 0 auto;
   padding: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .doc-page-container {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
 }
 
 /* Content Wrapper */
@@ -353,6 +413,12 @@ button {
   border-radius: 12px;
   padding: 2.5rem 3rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 768px) {
+  .doc-content-wrapper {
+    padding: 2rem 1.5rem;
+  }
 }
 
 [data-theme='dark'] .doc-content-wrapper {
@@ -535,12 +601,19 @@ button {
   border-bottom: none;
 }
 
-/* Sidebar */
 .doc-sidebar {
   width: 280px;
   position: sticky;
   top: 1.5rem;
   height: fit-content;
+}
+
+@media (max-width: 1024px) {
+  .doc-sidebar {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
 }
 
 .doc-progress-card {
@@ -616,6 +689,7 @@ button {
   font-weight: 900;
   background: linear-gradient(to bottom, #ffffff, #94a3b8);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 4px 10px rgba(255, 255, 255, 0.2));
 }

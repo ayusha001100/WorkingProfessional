@@ -11,6 +11,13 @@ export default function MentorBot() {
     ]);
     const [input, setInput] = useState('');
     const scrollRef = useRef(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 640);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -51,7 +58,7 @@ export default function MentorBot() {
                 onClick={() => setIsOpen(!isOpen)}
                 className="animate-float"
                 style={{
-                    width: '60px', height: '60px', borderRadius: '50%',
+                    width: isMobile ? '50px' : '60px', height: isMobile ? '50px' : '60px', borderRadius: '50%',
                     background: 'var(--accent-gradient)', border: 'none',
                     boxShadow: '0 10px 30px rgba(255, 87, 34, 0.4)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff',
@@ -70,8 +77,8 @@ export default function MentorBot() {
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
                         className="premium-card glass"
                         style={{
-                            position: 'absolute', bottom: '80px', right: 0,
-                            width: '350px', height: '500px', display: 'flex', flexDirection: 'column',
+                            position: 'absolute', bottom: isMobile ? '65px' : '80px', right: 0,
+                            width: isMobile ? 'calc(100vw - 32px)' : '350px', height: isMobile ? '450px' : '500px', display: 'flex', flexDirection: 'column',
                             overflow: 'hidden'
                         }}
                     >

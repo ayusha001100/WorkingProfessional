@@ -11,6 +11,13 @@ export default function Signup() {
     const { loginWithGoogle } = useAuth();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 640);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -72,7 +79,7 @@ export default function Signup() {
                 className="signup-card"
                 style={{
                     width: '100%', maxWidth: '480px', zIndex: 10,
-                    padding: '3.5rem 3rem', borderRadius: '50px',
+                    padding: isMobile ? '2.5rem 1.5rem' : '3.5rem 3rem', borderRadius: '50px',
                     background: 'rgba(255, 255, 255, 0.8)',
                     backdropFilter: 'blur(25px) saturate(160%)',
                     border: '1px solid rgba(255, 255, 255, 1)',
@@ -84,7 +91,7 @@ export default function Signup() {
                     <motion.div variants={itemVariants} style={{ display: 'inline-flex', padding: '1rem', background: '#fff', borderRadius: '25px', boxShadow: '0 10px 25px rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.01)', marginBottom: '1.2rem' }}>
                         <ShieldCheck color="var(--accent-primary)" style={{ opacity: 0.9 }} size={30} />
                     </motion.div>
-                    <motion.h2 variants={itemVariants} style={{ fontSize: '2rem', fontWeight: 950, letterSpacing: '-0.04em', color: '#1a1a1a', lineHeight: 1.1 }}>
+                    <motion.h2 variants={itemVariants} style={{ fontSize: isMobile ? '1.5rem' : '2rem', fontWeight: 950, letterSpacing: '-0.04em', color: '#1a1a1a', lineHeight: 1.1 }}>
                         Create your <span style={{ background: 'var(--accent-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Mastery Account</span>
                     </motion.h2>
                     {error && (
