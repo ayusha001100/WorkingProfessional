@@ -282,24 +282,28 @@ export default function CertificatePage() {
                                         style={{
                                             position: 'relative',
                                             width: '100%',
-                                            aspectRatio: '1.414 / 1',
                                             background: '#ffffff',
-                                            backgroundImage: 'url("/assets/certificate_template.png")',
-                                            backgroundSize: '100% 100%',
                                             boxShadow: '0 40px 80px rgba(0,0,0,0.15)',
                                             borderRadius: '12px',
                                             overflow: 'hidden'
                                         }}
                                     >
-                                        <div style={{ position: 'absolute', top: '44.3%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', width: '85%' }}>
-                                            <h2 style={{ fontSize: 'clamp(1.8rem, 3.4vw, 2.6rem)', fontWeight: 800, fontStyle: 'italic', color: '#1a1a1a', fontFamily: '"Playfair Display", serif', margin: 0 }}>
-                                                {studentName}
-                                            </h2>
-                                        </div>
-                                        <div style={{ position: 'absolute', bottom: '12.5%', right: '5.2%', textAlign: 'center', width: '200px' }}>
-                                            <p style={{ fontSize: '1.3rem', fontWeight: 500, color: '#1e293b', fontFamily: '"Outfit", sans-serif', margin: 0 }}>
-                                                {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
-                                            </p>
+                                        <img
+                                            src="/assets/certificate_template.png"
+                                            style={{ width: '100%', display: 'block' }}
+                                            alt="Certificate Template"
+                                        />
+                                        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                            <div style={{ position: 'absolute', top: '44.3%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', width: '85%' }}>
+                                                <h2 style={{ fontSize: 'clamp(1rem, 3.4vw, 2.6rem)', fontWeight: 800, fontStyle: 'italic', color: '#1a1a1a', fontFamily: '"Playfair Display", serif', margin: 0 }}>
+                                                    {studentName}
+                                                </h2>
+                                            </div>
+                                            <div style={{ position: 'absolute', bottom: '12.5%', right: '5.2%', textAlign: 'center', width: '200px' }}>
+                                                <p style={{ fontSize: 'clamp(0.6rem, 1.5vw, 1.1rem)', fontWeight: 500, color: '#1e293b', fontFamily: '"Outfit", sans-serif', margin: 0 }}>
+                                                    {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
