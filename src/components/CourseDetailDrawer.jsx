@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { X, ArrowRight, Lock as LockIcon, CheckCircle2, Rocket, Briefcase, BookOpen, Settings, Zap, Target, Code, Lightbulb, PlayCircle, Image, Video, Film, Bot, Workflow, Users, MessageSquare, Eye, Sparkles, Layers, FileText } from 'lucide-react';
+import { X, ArrowRight, Lock as LockIcon, CheckCircle2, Rocket, Briefcase, BookOpen, Settings, Zap, Target, Code, Lightbulb, PlayCircle, Image, Video, Film, Bot, Workflow, Users, MessageSquare, Eye, Sparkles, Layers, FileText, Check } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { SUB_MODULES_CONTENT } from '../data/subModulesContent';
 
 export default function CourseDetailDrawer({ isOpen, onClose, module, index, isUnlocked, isCompleted, isCurrent, isPremium, userData, userDomain }) {
     const { theme } = useTheme();
@@ -286,12 +287,70 @@ export default function CourseDetailDrawer({ isOpen, onClose, module, index, isU
                                     </p>
                                 </motion.div>
 
+                                {/* Sub-modules / Topic Mastery */}
+                                <motion.div custom={4} variants={contentVariants} initial="hidden" animate="visible" style={{ marginBottom: '2rem' }}>
+                                    <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+                                        Topic Mastery
+                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                        {Object.values(SUB_MODULES_CONTENT[module.id] || {}).map((sm, smIdx) => {
+                                            const smProgress = userData?.progress?.subModuleProgress?.[module.id]?.[sm.id];
+                                            const smCompleted = smProgress?.completed;
+
+                                            return (
+                                                <div
+                                                    key={sm.id}
+                                                    style={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '0.75rem',
+                                                        padding: '0.75rem 1rem',
+                                                        background: theme === 'light' ? '#fff' : '#1e1e1e',
+                                                        borderRadius: '10px',
+                                                        border: theme === 'light'
+                                                            ? `1px solid ${smCompleted ? '#10b98133' : '#f1f5f9'}`
+                                                            : `1px solid ${smCompleted ? '#10b98133' : '#2a2a2a'}`,
+                                                        transition: 'all 0.2s'
+                                                    }}
+                                                >
+                                                    <div style={{
+                                                        width: '20px',
+                                                        height: '20px',
+                                                        borderRadius: '50%',
+                                                        background: smCompleted ? '#10b981' : (theme === 'light' ? '#f1f5f9' : '#2a2a2a'),
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        color: '#fff',
+                                                        flexShrink: 0
+                                                    }}>
+                                                        {smCompleted ? (
+                                                            <Check size={12} strokeWidth={4} />
+                                                        ) : (
+                                                            <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#94a3b8' }} />
+                                                        )}
+                                                    </div>
+                                                    <span style={{
+                                                        fontSize: '0.85rem',
+                                                        fontWeight: 500,
+                                                        color: smCompleted
+                                                            ? (theme === 'light' ? '#059669' : '#10b981')
+                                                            : (theme === 'light' ? '#4b5563' : '#94a3b8')
+                                                    }}>
+                                                        {sm.title.replace(/^\d+\.\s*/, '')}
+                                                    </span>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </motion.div>
+
 
 
 
                                 {/* CTA */}
-                                {isUnlocked && !isCompleted && (
-                                    <motion.div custom={4} variants={contentVariants} initial="hidden" animate="visible">
+                                {isUnlocked && (
+                                    <motion.div custom={5} variants={contentVariants} initial="hidden" animate="visible">
                                         <motion.button
                                             onClick={() => {
                                                 navigate(`/level/${module.id}/learn`);
@@ -305,7 +364,7 @@ export default function CourseDetailDrawer({ isOpen, onClose, module, index, isU
                                                 padding: '0.75rem 1.5rem',
                                                 borderRadius: '10px',
                                                 border: 'none',
-                                                background: '#ff5722',
+                                                background: isCompleted ? '#10b981' : '#ff5722',
                                                 color: '#fff',
                                                 fontSize: '0.9rem',
                                                 fontWeight: 700,
@@ -315,18 +374,18 @@ export default function CourseDetailDrawer({ isOpen, onClose, module, index, isU
                                                 justifyContent: 'center',
                                                 gap: '0.5rem',
                                                 transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-                                                boxShadow: '0 2px 8px rgba(255, 87, 34, 0.25)'
+                                                boxShadow: isCompleted ? '0 2px 8px rgba(16, 185, 129, 0.25)' : '0 2px 8px rgba(255, 87, 34, 0.25)'
                                             }}
                                             onMouseEnter={(e) => {
-                                                e.currentTarget.style.background = '#ff6b3d';
-                                                e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 87, 34, 0.35)';
+                                                e.currentTarget.style.background = isCompleted ? '#059669' : '#ff6b3d';
+                                                e.currentTarget.style.boxShadow = isCompleted ? '0 4px 12px rgba(16, 185, 129, 0.35)' : '0 4px 12px rgba(255, 87, 34, 0.35)';
                                             }}
                                             onMouseLeave={(e) => {
-                                                e.currentTarget.style.background = '#ff5722';
-                                                e.currentTarget.style.boxShadow = '0 2px 8px rgba(255, 87, 34, 0.25)';
+                                                e.currentTarget.style.background = isCompleted ? '#10b981' : '#ff5722';
+                                                e.currentTarget.style.boxShadow = isCompleted ? '0 2px 8px rgba(16, 185, 129, 0.25)' : '0 2px 8px rgba(255, 87, 34, 0.25)';
                                             }}
                                         >
-                                            Start Learning
+                                            {isCompleted ? 'Revisit Level' : 'Start Learning'}
                                             <motion.div
                                                 whileHover={{ x: 3 }}
                                                 transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}

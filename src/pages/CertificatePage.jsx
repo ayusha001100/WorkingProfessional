@@ -274,194 +274,61 @@ export default function CertificatePage() {
                                             backgroundImage: 'url("/assets/certificate_template.png")',
                                             backgroundSize: '100% 100%',
                                             backgroundRepeat: 'no-repeat',
-                                            borderRadius: '8px',
-                                            boxShadow: '0 20px 50px rgba(0,0,0,0.1)',
+                                            borderRadius: '12px',
+                                            boxShadow: '0 40px 80px rgba(0,0,0,0.15)',
                                             overflow: 'hidden',
                                             color: '#000',
-                                            fontFamily: '"Inter", sans-serif',
                                         }}
                                     >
-                                        {/* Content Container */}
+                                        {/* Dynamic Student Name */}
                                         <div style={{
-                                            height: '100%',
-                                            padding: '3rem 4rem',
-                                            position: 'relative',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            zIndex: 3
+                                            position: 'absolute',
+                                            top: '52%',
+                                            left: '50%',
+                                            transform: 'translate(-50%, -50%)',
+                                            textAlign: 'center',
+                                            width: '80%',
+                                            zIndex: 10
                                         }}>
-
-                                            {/* Header Section */}
-                                            <div style={{ marginBottom: '2.5rem' }}>
-                                                <h1 style={{
-                                                    margin: 0,
-                                                    fontSize: 'clamp(2.5rem, 4vw, 3.8rem)',
-                                                    fontWeight: 900,
-                                                    color: '#000',
-                                                    letterSpacing: '-0.02em',
-                                                    lineHeight: 1,
-                                                    textTransform: 'uppercase',
-                                                    fontFamily: '"Montserrat", sans-serif',
-                                                }}>
-                                                    CERTIFICATE<br />
-                                                    OF PARTICIPATION
-                                                </h1>
-                                            </div>
-
-                                            {/* "This is to certify that" */}
-                                            <div style={{ textAlign: 'center', marginBottom: '0.8rem' }}>
-                                                <p style={{
-                                                    fontSize: '1.1rem',
-                                                    color: '#444',
-                                                    margin: 0,
-                                                    fontWeight: 500,
-                                                    fontFamily: '"Inter", sans-serif'
-                                                }}>
-                                                    This is to certify that
-                                                </p>
-                                            </div>
-
-                                            {/* Student Name */}
-                                            <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-                                                <h2 style={{
-                                                    fontSize: 'clamp(2.5rem, 4vw, 4rem)',
-                                                    fontWeight: 700,
-                                                    fontStyle: 'italic',
-                                                    color: '#000',
-                                                    fontFamily: '"Playfair Display", serif',
-                                                    display: 'inline-block',
-                                                    borderBottom: '1.5px solid #eee',
-                                                    padding: '0 3rem 0.1rem 3rem',
-                                                    margin: 0
-                                                }}>
-                                                    {studentName}
-                                                </h2>
-                                            </div>
-
-                                            {/* Description Text */}
-                                            <div style={{ textAlign: 'center', maxWidth: '85%', margin: '0.5rem auto 2rem auto' }}>
-                                                <p style={{
-                                                    fontSize: '0.95rem',
-                                                    lineHeight: 1.5,
-                                                    color: '#333',
-                                                    fontWeight: 500,
-                                                    fontFamily: '"Inter", sans-serif',
-                                                    margin: 0
-                                                }}>
-                                                    has participated in the <strong style={{ fontWeight: 800 }}>Generative AI Masterclass</strong>, conducted jointly by LetsUpgrade<br />
-                                                    and ITM Skills University, powered by LISA AI. The masterclass included core<br />
-                                                    Generative AI concepts, practical hands-on learning, and real-world applications.
-                                                </p>
-                                            </div>
-
-                                            {/* Bottom Logos Section */}
-                                            <div style={{
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                gap: '3.5rem',
-                                                marginBottom: '1.5rem',
-                                                marginTop: 'auto'
+                                            <h2 style={{
+                                                fontSize: 'clamp(3rem, 6vw, 5.5rem)',
+                                                fontWeight: 400,
+                                                color: '#1a1a1a',
+                                                fontFamily: '"Playfair Display", serif',
+                                                margin: 0,
+                                                letterSpacing: '-0.01em',
+                                                // Subtle text shadow for premium feel
+                                                textRendering: 'optimizeLegibility',
+                                                WebkitFontSmoothing: 'antialiased'
                                             }}>
-                                                {/* LetsUpgrade Logo */}
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                                    <div style={{ position: 'relative', width: '38px', height: '38px' }}>
-                                                        <div style={{ position: 'absolute', bottom: 0, left: 0, width: '28px', height: '28px', background: '#000', borderRadius: '5px', transform: 'rotate(45deg)' }} />
-                                                        <div style={{ position: 'absolute', top: '3.5px', right: '3.5px', width: '20px', height: '20px', background: '#FF9F00', borderRadius: '50%' }} />
-                                                        <div style={{ position: 'absolute', bottom: '8px', left: '8px', width: '10px', height: '10px', borderLeft: '3px solid #fff', borderBottom: '3px solid #fff', transform: 'rotate(135deg)' }} />
-                                                    </div>
-                                                    <div style={{ fontWeight: 900, fontSize: '1.4rem', color: '#000', fontFamily: '"Inter", sans-serif', lineHeight: 0.85 }}>
-                                                        Lets<br />Upgrade
-                                                    </div>
-                                                </div>
+                                                {studentName}
+                                            </h2>
+                                        </div>
 
-                                                {/* ITM Skills University Logo */}
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                                    <div style={{
-                                                        width: '46px',
-                                                        height: '46px',
-                                                        borderRadius: '50%',
-                                                        border: '2px solid #8B1A1A',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        fontWeight: 900,
-                                                        fontSize: '0.9rem',
-                                                        color: '#8B1A1A'
-                                                    }}>
-                                                        itm
-                                                    </div>
-                                                    <div style={{ fontWeight: 900, fontSize: '1.2rem', color: '#000', fontFamily: '"Inter", sans-serif', lineHeight: 1 }}>
-                                                        ITM <span style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', color: '#444' }}>Skills<br />University</span>
-                                                    </div>
-                                                </div>
-
-                                                {/* LISA AI Logo */}
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                    <div style={{ display: 'flex', position: 'relative', width: '38px', height: '38px' }}>
-                                                        {[0, 45, 90, 135, 180, 225, 270, 315].map(deg => (
-                                                            <div key={deg} style={{
-                                                                position: 'absolute',
-                                                                top: '50%',
-                                                                left: '50%',
-                                                                width: '18px',
-                                                                height: '6px',
-                                                                background: '#A855F7',
-                                                                borderRadius: '3px',
-                                                                transform: `translate(-50%, -50%) rotate(${deg}deg) translateX(12px)`
-                                                            }} />
-                                                        ))}
-                                                        <div style={{ position: 'absolute', top: '50%', left: '50%', width: '12px', height: '12px', background: '#A855F7', borderRadius: '50%', transform: 'translate(-50%, -50%)' }} />
-                                                    </div>
-                                                    <div style={{ fontWeight: 900, fontSize: '1.6rem', color: '#000', fontFamily: '"Inter", sans-serif' }}>
-                                                        LISA <span style={{ color: '#0EA5E9' }}>AI</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Signature and Date Section */}
-                                            <div style={{
-                                                display: 'flex',
-                                                justifyContent: 'space-between',
-                                                alignItems: 'flex-end',
-                                                padding: '0 1rem',
-                                                marginTop: '0.5rem'
+                                        {/* Dynamic Date */}
+                                        <div style={{
+                                            position: 'absolute',
+                                            bottom: '12%',
+                                            right: '12%',
+                                            textAlign: 'center',
+                                            width: '180px',
+                                            zIndex: 10
+                                        }}>
+                                            <p style={{
+                                                fontSize: '1.2rem',
+                                                fontWeight: 700,
+                                                color: '#334155',
+                                                fontFamily: '"Outfit", sans-serif',
+                                                margin: 0,
+                                                letterSpacing: '0.05em',
+                                                fontVariantNumeric: 'tabular-nums'
                                             }}>
-                                                {/* Signature */}
-                                                <div style={{ textAlign: 'left', width: '260px' }}>
-                                                    <div style={{
-                                                        fontFamily: '"Playfair Display", serif',
-                                                        fontStyle: 'italic',
-                                                        fontSize: '1.8rem',
-                                                        color: '#000',
-                                                        marginBottom: '0.1rem',
-                                                        marginLeft: '1rem',
-                                                        opacity: 0.9,
-                                                        lineHeight: 1
-                                                    }}>
-                                                        Saikiran Sondarkar
-                                                    </div>
-                                                    <div style={{ width: '100%', height: '1px', background: '#ccc', marginBottom: '0.4rem' }} />
-                                                    <div style={{ fontWeight: 800, fontSize: '0.9rem', color: '#000' }}>Saikiran Sondarkar</div>
-                                                    <div style={{ fontSize: '0.75rem', color: '#666', fontWeight: 600 }}>CEO & Founder, LetsUpgrade Edtech</div>
-                                                </div>
-
-                                                {/* Date */}
-                                                <div style={{ textAlign: 'center', width: '180px' }}>
-                                                    <div style={{
-                                                        fontSize: '1.2rem',
-                                                        fontWeight: 800,
-                                                        color: '#000',
-                                                        marginBottom: '0.1rem',
-                                                        fontFamily: '"Inter", sans-serif',
-                                                        fontVariantNumeric: 'tabular-nums'
-                                                    }}>
-                                                        {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
-                                                    </div>
-                                                    <div style={{ width: '100%', height: '1px', background: '#ccc', marginBottom: '0.4rem' }} />
-                                                    <div style={{ fontSize: '0.9rem', color: '#666', fontWeight: 700 }}>Date</div>
-                                                </div>
-                                            </div>
+                                                {new Date().toLocaleDateString('en-GB', {
+                                                    day: '2-digit',
+                                                    month: 'short',
+                                                    year: 'numeric'
+                                                })}
+                                            </p>
                                         </div>
                                     </div>
 

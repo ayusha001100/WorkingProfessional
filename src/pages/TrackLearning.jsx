@@ -739,13 +739,27 @@ export default function TrackLearning() {
                                                 }}>
                                                     {isCompleted ? <Check size={16} strokeWidth={3} /> : (isCurrent ? <Rocket size={14} /> : <Rocket size={14} color={theme === 'light' ? '#94a3b8' : '#4b5563'} />)}
                                                 </div>
-                                                <span style={{
-                                                    fontSize: '0.85rem',
-                                                    fontWeight: 700,
-                                                    color: isCompleted ? '#10b981' : (isCurrent ? '#ff5722' : (theme === 'light' ? '#94a3b8' : '#64748b')),
-                                                }}>
-                                                    {isCompleted ? 'Revisit Anytime' : (isCurrent ? 'Continue Learning' : (index >= 2 && !userData?.isPremium ? 'Premium Lock' : 'Get Started'))}
-                                                </span>
+                                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                    <span style={{
+                                                        fontSize: '0.85rem',
+                                                        fontWeight: 700,
+                                                        color: isCompleted ? '#10b981' : (isCurrent ? '#ff5722' : (theme === 'light' ? '#94a3b8' : '#64748b')),
+                                                        lineHeight: 1.2
+                                                    }}>
+                                                        {isCompleted ? 'Revisit Anytime' : (isCurrent ? 'Continue Learning' : (index >= 2 && !userData?.isPremium ? 'Premium Lock' : 'Get Started'))}
+                                                    </span>
+                                                    {isCompleted && (
+                                                        <span style={{
+                                                            fontSize: '0.65rem',
+                                                            color: '#10b981',
+                                                            fontWeight: 600,
+                                                            opacity: 0.9,
+                                                            letterSpacing: '0.02em'
+                                                        }}>
+                                                            {Object.keys(SUB_MODULES_CONTENT[item.id] || {}).length}/{Object.keys(SUB_MODULES_CONTENT[item.id] || {}).length} Mastered
+                                                        </span>
+                                                    )}
+                                                </div>
                                             </div>
 
                                             {(isUnlocked || isFinalMilestone) && (
