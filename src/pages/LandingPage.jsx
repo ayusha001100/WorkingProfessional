@@ -38,11 +38,7 @@ export default function LandingPage() {
         });
     }, []);
 
-    const navItems = [
-        { label: 'Roadmap', path: '/track' },
-        { label: 'Success Stories', path: '#' },
-        { label: 'FAQ', path: '#' },
-    ];
+
 
     return (
         <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
@@ -60,13 +56,7 @@ export default function LandingPage() {
                     <h2 style={{ fontSize: '1.3rem', fontWeight: 800, letterSpacing: '-0.02em' }}>LetsUpgrade</h2>
                 </div>
 
-                <div style={{ display: 'none', md: 'flex', alignItems: 'center', gap: '2.5rem' }}>
-                    {navItems.map(item => (
-                        <a key={item.label} href={item.path} style={{ textDecoration: 'none', color: 'var(--text-secondary)', fontWeight: 500, fontSize: '0.9rem', transition: 'color 0.2s' }}>
-                            {item.label}
-                        </a>
-                    ))}
-                </div>
+
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
                     <ThemeToggle />
