@@ -731,7 +731,7 @@ export default function UnifiedLearningPage() {
                                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.8rem', color: isDarkMode ? '#cbd5e1' : '#475569' }}>
                                                     <PlayCircle size={14} color="#ff5722" />
-                                                    <span>Starts at 7 PM to 10 PM onwards</span>
+                                                    <span>Starts at 11 AM to 2 PM onwards</span>
                                                 </div>
                                                 <div style={{
                                                     display: 'flex', alignItems: 'center', gap: '0.75rem',
