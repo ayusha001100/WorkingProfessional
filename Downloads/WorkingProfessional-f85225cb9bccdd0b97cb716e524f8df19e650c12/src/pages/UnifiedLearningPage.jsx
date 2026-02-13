@@ -12,6 +12,8 @@ import {
 } from 'lucide-react';
 import ReactJoyride, { STATUS } from 'react-joyride';
 import confetti from 'canvas-confetti';
+import { db } from '../config/firebase';
+import { collection, query, orderBy, limit, onSnapshot, where } from 'firebase/firestore';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { GEN_AI_COURSE } from '../data/genAiCourse';
@@ -171,17 +173,51 @@ export default function UnifiedLearningPage() {
     const [userRank, setUserRank] = useState(12);
 
     useEffect(() => {
-        const fetchLeaderboard = async () => {
-            // Generate dynamic leaderboard based on user's city
-            const { leaderboard: leaderboardData, userRank: rank } = generateCityLeaderboard(userData);
-            setLeaderboard(leaderboardData);
-            setUserRank(rank);
-        };
+        if (!userData) return;
 
-        if (userData) {
-            fetchLeaderboard();
-        }
-    }, [userData]);
+        const city = userData?.location?.city || userData?.onboarding?.city || 'Mumbai';
+
+        // Listen to top users from the same city
+        const usersRef = collection(db, 'users');
+        const q = query(
+            usersRef,
+            where('onboarding.city', '==', city),
+            orderBy('progress.xp', 'desc'),
+            limit(5)
+        );
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const cityLeaderboard = [];
+            snapshot.forEach((doc) => {
+                const d = doc.data();
+                cityLeaderboard.push({
+                    uid: doc.id,
+                    name: d.name || 'Anonymous',
+                    points: d.progress?.xp || 0,
+                    avatarSeed: d.name || 'User'
+                });
+            });
+
+            setLeaderboard(cityLeaderboard.slice(0, 3));
+
+            // For user rank, we'd ideally need a separate query or calculate from snapshot
+            // For now, let's estimate or keep a placeholder if not in top 5
+            const myRankIdx = cityLeaderboard.findIndex(u => u.uid === user?.uid);
+            if (myRankIdx !== -1) {
+                setUserRank(myRankIdx + 1);
+            } else {
+                setUserRank('10+'); // Placeholder
+            }
+        }, (error) => {
+            console.error("Leaderboard error:", error);
+            // Fallback to mock data if Firestore fails or index is missing
+            const { leaderboard: leaderboardData, userRank: rank } = generateCityLeaderboard(userData);
+            setLeaderboard(leaderboardData.slice(0, 3));
+            setUserRank(rank);
+        });
+
+        return () => unsubscribe();
+    }, [userData, user]);
 
     useEffect(() => {
         const hasSeenTour = localStorage.getItem('hasSeenMainTour');
@@ -869,7 +905,7 @@ export default function UnifiedLearningPage() {
                                 </div>
                                 <div>
                                     <div style={{ fontSize: '0.9rem', fontWeight: 900, color: isDarkMode ? '#fff' : '#1e293b' }}>{userData?.name || 'Learner'}</div>
-                                    <div style={{ fontSize: '0.75rem', color: '#ff5722', fontWeight: 700 }}>{userData?.stats?.totalPoints || 0} Points • Rank {userRank}</div>
+                                    <div style={{ fontSize: '0.75rem', color: '#ff5722', fontWeight: 700 }}>{userData?.progress?.xp || 0} Points • Rank {userRank}</div>
                                 </div>
                                 <div style={{
                                     position: 'absolute', top: -10, right: 15,
