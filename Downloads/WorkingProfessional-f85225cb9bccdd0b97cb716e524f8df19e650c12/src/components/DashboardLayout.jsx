@@ -419,7 +419,7 @@ export default function DashboardLayout({ children, showSidebar = true, headerEx
                         <motion.button
                             whileHover={{ scale: 1.05, y: -1 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => window.location.href = 'https://pages.razorpay.com/pl_S7Hmm9y3KCV723/view'}
+                            onClick={() => window.open('https://drive.google.com/file/d/1iLz007ulIsCzbGwElQ7LN50TUgTin9H5/view?usp=sharing', '_blank')}
                             style={{
                                 height: '42px', padding: '0 1.25rem', borderRadius: '14px',
                                 background: isDarkMode ? '#FF5722' : '#FF5722',
