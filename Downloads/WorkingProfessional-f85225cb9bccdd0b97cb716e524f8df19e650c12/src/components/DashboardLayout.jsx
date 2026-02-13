@@ -429,8 +429,8 @@ export default function DashboardLayout({ children, showSidebar = true, headerEx
                                 boxShadow: '0 4px 15px rgba(255, 87, 34, 0.3)'
                             }}
                         >
-                            <Sparkles size={14} fill="#fff" />
-                            Go Pro
+                            <FileText size={14} />
+                            Brochure
                         </motion.button>
                     </div>
                 </header>

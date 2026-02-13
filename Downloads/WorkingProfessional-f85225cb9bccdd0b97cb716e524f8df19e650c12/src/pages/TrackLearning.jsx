@@ -150,7 +150,7 @@ export default function TrackLearning() {
 
         const options = {
             key: import.meta.env.VITE_RAZORPAY_KEY || 'rzp_test_1DP5mmOlF5G5ag', // Replace with your Razorpay key
-            amount: 3000000, // 30,000 INR in paise
+            amount: 2990000, // 29,900 INR in paise
             currency: 'INR',
             name: 'LetsUpgrade',
             description: 'AI-First Professional Course - Level 3+',
@@ -809,7 +809,7 @@ export default function TrackLearning() {
                         setSelectedPaymentModule(null);
                     }}
                     module={selectedPaymentModule?.module}
-                    price={selectedPaymentModule?.module?.price || 30000}
+                    price={selectedPaymentModule?.module?.price || 29900}
                     onPayment={handleRazorpayPayment}
                 />
             </div>

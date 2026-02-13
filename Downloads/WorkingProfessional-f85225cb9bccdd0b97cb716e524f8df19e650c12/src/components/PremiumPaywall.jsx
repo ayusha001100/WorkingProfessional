@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Check, Zap, Sparkles, X } from 'lucide-react';
 
-export default function PremiumPaywall({ isOpen, onClose, module, price = 30000, onPayment }) {
+export default function PremiumPaywall({ isOpen, onClose, module, price = 29900, onPayment }) {
     // Lock body scroll when modal is open
     useEffect(() => {
         if (isOpen) {
