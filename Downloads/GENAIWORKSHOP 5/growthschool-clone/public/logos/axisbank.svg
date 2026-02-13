@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 150">
+  <path d="M100,100 L150,20 L200,100 L180,100 L150,50 L120,100 Z" fill="#97144D"/>
+  <rect x="180" y="60" width="40" height="40" fill="#97144D"/>
+  <text x="230" y="85" font-family="Arial, sans-serif" font-weight="bold" font-size="50" fill="#97144D">AXIS BANK</text>
+</svg>

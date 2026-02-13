@@ -1,0 +1,969 @@
+.heroSection {
+    padding: 120px 0 80px;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+.backgroundWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Updated to Orange Gradients */
+/* Updated to Orange Gradients */
+.gradientBg {
+    display: none !important;
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+.particles {
+    display: none !important;
+}
+
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 204, 0, 0.4);
+    border-radius: 50%;
+    animation: float 15s infinite;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+}
+
+/* ... keep particle nth-child rules ... */
+.particle:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 12s;
+}
+
+.particle:nth-child(2) {
+    left: 20%;
+    animation-delay: 2s;
+    animation-duration: 14s;
+}
+
+.particle:nth-child(3) {
+    left: 30%;
+    animation-delay: 4s;
+    animation-duration: 11s;
+}
+
+.particle:nth-child(4) {
+    left: 40%;
+    animation-delay: 1s;
+    animation-duration: 16s;
+}
+
+.particle:nth-child(5) {
+    left: 50%;
+    animation-delay: 3s;
+    animation-duration: 13s;
+}
+
+.particle:nth-child(6) {
+    left: 60%;
+    animation-delay: 5s;
+    animation-duration: 15s;
+}
+
+.particle:nth-child(7) {
+    left: 70%;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.particle:nth-child(8) {
+    left: 80%;
+    animation-delay: 4s;
+    animation-duration: 14s;
+}
+
+.particle:nth-child(9) {
+    left: 90%;
+    animation-delay: 1s;
+    animation-duration: 11s;
+}
+
+.particle:nth-child(10) {
+    left: 15%;
+    animation-delay: 3s;
+    animation-duration: 16s;
+}
+
+.particle:nth-child(11) {
+    left: 25%;
+    animation-delay: 0s;
+    animation-duration: 13s;
+}
+
+.particle:nth-child(12) {
+    left: 75%;
+    animation-delay: 2s;
+    animation-duration: 15s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.gridOverlay {
+    display: none;
+}
+
+.glowOrb {
+    display: none !important;
+}
+
+.glowOrb2 {
+    display: none !important;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    padding: 0 24px;
+    overflow: visible;
+    width: 100%;
+}
+
+.heroMain {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.heroLeft {
+    flex: 1;
+    text-align: left;
+    max-width: 650px;
+}
+
+.heroRight {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+/* --- New Typography Tags --- */
+
+.yellowEyebrow {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000000;
+    /* Black */
+    margin-bottom: 12px;
+    display: block;
+    text-transform: capitalize;
+}
+
+.headlineContainer h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+
+.highlightYellow {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    color: #ffcc00;
+}
+
+.highlightYellow::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: -5px;
+    right: -5px;
+    height: 35%;
+    background-color: #ffcc00;
+    z-index: -1;
+    transform: rotate(-2deg);
+    border-radius: 4px;
+    opacity: 0.9;
+    display: none;
+}
+
+/* Option 2: Full background highlight check image - looks like full stripe or underline.
+   Let's do a marker style full stripe behind text */
+.highlightYellowMarker {
+    background-color: #ffcc00;
+    color: #fff;
+    padding: 0 8px;
+    display: inline-block;
+    transform: skewX(-10deg);
+}
+
+.highlightYellowMarker span {
+    display: inline-block;
+    transform: skewX(10deg);
+    /* Counter skew */
+}
+
+/* --- Subheadline --- */
+
+.subheadline {
+    max-width: 580px;
+    margin-bottom: 30px;
+}
+
+.subheadline p {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.6;
+}
+
+.heroBulletList {
+    list-style: none;
+    /* We will use custom pseudo elements */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.heroBulletList li {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 24px;
+    text-align: left;
+}
+
+.heroBulletList li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    /* Align with first line text */
+    width: 8px;
+    height: 8px;
+    background-color: #ffcc00;
+    border-radius: 50%;
+}
+
+/* --- Trainers Section --- */
+.trainersSection {
+    margin-bottom: 32px;
+}
+
+.trainersLabel {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #666;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.trainersLogos {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #222;
+}
+
+.separator {
+    color: #ffcc00;
+    font-size: 1.2rem;
+}
+
+/* --- CTA & Footer --- */
+.ctaWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.limitSeats {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* --- Shimmer Animation --- */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) skewX(-15deg);
+    }
+
+    100% {
+        transform: translateX(200%) skewX(-15deg);
+    }
+}
+
+.ctaButton {
+    background-color: #ffcc00;
+    color: #000;
+    padding: 18px 40px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+    /* Contain the shimmer */
+}
+
+.ctaButton svg {
+    color: white;
+    width: 24px;
+    height: 24px;
+}
+
+.ctaButton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: translateX(-150%) skewX(-15deg);
+    animation: shimmer 2.5s infinite;
+}
+
+.ctaButton:hover {
+    background-color: #e6b800;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 204, 0, 0.4);
+}
+
+/* --- Sticky Enquire Bar --- */
+.stickyEnquireBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ffcc00;
+    /* Yellow */
+    color: #000;
+    text-align: center;
+    padding: 16px 0;
+    font-weight: 700;
+    font-size: 1.15rem;
+    z-index: 9999;
+    cursor: pointer;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease;
+    letter-spacing: 0.02em;
+    overflow: hidden;
+    /* Contain the shimmer */
+}
+
+.stickyEnquireBar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-150%) skewX(-15deg);
+    animation: shimmer 3s infinite;
+}
+
+.stickyEnquireBar:hover {
+    background: #e6b800;
+}
+
+.enquireForm {
+    background: white;
+    padding: 20px;
+    /* Reduced padding */
+    border-radius: 16px;
+    /* slightly tighter radius */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    /* Softer shadow */
+    width: 100%;
+    border: none;
+    /* Remove border for cleaner look */
+    position: relative;
+    height: auto;
+}
+
+.formHeader {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.formHeader h3 {
+    font-size: 1.5rem;
+    /* Reduced font size */
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 4px;
+    letter-spacing: -0.03em;
+}
+
+.formHeader p {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.formBody {
+    background: #ffcc00;
+    /* Yellow Theme Box */
+    padding: 16px;
+    /* Reduced padding */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Reduced gap */
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.inputGroup input {
+    width: 100%;
+    padding: 10px 14px;
+    /* Reduced padding */
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    /* Reduced font size */
+    background: #ffffff;
+    transition: all 0.2s ease;
+    color: #000;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    /* subtle lift */
+}
+
+.inputGroup input::placeholder {
+    color: #a0a0a0;
+    font-weight: 400;
+}
+
+.inputGroup input:focus {
+    outline: none;
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.phoneWrapper {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    background: #ffffff;
+    position: relative;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.phoneWrapper:focus-within {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+/* New custom selector wrapper needed for spacing */
+.customSelectWrapper {
+    border-right: 1px solid #f0f0f0;
+    background: #ffffff;
+    position: relative;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.customSelectTrigger {
+    padding: 10px 12px;
+    /* Reduced padding */
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    white-space: nowrap;
+    min-width: 70px;
+}
+
+/* Ensure phone input has no border to blend in */
+.phoneWrapper input {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 10px 14px;
+    /* Reduced padding */
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.phoneWrapper input:focus {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+/* --- Form Grid for State/City --- */
+.formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.customSelectInput {
+    padding: 10px 14px;
+    /* Reduced padding */
+    border: none;
+    border-radius: 6px;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.customSelectInput:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.placeholderColor {
+    color: #a0a0a0;
+    font-weight: 400;
+}
+
+.disabledInput {
+    background-color: #f7f7f7;
+    cursor: not-allowed;
+    opacity: 0.7;
+    border-color: #f0f0f0;
+    box-shadow: none;
+}
+
+.submitBtn {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    /* Reduced padding */
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 1rem;
+    /* Reduced font size */
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+    letter-spacing: 0.02em;
+    width: 100%;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    background: #333;
+}
+
+.checkboxGroup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+    padding-left: 4px;
+    /* Align slightly better */
+}
+
+.checkboxGroup label {
+    font-size: 0.85rem;
+    color: #000;
+    /* Contrast on yellow */
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.checkboxGroup input {
+    accent-color: #000;
+    /* Black Checkbox */
+    width: 16px;
+    height: 16px;
+}
+
+/* --- Feature Cards (Yellow Accents) --- */
+.featureGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.featureCard {
+    background: white;
+    padding: 32px 24px;
+    border-radius: 20px;
+    text-align: left;
+    border: 1px solid #f0f0f0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.featureCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ffcc00, #ffdb4d);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.featureCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(255, 204, 0, 0.1);
+    border-color: #ffcc00;
+}
+
+.featureCard:hover::before {
+    opacity: 1;
+}
+
+.cardIcon {
+    width: 56px;
+    height: 56px;
+    background: #FFF9CC;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: #ffcc00;
+    flex-shrink: 0;
+}
+
+.featureCard:hover .cardIcon {
+    background: #ffcc00;
+    color: white;
+    transform: rotate(-8deg) scale(1.2) translateY(-4px);
+    box-shadow: 0 15px 30px rgba(255, 204, 0, 0.3);
+}
+
+.cardContent h4 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+    color: #1a1a1a;
+    line-height: 1.3;
+}
+
+.cardContent p {
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.5;
+}
+
+/* --- Dropdowns --- */
+
+.customSelectInput:hover {
+    border-color: #ffcc00;
+    background: white;
+}
+
+.customOption:hover {
+    background: #FFF9CC;
+}
+
+.customSelectContainer {
+    position: relative;
+    flex: 1;
+}
+
+.customOptionsList {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: white;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-height: 240px;
+    overflow-y: auto;
+    border-radius: 12px;
+    padding: 8px;
+    scrollbar-width: thin;
+}
+
+.customSelectWrapper .customOptionsList {
+    min-width: 280px;
+}
+
+.customOption {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #444;
+    transition: all 0.2s;
+    border-radius: 8px;
+    text-align: center;
+    /* Center the options as requested */
+    font-weight: 500;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 40px;
+    }
+
+    .heroMain {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+    }
+
+    .heroLeft {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .heroRight {
+        justify-content: center;
+    }
+
+    .featureGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .headlineContainer h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .heroSection {
+        padding: 100px 0 60px;
+    }
+
+    .headlineContainer h1 {
+        font-size: 2.5rem;
+    }
+
+    .featureGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .heroMain {
+        flex-direction: column-reverse;
+        gap: 32px;
+    }
+
+    .yellowEyebrow {
+        font-size: 1.1rem;
+    }
+}
+
+/* --- Hero Image & Modal Styles --- */
+
+.heroImageContainer {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.heroImage {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(12px);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: safe center;
+    /* Try to center, but don't cut off top if overflow */
+    padding: 60px 20px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Fallback for browsers that don't support 'safe' */
+@supports not (align-items: safe center) {
+    .modalOverlay {
+        align-items: flex-start;
+    }
+}
+
+.modalContent {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    /* Reduced max-width */
+    max-height: none;
+    z-index: 10001;
+    margin: auto;
+    /* This centers it vertically when content is short */
+    display: flex;
+    flex-direction: column;
+}
+
+.closeButton {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 36px;
+    height: 36px;
+    background: white;
+    color: #333;
+    border-radius: 50%;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10002;
+    transition: all 0.2s;
+}
+
+.closeButton:hover {
+    background: #FF6B35;
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .modalContent {
+        max-width: 100%;
+    }
+
+    .closeButton {
+        top: -10px;
+        right: -10px;
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+    }
+
+    .heroImageContainer {
+        justify-content: center;
+        margin-top: 20px;
+        /* Make video edge-to-edge on mobile */
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+    }
+
+    .heroImage {
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+/* --- Sticky Enquire Bar --- */
+.stickyEnquireBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ffcc00;
+    /* Yellow */
+    color: #000;
+    text-align: center;
+    padding: 16px 0;
+    font-weight: 700;
+    font-size: 1.15rem;
+    z-index: 9999;
+    cursor: pointer;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease;
+    letter-spacing: 0.02em;
+}
+
+.stickyEnquireBar:hover {
+    background: #e6b800;
+}
