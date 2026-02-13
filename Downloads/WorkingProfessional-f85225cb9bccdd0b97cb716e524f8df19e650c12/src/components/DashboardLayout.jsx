@@ -199,7 +199,7 @@ export default function DashboardLayout({ children, showSidebar = true, headerEx
                             </NavLink>
                         ))}
 
-                        {/* Brochure Button */}
+                        {/* Upgrade to Pro Button */}
                         <motion.button
                             whileHover={{ scale: 1.02, y: -2 }}
                             whileTap={{ scale: 0.98 }}
@@ -222,8 +222,8 @@ export default function DashboardLayout({ children, showSidebar = true, headerEx
                                 overflow: 'hidden'
                             }}
                         >
-                            <FileText size={20} color="#FF5722" />
-                            <span style={{ fontSize: '0.95rem', letterSpacing: '0.01em' }}>Brochure</span>
+                            <Sparkles size={20} color="#FF5722" fill="rgba(255, 87, 34, 0.2)" />
+                            <span style={{ fontSize: '0.95rem', letterSpacing: '0.01em' }}>Upgrade to Pro</span>
                         </motion.button>
                     </nav>
 
@@ -415,7 +415,7 @@ export default function DashboardLayout({ children, showSidebar = true, headerEx
                             <span>{userData?.stats?.streak || 0}</span>
                         </div>
 
-                        {/* Brochure Button */}
+                        {/* Go Pro Button */}
                         <motion.button
                             whileHover={{ scale: 1.05, y: -1 }}
                             whileTap={{ scale: 0.95 }}
@@ -429,8 +429,8 @@ export default function DashboardLayout({ children, showSidebar = true, headerEx
                                 boxShadow: '0 4px 15px rgba(255, 87, 34, 0.3)'
                             }}
                         >
-                            <FileText size={14} />
-                            Brochure
+                            <Sparkles size={14} fill="#fff" />
+                            Go Pro
                         </motion.button>
                     </div>
                 </header>
