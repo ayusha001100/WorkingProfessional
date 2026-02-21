@@ -1,0 +1,59 @@
+{
+  "users": {
+    "user-w1j77kcnb": {
+      "uid": "user-w1j77kcnb",
+      "email": "learner@example.com",
+      "name": "AI Explorer",
+      "photoURL": "https://api.dicebear.com/7.x/avataaars/svg?seed=0.2917464760415688",
+      "createdAt": "2026-02-03T07:34:01.637Z",
+      "progress": {
+        "completedSections": [],
+        "completedQuizzes": []
+      },
+      "stats": {
+        "totalPoints": 0,
+        "totalCorrect": 0,
+        "totalIncorrect": 0
+      },
+      "onboardingCompleted": false,
+      "role": "user"
+    },
+    "user-em6vpqq9v": {
+      "uid": "user-em6vpqq9v",
+      "email": "learner@example.com",
+      "name": "AI Explorer",
+      "photoURL": "https://api.dicebear.com/7.x/avataaars/svg?seed=0.25418818149747624",
+      "createdAt": "2026-02-03T09:29:50.280Z",
+      "progress": {
+        "completedSections": [],
+        "completedQuizzes": []
+      },
+      "stats": {
+        "totalPoints": 0,
+        "totalCorrect": 0,
+        "totalIncorrect": 0
+      },
+      "onboardingCompleted": false,
+      "role": "user"
+    },
+    "user-qqj48e3gj": {
+      "uid": "user-qqj48e3gj",
+      "email": "learner@example.com",
+      "name": "AI Explorer",
+      "photoURL": "https://api.dicebear.com/7.x/avataaars/svg?seed=0.7375456330792121",
+      "createdAt": "2026-02-03T11:04:43.971Z",
+      "progress": {
+        "completedSections": [],
+        "completedQuizzes": []
+      },
+      "stats": {
+        "totalPoints": 0,
+        "totalCorrect": 0,
+        "totalIncorrect": 0
+      },
+      "onboardingCompleted": false,
+      "role": "user"
+    }
+  },
+  "sessions": {}
+}
